@@ -1,4 +1,9 @@
-﻿using System;
+﻿/*
+ * ITSE 1430
+ * Your name
+ */
+
+using System;
 
 namespace Section1
 {
@@ -7,6 +12,12 @@ namespace Section1
         static void Main ( string[] args )
         {
             Console.WriteLine("Hello World!");
+
+            int hours;
+            double payrate;
+            string name;
+            bool pass;
+
         }
     }
 }
