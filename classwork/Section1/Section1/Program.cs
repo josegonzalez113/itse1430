@@ -1,6 +1,6 @@
 ﻿/*
  * ITSE 1430
- * Your name
+ * Your Name
  */
 
 using System;
@@ -11,110 +11,182 @@ namespace Section1
     {
         static void Main ( string[] args )
         {
-            //PlayingWithVariables();
+            //PlayingWithVariables(); 
+            var done = false;
             do
             {
+                switch (DisplayMenu())
+                {
+                    case Command.Add: AddMovie(); break;
+                    case Command.Display: DisplayMovie(); break;
+                    case Command.Quit: done = true; break;
+                };
+            } while (!done);
+        }
 
+        static void PlayingWithStrings ()
+        {
+            var firstName = "Bob";
+            var lastName = "Jones";
 
-            }while(DisplayMenu());
+            var fullName = firstName + lastName;
+            fullName += " Jr";
 
-            private static bool DisplayMenu()
+            //concat more than 6 
+            var concat = String.Concat(firstName, " ", lastName);
+            var joned = String.Join(" ", firstName, lastName);
+
+            //formating
+            Console.WriteLine("First Name: {0} Last Name: {1}", firstName, lastName);
+            var format = string.Format("First Name: {0} Last Name: {1}", firstName, lastName);
+            var format2 = "First Name: " + firstName + " Last Name: " + lastName;
+
+            // preferred - string interpolation
+            // dollar sign = string interpolation
+            // @ -> verbata string, allows all escaped characters to be ignored.
+            var format3 = $"First Name: {firstName} Last Name: {lastName}";
+
+            //Verbata string
+            var path = @"C:\windows\system32";
+
+            var startsWithSlash = path.StartsWith(@"\");
+            var endsWithSlash = path.EndWith(@"\");
+
+            var padLeft = fullName.padLeft(20);
+            var padRight = fullName.padRight(20);
+            var header = "".padLeft(20, '-'); // "---------"
+
+            var trimLeft = fullName.trim();
+            var trimStart = fullName.TrimStart();
+            var trimEnd = fullName.TrimEnd();
+            var trimSlash = path.Trim('\\', '-');
+
+            var tokens = path.Split('\\');
+
+        }
+
+        private static void DisplayMovie ()
+        {
+            if (String.IsNullOrEmpty(title))
+            {
+                Console.WriteLine("No movies");
+                return;
+            };
+
+            Console.WriteLine(title);
+
+            Console.WriteLine(releaseYear);
+
+            Console.WriteLine(runLength + " (min)");
+
+            Console.WriteLine(isClassic ? "Classic" : "Not Classic");
+
+            if (!String.IsNullOrEmpty(description))
+                Console.WriteLine(description);
+        }
+
+        enum Command
+        {
+            Quit = 0,
+            Add = 1,
+            Display = 2,
+        }
+
+        private static Command DisplayMenu ()
+        {
+            do
             {
                 Console.WriteLine("A)dd Movie");
                 Console.WriteLine("D)isplay Movie");
                 Console.WriteLine("Q)uit");
 
                 var input = Console.ReadLine();
-                switch(input.ToLower())
+                switch (input.ToLower())
                 {
-                    case "a":
-                    case "d":
-                    case "q":
+                    case "a": return Command.Add;
+                    case "d": return Command.Display;
+                    case "q": return Command.Quit;
 
-                }
-            }
-            
-            AddMovie();
-
+                    default: Console.WriteLine("Invalid option"); break;
+                };
+            } while (true);
         }
 
-
+        static string title;
+        static int releaseYear;
+        static int runLength;
+        static string description;
+        static bool isClassic;
 
         static void AddMovie ()
         {
-            string title = ReadString("Enter a tile: ", true);
+            title = ReadString("Enter a title: ", true);
 
-            int releaseYear = ReadInt32("Enter release year (>=0): ", 0, 2100);
+            releaseYear = ReadInt32("Enter the release year (>= 0): ", 0, 2100);
+            runLength = ReadInt32("Enter the run length (>= 0): ", 0, 86400);
 
-            int runLength = ReadInt32("Enter the run length (>=0): ", 0, 86400);
-
-            string description = ReadString("Enter a decription: ", true);
-
-            bool isClassic = readBoolean("Is this a classic movie? ");
+            description = ReadString("Enter a description: ", false);
+            isClassic = ReadBoolean("Is this a classic movie?");
         }
 
-        private static bool readBoolean ( string message )
+        private static bool ReadBoolean ( string message )
         {
-            Console.Write(message + "(Y/N)");
+            Console.Write(message + " (Y/N)");
 
             do
             {
                 string value = Console.ReadLine();
-                // check for empty string
+
+                //Checking for empty string
                 // 1. if (value != "")
                 // 2. if (value != String.Empty)
-                // 3. if( value.Length == 0 )
-                if(!String.IsNullOrEmpty(value))
+                // 3. if (value != null && value.Length == 0)
+                // 4. Preferred - String.IsNullOrEmpty
+                if (!String.IsNullOrEmpty(value))
                 {
-                    //TODO: Do this correctly
-
-                    //1. if
-                    //2. switch
-                    //3.String casing
-                    //4.String comparison
-
-                    /*value = value.ToLower();
-                    if (value == 'y')
-                        return true;
-                    else if (value == 'n')
-                        return false;*/
+                    // Input validation
+                    // 1. If
+                    // 2. Switch
+                    // 3. String casing
+                    // 4. String comparison
+                    //value = value.ToLower();
+                    //if (value == "y")
+                    //    return true;
+                    //else if (value == "n")
+                    //    return false;
 
                     //bool isYes = String.Compare(value, "Y", true) == 0 ? true : false;
 
-                    // string comparison
                     if (String.Compare(value, "Y", true) == 0)
                         return true;
                     else if (String.Compare(value, "N", true) == 0)
                         return false;
 
                     char firstChar = value[0];
+                    //if (firstChar == 'Y' || firstChar == 'y')
+                    //    return true;
+                    //else if (firstChar == 'N' || firstChar == 'n')
+                    //    return false;                    
+                    //switch (firstChar)
+                    //{
+                    //    #region Demo case
+                    //    //case 'A':
+                    //    //{
+                    //    //    Console.WriteLine("A");
+                    //    //    break;
+                    //    //};
+                    //    //case 'a': Console.WriteLine("a"); break;
+                    //    #endregion
 
-                    /*if (firstChar == 'Y' || firstChar == 'y')
-                        return true;
-                    else if (firstChar == 'N' || firstChar == 'n')
-                        return false;*/
+                    //    case 'Y':
+                    //    case 'y': return true;
 
-                   /* switch (firstChar)
-                    {
-                        case 'A':
-                        {
-                            Console.WriteLine("A");
-                            break;
-                        }
-                        case 'a':
-                        {
-                            Console.WriteLine("a");
-                            break;
-                        }
+                    //    case 'N': 
+                    //    case 'n': return false;
+                    //};
+                };
 
-                        case 'Y':
-                        case 'y': return true;
-
-                        case 'N':
-                        case 'n': return false;
-                    }*/
-
-                    };
+                Console.WriteLine("Enter Y/N");
             } while (true);
         }
 
@@ -124,28 +196,27 @@ namespace Section1
 
             do
             {
+                //var x = 10;
                 string value = Console.ReadLine();
 
-                // if required and string is empty
+                //If required and string is empty then error
                 if (!String.IsNullOrEmpty(value) || !required)
                     return value;
 
                 if (required)
                     Console.WriteLine("Value is required");
             } while (true);
-
         }
 
-        private static int ReadInt32 (string message, int minValue, int maxValue)
+        private static int ReadInt32 ( string message, int minValue, int maxValue )
         {
             Console.Write(message);
-            
-            //int value = Int32.Parse(temp);
 
             do
             {
-                string temp = Console.ReadLine();
-                //int value = Int32.Parse(temp)
+                //string temp = Console.ReadLine();
+                var temp = Console.ReadLine();
+                //int value = Int32.Parse(temp);
 
                 //TODO: Clean this up
                 //int value;
@@ -153,10 +224,9 @@ namespace Section1
                 {
                     if (value >= minValue && value <= maxValue)
                         return value;
-
                 };
-                                               
-                Console.WriteLine("Value must be bewtween minValue and MaxValue");
+
+                Console.WriteLine("Value must be between minValue and maxValue");
             } while (true);
         }
 
