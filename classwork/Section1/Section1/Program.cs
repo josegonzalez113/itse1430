@@ -12,9 +12,33 @@ namespace Section1
         static void Main ( string[] args )
         {
             //PlayingWithVariables();
+            do
+            {
+
+
+            }while(DisplayMenu());
+
+            private static bool DisplayMenu()
+            {
+                Console.WriteLine("A)dd Movie");
+                Console.WriteLine("D)isplay Movie");
+                Console.WriteLine("Q)uit");
+
+                var input = Console.ReadLine();
+                switch(input.ToLower())
+                {
+                    case "a":
+                    case "d":
+                    case "q":
+
+                }
+            }
+            
             AddMovie();
 
         }
+
+
 
         static void AddMovie ()
         {
