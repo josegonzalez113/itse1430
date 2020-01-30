@@ -11,6 +11,16 @@ namespace lab1_pizza
         { // parameters 
         }*/
 
+        // commands will be used for-
+        // adding and removing from pizza
+        enum Command
+        {
+            Add = 0,
+            Remove = 1,
+            Checkout = 2,
+            Quit = 3
+        }   
+
         public static void mainMenu()
         {
 
@@ -22,10 +32,15 @@ namespace lab1_pizza
             string cheeseOp;
             string deliveryOp;
 
-            Console.WriteLine("              Build your pizza");
+            var title = "Build your pizza";
+            char pad = ' ';
+            Console.WriteLine(title.PadLeft(10, pad));
 
             Console.WriteLine("Sizes : SMALL = $2.50, MEDIUM = $3.50, LARGE = $4.50");
             sizeOp = Console.ReadLine();
+            setSize(sizeOp);
+            
+            //Console.WriteLine(value);
 
             Console.WriteLine("Meats : BACON = $2, HAM = $1, PEPPERONI = $2, SAUSAGE = 1");
             meatOp = Console.ReadLine();
@@ -44,11 +59,55 @@ namespace lab1_pizza
 
         }
 
-        public static void setName (string name)
+        // set price depending on size
+        public static void setSize ( string pick )
         {
-            var customer = name;
-            Console.WriteLine(name);
+            switch (pick.ToLower())
+            {
+                case "small":
+                pick = "2.50"; break;
+
+                case "medium":
+                pick = "3.50"; break;
+
+                case "large":
+                pick = "4.50"; break;
+
+            }
+            Console.WriteLine(pick);
+
+            // convert the string into actual value
+            Int32.TryParse(pick, out var value);
+
+            Console.WriteLine(value + pick);
         }
+
+        // set price depending on meat pick
+        public static void setMeats ( string pick )
+        {
+            switch (pick.ToLower())
+            {
+                case "BACON":
+                pick = "2"; break;
+
+                case "HAM":
+                pick = "1"; break;
+
+                case "PEPPERONI":
+                pick = "2"; break;
+
+                case "SAUSAGE":
+                pick = "1"; break;
+
+            }
+            Console.WriteLine(pick);
+        }
+
+        public static void addPrices ()
+        {
+                
+        }
+
 
         static void Main(string[] args)
         {
