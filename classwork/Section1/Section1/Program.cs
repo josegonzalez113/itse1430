@@ -1,6 +1,6 @@
 ﻿/*
  * ITSE 1430
- * Your Name
+ * Jose Gonzalez
  */
 
 using System;
