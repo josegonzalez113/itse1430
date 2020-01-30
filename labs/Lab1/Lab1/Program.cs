@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Jose Gonzalez 
+
+using System;
 
 namespace lab1_pizza
 {
@@ -40,6 +42,12 @@ namespace lab1_pizza
             Console.WriteLine("Delivery Option : TAKE OUT = $0, DELIVERY = $3");
             deliveryOp = Console.ReadLine();
 
+        }
+
+        public static void setName (string name)
+        {
+            var customer = name;
+            Console.WriteLine(name);
         }
 
         static void Main(string[] args)
