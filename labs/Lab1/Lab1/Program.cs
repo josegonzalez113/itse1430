@@ -24,27 +24,27 @@ namespace lab1_pizza
             char pad = ' ';
             Console.WriteLine(title.PadLeft(10, pad));
 
-            Console.WriteLine("Sizes : SMALL = $2.50, MEDIUM = $3.50, LARGE = $4.50");
+            Console.WriteLine("Sizes : S)mall = $2.50 | M)edium = $3.50 | L)arge = $4.50");
             string sizeOp = Console.ReadLine();
             SetSize(sizeOp);
 
-            Console.WriteLine("Meats : BACON = $2, HAM = $1, PEPPERONI = $2, SAUSAGE = 1");
+            Console.WriteLine("Meats : B)acon = $2 | HAM = $1 | P)epperoni = $2  S)ausage = 1");
             string meatOp = Console.ReadLine();
             SetMeats(meatOp);
 
-            Console.WriteLine("Vegetables : BLACK OLIVES = $1, MUSHROOMS = $1, ONIONS = $1, PEPPERS = $1");
+            Console.WriteLine("Vegetables : B)lack Olives = $1 | M)ushrooms = $1 | O)nions = $1 | P)eppers = $1");
             string vegeOp = Console.ReadLine();
             SetVegetables(vegeOp);
 
-            Console.WriteLine("Sauce : TRADITIONAL = $0, GARLIC = $1, OREGANO = $2");
+            Console.WriteLine("Sauce : T)raditional = $0 | G)arlic = $1 | O)regano = $2");
             string sauceOp = Console.ReadLine();
             SetSauce(sauceOp);
 
-            Console.WriteLine("Cheese : REGULAR = $0, EXTRA = $1");
+            Console.WriteLine("Cheese : R)egular = $0 | E)xtra = $1");
             string cheeseOp = Console.ReadLine();
             SetCheese(cheeseOp);
 
-            Console.WriteLine("Delivery Option : TAKE OUT = $0, DELIVERY = $3");
+            Console.WriteLine("Delivery Option : T)ake Out = $0 | D)elivery = $3");
             string deliveryOp = Console.ReadLine();
             SetDelivery(deliveryOp);
 
@@ -53,18 +53,21 @@ namespace lab1_pizza
         // set price depending on size of the pizza
         public static void SetSize ( string pick )
         {
-            switch (pick.ToLower())
-            {
-                case "small":
-                pick = "2.50"; break;
+                switch (pick.ToLower())
+                {
+                    case "small":
+                    case "s":
+                    pick = "2.50"; break;
 
-                case "medium":
-                pick = "3.50"; break;
+                    case "medium":
+                    case "m":
+                    pick = "3.50"; break;
 
-                case "large":
-                pick = "4.50"; break;
+                    case "large":
+                    case "l":
+                    pick = "4.50"; break;
+                }
 
-            }
             Console.WriteLine(pick);
 
             // convert the string into actual value
@@ -78,15 +81,19 @@ namespace lab1_pizza
             switch (pick.ToLower())
             {
                 case "bacon":
+                case "b":
                 pick = "2"; break;
 
                 case "ham":
+                case "h":
                 pick = "1"; break;
 
                 case "pepperoni":
+                case "p":
                 pick = "2"; break;
 
                 case "sausage":
+                case "s":
                 pick = "1"; break;
 
             }
@@ -99,15 +106,19 @@ namespace lab1_pizza
             switch (pick.ToLower())
             {
                 case "black olives":
+                case "b":
                 pick = "1"; break;
 
                 case "mushrooms":
+                case "m":
                 pick = "1"; break;
 
                 case "onions":
+                case "o":
                 pick = "1"; break;
 
                 case "peppers":
+                case "p":
                 pick = "1"; break;
 
             }
@@ -120,12 +131,15 @@ namespace lab1_pizza
             switch (pick.ToLower())
             {
                 case "traditional":
+                case "t":
                 pick = "0"; break;
 
                 case "garlic":
+                case "g":
                 pick = "1"; break;
 
                 case "oregano":
+                case "o":
                 pick = "2"; break;
 
             }
@@ -139,9 +153,11 @@ namespace lab1_pizza
             switch (pick.ToLower())
             {
                 case "regular":
+                case "r":
                 pick = "0"; break;
 
                 case "extra":
+                case "e":
                 pick = "1"; break;
 
             }
@@ -155,9 +171,11 @@ namespace lab1_pizza
             switch (pick.ToLower())
             {
                 case "take out":
+                case "t":
                 pick = "0"; break;
 
                 case "pickup":
+                case "p":
                 pick = "1"; break;
 
             }
