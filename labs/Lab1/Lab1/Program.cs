@@ -7,10 +7,6 @@ namespace lab1_pizza
     class Program
     {
 
-        /*public static int thePizza(double size, int meats, double vegetables, int sauces, int cheese, int delivery)
-        { // parameters 
-        }*/
-
         // commands will be used for-
         // adding and removing from pizza
         enum Command
@@ -24,43 +20,38 @@ namespace lab1_pizza
         public static void mainMenu()
         {
 
-            // user inputs
-            string sizeOp;
-            string meatOp;
-            string vegeOp;
-            string sauceOp;
-            string cheeseOp;
-            string deliveryOp;
-
             var title = "Build your pizza";
             char pad = ' ';
             Console.WriteLine(title.PadLeft(10, pad));
 
             Console.WriteLine("Sizes : SMALL = $2.50, MEDIUM = $3.50, LARGE = $4.50");
-            sizeOp = Console.ReadLine();
-            setSize(sizeOp);
-            
-            //Console.WriteLine(value);
+            string sizeOp = Console.ReadLine();
+            SetSize(sizeOp);
 
             Console.WriteLine("Meats : BACON = $2, HAM = $1, PEPPERONI = $2, SAUSAGE = 1");
-            meatOp = Console.ReadLine();
+            string meatOp = Console.ReadLine();
+            SetMeats(meatOp);
 
-            Console.WriteLine("Vegetables : BLACK OLIVES = $.50, MUSHROOMS = $.55, ONIONS = $.60, PEPPERS = $.55");
-            vegeOp = Console.ReadLine();
+            Console.WriteLine("Vegetables : BLACK OLIVES = $1, MUSHROOMS = $1, ONIONS = $1, PEPPERS = $1");
+            string vegeOp = Console.ReadLine();
+            SetVegetables(vegeOp);
 
-            Console.WriteLine("Sauce : TRADITIONAL = $0, GARLIC = $1, OREGANO = $1");
-            sauceOp = Console.ReadLine();
+            Console.WriteLine("Sauce : TRADITIONAL = $0, GARLIC = $1, OREGANO = $2");
+            string sauceOp = Console.ReadLine();
+            SetSauce(sauceOp);
 
             Console.WriteLine("Cheese : REGULAR = $0, EXTRA = $1");
-            cheeseOp = Console.ReadLine();
+            string cheeseOp = Console.ReadLine();
+            SetCheese(cheeseOp);
 
             Console.WriteLine("Delivery Option : TAKE OUT = $0, DELIVERY = $3");
-            deliveryOp = Console.ReadLine();
+            string deliveryOp = Console.ReadLine();
+            SetDelivery(deliveryOp);
 
         }
 
-        // set price depending on size
-        public static void setSize ( string pick )
+        // set price depending on size of the pizza
+        public static void SetSize ( string pick )
         {
             switch (pick.ToLower())
             {
@@ -77,36 +68,104 @@ namespace lab1_pizza
             Console.WriteLine(pick);
 
             // convert the string into actual value
-            Int32.TryParse(pick, out var value);
-
-            Console.WriteLine(value + pick);
+            // Int32.TryParse(pick, out var value);
+            // Console.WriteLine(value + pick);
         }
 
-        // set price depending on meat pick
-        public static void setMeats ( string pick )
+        // set price depending on the meats added to pizza
+        public static void SetMeats ( string pick )
         {
             switch (pick.ToLower())
             {
-                case "BACON":
+                case "bacon":
                 pick = "2"; break;
 
-                case "HAM":
+                case "ham":
                 pick = "1"; break;
 
-                case "PEPPERONI":
+                case "pepperoni":
                 pick = "2"; break;
 
-                case "SAUSAGE":
+                case "sausage":
                 pick = "1"; break;
 
             }
             Console.WriteLine(pick);
         }
 
-        public static void addPrices ()
+        // set price depending on the vegetable added to pizza
+        public static void SetVegetables ( string pick )
         {
-                
+            switch (pick.ToLower())
+            {
+                case "black olives":
+                pick = "1"; break;
+
+                case "mushrooms":
+                pick = "1"; break;
+
+                case "onions":
+                pick = "1"; break;
+
+                case "peppers":
+                pick = "1"; break;
+
+            }
+            Console.WriteLine(pick);
         }
+
+        // set price depending on the sauce added to pizza
+        public static void SetSauce ( string pick )
+        {
+            switch (pick.ToLower())
+            {
+                case "traditional":
+                pick = "0"; break;
+
+                case "garlic":
+                pick = "1"; break;
+
+                case "oregano":
+                pick = "2"; break;
+
+            }
+
+            Console.WriteLine(pick);
+        }
+
+        // set price depending on the amount of cheese added to pizza
+        public static void SetCheese ( string pick )
+        {
+            switch (pick.ToLower())
+            {
+                case "regular":
+                pick = "0"; break;
+
+                case "extra":
+                pick = "1"; break;
+
+            }
+
+            Console.WriteLine(pick);
+        }
+
+        // set price for delivery
+        public static void SetDelivery ( string pick )
+        {
+            switch (pick.ToLower())
+            {
+                case "take out":
+                pick = "0"; break;
+
+                case "pickup":
+                pick = "1"; break;
+
+            }
+
+            Console.WriteLine(pick);
+        }
+
+
 
 
         static void Main(string[] args)
@@ -116,3 +175,10 @@ namespace lab1_pizza
 
     }
 }
+
+// how to push online
+
+//version control->Review Solution and Commit-> Write a comment
+//commint all and push
+
+//version control->push changes
