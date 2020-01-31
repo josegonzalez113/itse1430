@@ -7,19 +7,35 @@ namespace lab1_pizza
     class Program
     {
 
-        // commands will be used for-
-        // adding and removing from pizza
         enum Command
         {
-            Add = 0,
-            Remove = 1,
-            Checkout = 2,
-            Quit = 3
+            NewOrder = 0,
+            ExistingOrder = 1,
+            Quit = 2,
+            Invalid = 3,
         }
 
-        public static void MainMenu ()
+        private static Command MainMenu ()
         {
-            
+            do
+            {
+                // Header
+                Console.WriteLine("       Main Menu");
+                Console.WriteLine("0.) Create new order");
+                Console.WriteLine("1.) Modify Existing Order");
+                Console.WriteLine("2.) Quit program");
+                Console.Write("Select an option to proceed: ");
+                var input = Console.ReadLine();
+
+                switch (input.ToLower())
+                {
+                    case "0": return Command.NewOrder; break;
+                    case "1": return Command.ExistingOrder; break;
+                    case "2": return Command.Quit; break;
+                    case "3": return Command.Invalid; break;
+
+                }
+            } while (!false);
         }
 
         public static void BuildPizzaMenu ()
@@ -230,10 +246,3 @@ namespace lab1_pizza
         }
     }
 }
-
-// how to push online
-
-//version control->Review Solution and Commit-> Write a comment
-//commint all and push
-
-//version control->push changes
