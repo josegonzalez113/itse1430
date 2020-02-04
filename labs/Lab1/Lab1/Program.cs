@@ -6,13 +6,30 @@ namespace lab1_pizza
 {
     class Program
     {
-
         enum Command
         {
             NewOrder = 0,
-            ExistingOrder = 1,
-            Quit = 2,
-            Invalid = 3,
+            EditOrder = 1,
+            ViewExisting = 2,
+            Quit = 3,
+            BackToMain = 4,
+        }
+
+        static void Main ( string[] args )
+        {
+            var appRunning = true;
+
+            do
+            {
+                switch (MainMenu())
+                {
+                    case Command.NewOrder: BuildPizzaMenu(); break;
+                    case Command.EditOrder: BuildPizzaMenu(); break;
+                    //case Command.ViewExisting: OrderReceipt(); break;
+                    case Command.Quit: appRunning = false; break;
+                    case Command.BackToMain: MainMenu(); break;
+                };
+            } while (appRunning != false);
         }
 
         private static Command MainMenu ()
@@ -23,74 +40,121 @@ namespace lab1_pizza
                 Console.WriteLine("       Main Menu");
                 Console.WriteLine("0.) Create new order");
                 Console.WriteLine("1.) Modify Existing Order");
-                Console.WriteLine("2.) Quit program");
+                Console.WriteLine("2.) View Existing Order");
+                Console.WriteLine("3.) Quit program");
                 Console.Write("Select an option to proceed: ");
                 var input = Console.ReadLine();
 
                 switch (input.ToLower())
                 {
-                    case "0": return Command.NewOrder; break;
-                    case "1": return Command.ExistingOrder; break;
-                    case "2": return Command.Quit; break;
-                    case "3": return Command.Invalid; break;
+                    case "0": return Command.NewOrder;
+                    case "1": return Command.EditOrder;
+                    case "2": return Command.ViewExisting;
+                    case "3": return Command.Quit;
+
+                    default: Console.WriteLine("Invalid Input"); break;
 
                 }
-            } while (!false);
+            } while (true);
         }
 
-        public static void BuildPizzaMenu ()
+        private static Command BuildPizzaMenu ()
         {
+            do
+            {
+                // Header
+                Console.WriteLine("         Build your pizza");
 
-            // Header
-            var title = "Build your pizza";
-            char pad = ' ';
-            Console.WriteLine(title.PadLeft(10, pad));
+                // Size
+                Console.WriteLine("Sizes : S)mall = $2 | M)edium = $3 | L)arge = $4");
+                string sizeOp = Console.ReadLine();
+                var currentPrice = SetSize(sizeOp);
 
-            // Size
-            Console.WriteLine("Sizes : S)mall = $2 | M)edium = $3 | L)arge = $4");
-            string sizeOp = Console.ReadLine();
-            var currentPrice = SetSize(sizeOp);
-            Console.WriteLine(currentPrice);
+                // Meats
+                Console.WriteLine("Meats : B)acon = $1 | P)epperoni = $2");
+                string meatOp = Console.ReadLine();
+                var currentPrice2 = SetMeats(meatOp);
 
-            // Meats
-            Console.WriteLine("Meats : B)acon = $2 | H)am = $1 | P)epperoni = $2  S)ausage = 1");
-            string meatOp = Console.ReadLine();
-            var currentPrice2 = SetMeats(meatOp);
-            Console.WriteLine(currentPrice2);
+                // Vegetables
+                Console.WriteLine("Vegetables : O)nions = $1 | P)eppers = $2");
+                string vegeOp = Console.ReadLine();
+                var currentPrice3 = SetVegetables(vegeOp);
 
-            // Vegetables
-            Console.WriteLine("Vegetables : B)lack Olives = $1 | M)ushrooms = $1 | O)nions = $1 | P)eppers = $1");
-            string vegeOp = Console.ReadLine();
-            var currentPrice3 = SetVegetables(vegeOp);
-            Console.WriteLine(currentPrice3);
+                // Sauce
+                Console.WriteLine("Sauce : T)raditional = $1 | G)arlic = $2 | O)regano = $3");
+                string sauceOp = Console.ReadLine();
+                var currentPrice4 = SetSauce(sauceOp);
 
-            // Sauce
-            Console.WriteLine("Sauce : T)raditional = $0 | G)arlic = $1 | O)regano = $2");
-            string sauceOp = Console.ReadLine();
-            var currentPrice4 = SetSauce(sauceOp);
-            Console.WriteLine(currentPrice4);
+                // Cheese
+                Console.WriteLine("Cheese : R)egular = $0 | E)xtra = $1");
+                string cheeseOp = Console.ReadLine();
+                var currentPrice5 = SetCheese(cheeseOp);
 
-            // Cheese
-            Console.WriteLine("Cheese : R)egular = $0 | E)xtra = $1");
-            string cheeseOp = Console.ReadLine();
-            var currentPrice5 = SetCheese(cheeseOp);
-            Console.WriteLine(currentPrice5);
+                // Delivery option
+                Console.WriteLine("Delivery Option : T)ake Out = $0 | D)elivery = $2");
+                string deliveryOp = Console.ReadLine();
+                var currentPrice6 = SetDelivery(deliveryOp);
 
-            // Delivery option
-            Console.WriteLine("Delivery Option : T)ake Out = $0 | D)elivery = $3");
-            string deliveryOp = Console.ReadLine();
-            var currentPrice6 = SetDelivery(deliveryOp);
-            Console.WriteLine(currentPrice6);
+                // calculate total
+                var final = FinalPrice(currentPrice, currentPrice2, currentPrice3, currentPrice4, currentPrice5, currentPrice6);
+                Console.WriteLine("Final price: $" + final);
 
-            var final = FinalPrice(currentPrice, currentPrice2, currentPrice3, currentPrice4, currentPrice5, currentPrice6);
-            Console.WriteLine(final);
+                // back to main menu
+                Console.Write("Enter any key to return to the main menu: ");
+                var selection = Console.ReadLine();
+
+                switch (selection)
+                {
+                    default: return Command.BackToMain;
+                }
+            } while (true);
+        }
+
+        // view existing order
+        public static void OrderReceipt ( int size, int meats, int vegies, int sauces, int cheese, int delivery, int price )
+        {
+            switch (size)
+            {
+                case 2: Console.WriteLine("Small size"); break;
+                case 3: Console.WriteLine("Medium size"); break;
+                case 4: Console.WriteLine("Large size"); break;
+            }
+            switch (meats)
+            {
+                case 1: Console.WriteLine("Bacon added"); break;
+                case 2: Console.WriteLine("Pepperoni added "); break;
+            }
+            switch (vegies)
+            {
+                case 1: Console.WriteLine("Peppers added"); break;
+                case 2: Console.WriteLine("Onions added"); break;
+            }
+            switch (sauces)
+            {
+                case 0: Console.WriteLine("Traditional sauce"); break;
+                case 1: Console.WriteLine("Garlic sauce"); break;
+                case 2: Console.WriteLine("Oregano sauce"); break;
+            }
+            switch (cheese)
+            {
+                case 0: Console.WriteLine("Regular cheese"); break;
+                case 1: Console.WriteLine("Extra cheese"); break;
+            }
+            switch (delivery)
+            {
+                case 0: Console.WriteLine("TakeOut"); break;
+                case 2: Console.WriteLine("Deliver"); break;
+            }
+
+            Console.WriteLine("-----------");
+            Console.WriteLine(price);
 
         }
 
         //adds up the final price for the customer
-        public static int FinalPrice (int p1, int p2, int p3, int p4, int p5, int p6)
+        public static int FinalPrice (int size, int meat, int vegie, int sauce, int cheese, int delivery)
         {
-            int finalPizzaPrice = p1 + p2 + p3 + p4 + p5 + p6;
+            int finalPizzaPrice = size + meat + vegie + sauce + cheese + delivery;
             return finalPizzaPrice;
         }
 
@@ -127,20 +191,11 @@ namespace lab1_pizza
             {
                 case "bacon":
                 case "b":
-                pick = "2"; break;
-
-                case "ham":
-                case "h":
                 pick = "1"; break;
 
                 case "pepperoni":
                 case "p":
                 pick = "2"; break;
-
-                case "sausage":
-                case "s":
-                pick = "1"; break;
-
             }
 
             var temp = Int32.TryParse(pick, out var price);
@@ -153,22 +208,13 @@ namespace lab1_pizza
         {
             switch (pick.ToLower())
             {
-                case "black olives":
-                case "b":
-                //pick = "1"; break;
-
-                case "mushrooms":
-                case "m":
-                //pick = "1"; break;
-
                 case "onions":
                 case "o":
-                //pick = "1"; break;
+                pick = "1"; break;
 
                 case "peppers":
                 case "p":
-                pick = "1"; break;
-
+                pick = "2"; break;
             }
             var temp = Int32.TryParse(pick, out var price);
             //Console.WriteLine(price);
@@ -230,19 +276,13 @@ namespace lab1_pizza
 
                 case "delivery":
                 case "d":
-                pick = "3"; break;
+                pick = "2"; break;
 
             }
 
             var temp = Int32.TryParse(pick, out var price);
             //Console.WriteLine(price);
             return price;
-        }
-
-        static void Main ( string[] args )
-        {
-            MainMenu();
-            BuildPizzaMenu();
         }
     }
 }
