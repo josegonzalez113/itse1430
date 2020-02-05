@@ -51,11 +51,9 @@ namespace lab1_pizza
                     case "0": return Command.NewOrder;
                     case "1": return Command.EditOrder;
                     case "2": return Command.ViewExisting;
-                    case "3":
-                    Console.WriteLine("Are you sure you want to exit? Y/N ");
+                    case "3": Console.WriteLine("Are you sure you want to exit? Y/N ");
                     input = Console.ReadLine();
                     return Command.Quit;
-
                     default: Console.WriteLine("Invalid Input"); break;
                 }
             } while (true);
@@ -69,21 +67,26 @@ namespace lab1_pizza
             Console.WriteLine("Traditional sauce");
             Console.WriteLine("Regular Cheese");
             Console.WriteLine("Set for delivery");
+            Console.WriteLine("-----------");
             var total = 8;
-            Console.WriteLine("Total: $" + total);
+            Console.WriteLine("Total price: $" + total);
         }
 
         public static void ModifyExistingOrder()
         {
-            Console.WriteLine("Are you sure you want to overwrite existing order? Y/N ");
-            var input = Console.ReadLine();
-            switch (input.ToLower())
+            do
             {
-                case "y":
-                case "yes": BuildPizzaMenu(); break;
-                case "n":
-                case "no": MainMenu(); break;
-            }
+                Console.WriteLine("Are you sure you want to overwrite existing order? Y/N ");
+                var input = Console.ReadLine();
+                switch (input.ToLower())
+                {
+                    case "y":
+                    case "yes": BuildPizzaMenu(); break;
+                    case "n":
+                    case "no": MainMenu(); break;
+                    default: Console.WriteLine("Invalid Input"); break;
+                }
+            } while (true);
         }
 
         public static void BuildPizzaMenu ()
@@ -93,7 +96,6 @@ namespace lab1_pizza
             {
                 // Header
                 Console.WriteLine("         Build your pizza");
-
                 // Size
                 Console.WriteLine("Sizes : S)mall = $2 | M)edium = $3 | L)arge = $4");
                 string sizeOp = Console.ReadLine();
@@ -135,6 +137,7 @@ namespace lab1_pizza
                 var selection = Console.ReadLine();
                 inProcess = false;
             } while (inProcess != false);
+            MainMenu();
         }
 
         // view existing order
