@@ -26,8 +26,8 @@ namespace lab1_pizza
                 switch (MainMenu())
                 {
                     case Command.NewOrder: BuildPizzaMenu(); break;
-                    case Command.EditOrder: BuildPizzaMenu(); break;
-                    //case Command.ViewExisting: ; break;
+                    case Command.EditOrder: ModifyExistingOrder() ; break;
+                    case Command.ViewExisting: ExistingOrder(); break;
                     case Command.Quit: appRunning = false; break;
                 };
             } while (appRunning != false);
@@ -51,15 +51,44 @@ namespace lab1_pizza
                     case "0": return Command.NewOrder;
                     case "1": return Command.EditOrder;
                     case "2": return Command.ViewExisting;
-                    case "3": return Command.Quit;
+                    case "3":
+                    Console.WriteLine("Are you sure you want to exit? Y/N ");
+                    input = Console.ReadLine();
+                    return Command.Quit;
 
                     default: Console.WriteLine("Invalid Input"); break;
                 }
             } while (true);
         }
 
-        private static Command BuildPizzaMenu ()
+        public static void ExistingOrder ()
         {
+            Console.WriteLine("Small size");
+            Console.WriteLine("Bacon added");
+            Console.WriteLine("Peppers added");
+            Console.WriteLine("Traditional sauce");
+            Console.WriteLine("Regular Cheese");
+            Console.WriteLine("Set for delivery");
+            var total = 8;
+            Console.WriteLine("Total: $" + total);
+        }
+
+        public static void ModifyExistingOrder()
+        {
+            Console.WriteLine("Are you sure you want to overwrite existing order? Y/N ");
+            var input = Console.ReadLine();
+            switch (input.ToLower())
+            {
+                case "y":
+                case "yes": BuildPizzaMenu(); break;
+                case "n":
+                case "no": MainMenu(); break;
+            }
+        }
+
+        public static void BuildPizzaMenu ()
+        {
+            bool inProcess = true;
             do
             {
                 // Header
@@ -104,12 +133,8 @@ namespace lab1_pizza
                 // back to main menu
                 Console.Write("Enter any key to return to the main menu: ");
                 var selection = Console.ReadLine();
-
-                switch (selection)
-                {
-                    default: MainMenu(); break;
-                }
-            } while (true);
+                inProcess = false;
+            } while (inProcess != false);
         }
 
         // view existing order
@@ -144,12 +169,11 @@ namespace lab1_pizza
             }
             switch (delivery)
             {
-                case 0: Console.WriteLine("TakeOut"); break;
-                case 2: Console.WriteLine("Deliver"); break;
+                case 0: Console.WriteLine("Set for takeout"); break;
+                case 2: Console.WriteLine("Set for deliver"); break;
             }
             Console.WriteLine("-----------");
             Console.WriteLine("Total price: $" + price);
-
         }
 
         //adds up the final price for the customer
