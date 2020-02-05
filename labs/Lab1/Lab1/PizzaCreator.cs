@@ -1,10 +1,13 @@
-﻿// Jose Gonzalez 
+﻿/*
+ * ITSE 1430
+ * Jose Gonzalez
+ */
 
 using System;
 
 namespace lab1_pizza
 {
-    class Program
+    class PizzaCreator
     {
         enum Command
         {
@@ -18,16 +21,14 @@ namespace lab1_pizza
         static void Main ( string[] args )
         {
             var appRunning = true;
-
             do
             {
                 switch (MainMenu())
                 {
                     case Command.NewOrder: BuildPizzaMenu(); break;
                     case Command.EditOrder: BuildPizzaMenu(); break;
-                    //case Command.ViewExisting: OrderReceipt(); break;
+                    //case Command.ViewExisting: ; break;
                     case Command.Quit: appRunning = false; break;
-                    case Command.BackToMain: MainMenu(); break;
                 };
             } while (appRunning != false);
         }
@@ -53,7 +54,6 @@ namespace lab1_pizza
                     case "3": return Command.Quit;
 
                     default: Console.WriteLine("Invalid Input"); break;
-
                 }
             } while (true);
         }
@@ -97,7 +97,9 @@ namespace lab1_pizza
 
                 // calculate total
                 var final = FinalPrice(currentPrice, currentPrice2, currentPrice3, currentPrice4, currentPrice5, currentPrice6);
-                Console.WriteLine("Final price: $" + final);
+
+                // receipt
+                OrderReceipt(currentPrice, currentPrice2, currentPrice3, currentPrice4, currentPrice5, currentPrice6, final);
 
                 // back to main menu
                 Console.Write("Enter any key to return to the main menu: ");
@@ -105,7 +107,7 @@ namespace lab1_pizza
 
                 switch (selection)
                 {
-                    default: return Command.BackToMain;
+                    default: MainMenu(); break;
                 }
             } while (true);
         }
@@ -145,9 +147,8 @@ namespace lab1_pizza
                 case 0: Console.WriteLine("TakeOut"); break;
                 case 2: Console.WriteLine("Deliver"); break;
             }
-
             Console.WriteLine("-----------");
-            Console.WriteLine(price);
+            Console.WriteLine("Total price: $" + price);
 
         }
 
@@ -161,24 +162,24 @@ namespace lab1_pizza
         // sets price depending on size of the pizza
         public static int SetSize ( string pick )
         {
-            switch (pick.ToLower())
-            {
-                case "small":
-                case "s":
-                pick = "2"; break;
+                switch (pick.ToLower())
+                {
+                    case "small":
+                    case "s":
+                    pick = "2"; break;
 
-                case "medium":
-                case "m":
-                pick = "3"; break;
+                    case "medium":
+                    case "m":
+                    pick = "3"; break;
 
-                case "large":
-                case "l":
-                pick = "4"; break;
-            }
+                    case "large":
+                    case "l":
+                    pick = "4"; break;
 
+                    default: Console.WriteLine("Invalid selection"); break;
+                }
             /* convert the string into an actual value so that-
             prices of the toppings can be added all together*/
-
             var temp = Int32.TryParse(pick, out var price);
             //Console.WriteLine(price);
             return price;
@@ -197,7 +198,6 @@ namespace lab1_pizza
                 case "p":
                 pick = "2"; break;
             }
-
             var temp = Int32.TryParse(pick, out var price);
             //Console.WriteLine(price);
             return price;
@@ -237,9 +237,7 @@ namespace lab1_pizza
                 case "oregano":
                 case "o":
                 pick = "2"; break;
-
             }
-
             var temp = Int32.TryParse(pick, out var price);
             //Console.WriteLine(price);
             return price;
@@ -257,9 +255,7 @@ namespace lab1_pizza
                 case "extra":
                 case "e":
                 pick = "1"; break;
-
             }
-
             var temp = Int32.TryParse(pick, out var price);
             //Console.WriteLine(price);
             return price;
@@ -277,9 +273,7 @@ namespace lab1_pizza
                 case "delivery":
                 case "d":
                 pick = "2"; break;
-
             }
-
             var temp = Int32.TryParse(pick, out var price);
             //Console.WriteLine(price);
             return price;
