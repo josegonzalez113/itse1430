@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MovieLibrary.Business;
+using MovieLibrary.WinForms;
 
 namespace MovieLibrary
 {
@@ -26,7 +27,7 @@ namespace MovieLibrary
 
             //DisplayMovie(movie);
             //DisplayMovie(null);
-            DisplayConfirmation("Are you sure?", "Start");
+            //DisplayConfirmation("Are you sure?", "Start");
         }
 
         private bool DisplayConfirmation (string message, string title)
@@ -54,6 +55,17 @@ namespace MovieLibrary
             movie.description = "Test";
 
             movie = new Movie();
+        }
+
+        private void OnMovieAdd ( object sender, EventArgs e )
+        {
+            MovieForm child = new MovieForm();
+            //child.show();
+            if (child.ShowDialog(this) != DialogResult.OK)
+                return;
+
+            //TODO: Save the movie
+            //child.Show();
         }
     }
 }
