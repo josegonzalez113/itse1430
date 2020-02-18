@@ -18,12 +18,42 @@ namespace MovieLibrary.WinForms
             InitializeComponent();
         }
 
-        public Movie Movie
+        // call the more specific constructor first - constructor chaining
+        public MovieForm ( Movie movie ) : this(movie != null ? "Edit" : "Add", movie)
         {
-            get { return _movie; }
-            set { _movie = value; }
+            /*InitializeComponent ();
+            Movie = movie;
+            Text = movie != null ? "Edit" : "Add";*/
         }
-        private Movie _movie;
+
+        public MovieForm ( string title, Movie movie ) : this()
+        {
+            Text = title;
+            Movie = movie;
+        }
+
+       /* private void Initialize ( string title, Movie movie )
+        {
+            InitializeComponent();
+            Text = title;
+            Movie = movie;
+        }*/
+
+        public Movie Movie { get; set; }
+
+        protected override void OnLoad ( EventArgs e )
+        {
+            base.OnLoad(e);
+
+            if (Movie != null)
+            {
+                txtTitle.Text = Movie.Title;
+                txtDescription.Text = Movie.Description;
+                txtReleaseYear.Text = Movie.ReleaseYear.ToString();
+                txtRunLength.Text = Movie.RunLength.ToString();
+                chkIsClassic.Checked = Movie.IsClassic;
+            }
+        }
 
         private void OnCancel ( object sender, EventArgs e )
         {

@@ -47,7 +47,17 @@ namespace MovieLibrary
 
             MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
-        void DisplayMovie (Movie movie)
+
+        protected override void OnFormClosing ( FormClosingEventArgs e )
+        {
+            base.OnFormClosing(e);
+
+            if (_movie != null)
+                if (!DisplayConfirmation("Are you sure you want to close?", "Close"))
+                e.Cancel = true;
+        }
+
+        void DisplayMovie ( Movie movie )
         {
             if (movie == null)
                 return;
@@ -61,6 +71,23 @@ namespace MovieLibrary
         {
             MovieForm child = new MovieForm();
             //child.show();
+            if (child.ShowDialog(this) != DialogResult.OK)
+                return;
+
+            //TODO: Save the movie
+            _movie = child.Movie;
+
+            //child.Show();
+        }
+
+        private void OnMovieEdit ( object sender, EventArgs e )
+        {
+            // Verify movie
+            if (_movie == null)
+                return;
+
+            var child = new MovieForm();
+            child.Movie = _movie;
             if (child.ShowDialog(this) != DialogResult.OK)
                 return;
 
