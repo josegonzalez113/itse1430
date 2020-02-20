@@ -29,18 +29,6 @@ namespace CharacterCreator.Winforms
             about.ShowDialog(this);
         }
 
-        private void OnOk ( object sender, EventArgs e )
-        {
-            DialogResult = DialogResult.OK;
-            Close();
-        }
-
-        private void OnCancel ( object sender, EventArgs e )
-        {
-            DialogResult = DialogResult.Cancel;
-            Close();
-        }
-
         private void OnNewCharacter ( object sender, EventArgs e )
         {
             NewCharacter main = new NewCharacter();
