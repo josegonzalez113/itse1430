@@ -22,9 +22,11 @@ namespace CharacterCreator.Winforms
             Close();
         }
 
-        private void OnAboutExit (object sender, EventArgs e)
+        private void OnHelpAbout ( object sender, EventArgs e )
         {
-            
+            var about = new AboutForm();
+
+            about.ShowDialog(this);
         }
     }
 }
