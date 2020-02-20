@@ -45,6 +45,10 @@ namespace MovieLibrary.WinForms
         {
             base.OnLoad(e);
 
+            //populate combo
+            var genres = Genres.GetALL();
+            ddlGenres.Items.AddRange(genres);
+
             if (Movie != null)
             {
                 txtTitle.Text = Movie.Title;
@@ -52,7 +56,10 @@ namespace MovieLibrary.WinForms
                 txtReleaseYear.Text = Movie.ReleaseYear.ToString();
                 txtRunLength.Text = Movie.RunLength.ToString();
                 chkIsClassic.Checked = Movie.IsClassic;
-            }
+
+                if (Movie.Genre != null)
+                    ddlGenres.SelectedText = Movie.Genre.Description;
+            };
         }
 
         private void OnCancel ( object sender, EventArgs e )
@@ -98,6 +105,18 @@ namespace MovieLibrary.WinForms
             movie.ReleaseYear = GetAsInt32(txtReleaseYear, 1900);
             movie.Description = txtDescription.Text.Trim();
             movie.IsClassic = chkIsClassic.Checked;
+
+            //movie.Genre = (Genre)ddlGenres.SelectedItem; //  c style cast - program will crash if wrong
+
+            //movie.Genre = ddlGenres.SelectedItem as Genre; // Preferred - will return back null but not crash
+
+            /* as operator
+            if (ddlGenres.SelectedItem is Genre)
+                genre = (Genre)ddlGenres.SelectedItem;*/
+
+            //Pattern match
+            if (ddlGenres.SelectedItem is Genre genre)
+                movie.Genre = genre;
 
             return movie;
         }
