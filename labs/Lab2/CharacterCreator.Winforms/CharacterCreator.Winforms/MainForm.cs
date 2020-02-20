@@ -29,20 +29,24 @@ namespace CharacterCreator.Winforms
             about.ShowDialog(this);
         }
 
+        private void OnOk ( object sender, EventArgs e )
+        {
+            DialogResult = DialogResult.OK;
+            Close();
+        }
+
+        private void OnCancel ( object sender, EventArgs e )
+        {
+            DialogResult = DialogResult.Cancel;
+            Close();
+        }
+
         private void OnNewCharacter ( object sender, EventArgs e )
         {
-            var newCharacter = new NewCharacter();
-            newCharacter.Show();
+            NewCharacter main = new NewCharacter();
+            if (main.ShowDialog(this) != DialogResult.OK)
+                return;
         }
 
-        private void OnSave ()
-        {
-
-        }
-
-        private void OnCancel ()
-        {
-
-        }
     }
 }
