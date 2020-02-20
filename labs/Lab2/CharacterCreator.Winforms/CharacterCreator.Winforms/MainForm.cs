@@ -28,5 +28,11 @@ namespace CharacterCreator.Winforms
 
             about.ShowDialog(this);
         }
+
+        private void OnNewCharacter ( object sender, EventArgs e )
+        {
+            var newCharacter = new NewCharacter();
+            newCharacter.Show();
+        }
     }
 }
