@@ -34,5 +34,15 @@ namespace CharacterCreator.Winforms
             var newCharacter = new NewCharacter();
             newCharacter.Show();
         }
+
+        private void OnSave ()
+        {
+
+        }
+
+        private void OnCancel ()
+        {
+
+        }
     }
 }
