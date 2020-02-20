@@ -21,5 +21,10 @@ namespace CharacterCreator.Winforms
         {
             Close();
         }
+
+        private void OnAboutExit (object sender, EventArgs e)
+        {
+            
+        }
     }
 }
