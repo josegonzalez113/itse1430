@@ -1,16 +1,10 @@
-﻿/*
- * ITSE 1430
- * Jose Gonzalez
- * 
- */
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace RolePlayingGame
+namespace CharacterCreator.Winforms
 {
     static class Program
     {
@@ -22,7 +16,7 @@ namespace RolePlayingGame
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new MainForm());
         }
     }
 }

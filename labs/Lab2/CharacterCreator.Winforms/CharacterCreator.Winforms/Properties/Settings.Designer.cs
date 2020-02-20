@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RolePlayingGame.Properties
+namespace CharacterCreator.Winforms.Properties
 {
 
 
