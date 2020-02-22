@@ -8,19 +8,30 @@ namespace CharacterCreator
 {
     class Race
     {
+        public Race ( string about )
+        {
+            About = about ?? "";
+        }
+
+        public string About { get; }
+
+        public override string ToString ()
+        {
+            return About;
+        }
     }
 
     public class Races
     {
         // combobox array for race
-        public static Character[] GetRace ()
+        public static Race[] GetRace ()
         {
-            var races = new Character[5];
-            races[0] = new Character("Dwarf");
-            races[0] = new Character("Elf");
-            races[0] = new Character("Gnome");
-            races[0] = new Character("Half Elf");
-            races[0] = new Character("Human");
+            var races = new Race[5];
+            races[0] = new Race("Dwarf");
+            races[0] = new Race("Elf");
+            races[0] = new Race("Gnome");
+            races[0] = new Race("Half Elf");
+            races[0] = new Race("Human");
 
             return races;
         }
