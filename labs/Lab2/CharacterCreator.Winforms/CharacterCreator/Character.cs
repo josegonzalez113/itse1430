@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CharacterCreator
 {
-    class Character
+    public class Character
     {
         public Character ( string about )
         {
@@ -19,7 +19,10 @@ namespace CharacterCreator
         {
             return About;
         }
+    }
 
+    public class Characters
+    {
         // combobox array for profession
         public static Character[] GetProfessions ()
         {
@@ -32,7 +35,10 @@ namespace CharacterCreator
 
             return professions;
         }
+    }
 
+    public class Races
+    {
         // combobox array for race
         public static Character[] GetRace ()
         {
@@ -45,7 +51,10 @@ namespace CharacterCreator
 
             return races;
         }
+    }
 
+    public class Attributes
+    {
         // combobox array for attributes
         public static Character[] GetAttributes ()
         {
