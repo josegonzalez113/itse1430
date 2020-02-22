@@ -25,5 +25,23 @@ namespace CharacterCreator
             set { _description = value?.Trim(); }
         }
         private string _description;
+
+        public bool Validate ( out string error )
+        {
+            if (String.IsNullOrEmpty(Name))
+            {
+                error = "Name is required";
+                return false;
+            };
+
+            if (String.IsNullOrEmpty(Description))
+            {
+                error = "Description is required";
+                return false;
+            };
+
+            error = null;
+            return true;
+        }
     }
 }

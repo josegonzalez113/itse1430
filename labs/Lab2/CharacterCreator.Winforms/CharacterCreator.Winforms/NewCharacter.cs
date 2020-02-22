@@ -28,11 +28,31 @@ namespace CharacterCreator.Winforms
             Character = newCharacter;
         }
 
+        private void ShowError ( string message )
+        {
+            MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
         private void OnOk ( object sender, EventArgs e )
         {
+            // Validation and error reporting
+            var character = GetCharacter();
+            if (!character.Validate(out var error))
+            {
+                ShowError(error);
+                return;
+            }
+
+            Character = character;
             DialogResult = DialogResult.OK;
-            Close();
+            Close(); // -> dismisses the form
         }
+
+        private void ShowError ( object error )
+        {
+            throw new NotImplementedException();
+        }
+
         private void OnCancel ( object sender, EventArgs e )
         {
             DialogResult = DialogResult.Cancel;

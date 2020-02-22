@@ -31,10 +31,14 @@ namespace CharacterCreator.Winforms
 
         private void OnNewCharacter ( object sender, EventArgs e )
         {
-            NewCharacter main = new NewCharacter();
+
+            NewCharacter temp = new NewCharacter();
             // show NewCharacter form as a dialog
-            if (main.ShowDialog(this) != DialogResult.OK) 
+            if (temp.ShowDialog(this) != DialogResult.OK) 
                 return;
+
+            //TODO: Save the character
+            _character = temp.Character;
         }
 
         private void OnCharacterEdit ( object sender, EventArgs e )
@@ -44,12 +48,24 @@ namespace CharacterCreator.Winforms
             if (temp.ShowDialog(this) != DialogResult.OK)
                 return;
 
-            //TODO: Save the movie
+            //TODO: Save the character
             _character = temp.Character;
+        }
+
+        private bool DisplayConfirmation ( string message, string title )
+        {
+            var result = MessageBox.Show(message, title, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            return result == DialogResult.OK;
         }
 
         private void OnCharacterDelete ( object sender, EventArgs e )
         {
+            // Verify character is empty
+            if (_character == null)
+                return;
+
+            if (!DisplayConfirmation($"Are you sure you want to delete {_character.Name}?", "Delete"))
+                return;
             _character = null; // set all characteristics back to null
         }
     }
