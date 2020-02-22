@@ -15,13 +15,12 @@ namespace CharacterCreator.Winforms
         {
             InitializeComponent();
             this.Text = String.Format("About {0}", AssemblyTitle);
-            this.labelProductName.Text = AssemblyProduct;
-            this.labelVersion.Text = String.Format("Version {0}", AssemblyVersion);
-            this.labelCopyright.Text = AssemblyCopyright;
-            this.labelCompanyName.Text = AssemblyCompany;
-            this.textBoxDescription.Text = AssemblyDescription;
+            this.labelProductName.Text = "Jose Gonzalez";
+            this.labelVersion.Text = "ITSE 1430";
+            this.labelCopyright.Text = "Lab 2";
+            this.labelCompanyName.Text = "Role Playing Game";
+            this.textBoxDescription.Text = "Create your own character";
         }
-
         #region Assembly Attribute Accessors
 
         public string AssemblyTitle
