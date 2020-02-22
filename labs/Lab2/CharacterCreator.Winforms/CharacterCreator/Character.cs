@@ -7,18 +7,10 @@ using System.Threading.Tasks;
 namespace CharacterCreator
 {
     public class Character
-    { 
-        public Character ( string about )
-        {
-            About = about ?? "";
-        }
-
-        public string About { get; }
-
-        public override string ToString ()
-        {
-            return About;
-        }
+    {
+        public Profession Profession { get; set; }
+        public Race Race { get; set; }
+        public Attribute Attribute { get; set; }
 
         public string Name
         {
