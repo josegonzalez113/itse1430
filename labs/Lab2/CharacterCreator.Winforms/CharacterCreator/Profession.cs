@@ -6,15 +6,13 @@ using System.Threading.Tasks;
 
 namespace CharacterCreator
 {
-    class Profession
+    public class Profession
     {
         public Profession ( string about )
         {
             About = about ?? "";
         }
-
         public string About { get; }
-
         public override string ToString ()
         {
             return About;
@@ -24,7 +22,7 @@ namespace CharacterCreator
     public class Professions
     {
         // combobox array for profession
-        public static Profession[] GetProfessions ()
+        public static Profession[] GetProfession ()
         {
             var professions = new Profession[5];
             professions[0] = new Profession("Fighter");

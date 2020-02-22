@@ -45,7 +45,7 @@ namespace CharacterCreator.Winforms
             base.OnLoad(e);
 
             //populate combo
-            var professions = Characters.GetProfessions();
+            var professions = Professions.GetProfession();
             cmbProfession.Items.AddRange(professions);
 
             if (Character != null)
@@ -53,25 +53,25 @@ namespace CharacterCreator.Winforms
                 txtName.Text = Character.Name;
                 txtDescription.Text = Character.Description;
 
-                if (Character != null)
-                    cmbProfession.SelectedText = Character.Description;
+                if (Character.Profession != null)
+                    cmbProfession.SelectedText = Character.Profession.About;
             };
          
         }
 
         private Character GetCharacter ()
         {
-            var newCharacter = new Character();
+            var character = new Character();
 
             //Null conditional
-            newCharacter.Name = txtName.Text?.Trim();
-            newCharacter.Description = txtDescription.Text.Trim();
+            character.Name = txtName.Text?.Trim();
+            character.Description = txtDescription.Text.Trim();
 
             //Pattern match
-            if (cmbProfession.SelectedItem is Character character)
-                newCharacter.Character = character;
+            if (cmbProfession.SelectedItem is Profession profession)
+                character.Profession = profession;
 
-            return newCharacter;
+            return character;
         }
 
     }

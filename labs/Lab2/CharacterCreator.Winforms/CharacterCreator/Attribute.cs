@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CharacterCreator
 {
-    class Attribute
+    public class Attribute
     {
         public Attribute ( string about )
         {
