@@ -40,7 +40,7 @@ namespace CharacterCreator.Winforms
             Close();
         }
 
-        protected override void OnLoad ( EventArgs e )
+       protected override void OnLoad ( EventArgs e )
         {
             base.OnLoad(e);
 
