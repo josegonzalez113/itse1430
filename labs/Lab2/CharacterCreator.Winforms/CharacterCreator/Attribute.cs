@@ -26,10 +26,10 @@ namespace CharacterCreator
         {
             var attribues = new Attribute[5];
             attribues[0] = new Attribute("Strength");
-            attribues[0] = new Attribute("Intelligence");
-            attribues[0] = new Attribute("Agility");
-            attribues[0] = new Attribute("Constitution");
-            attribues[0] = new Attribute("Charisma");
+            attribues[1] = new Attribute("Intelligence");
+            attribues[2] = new Attribute("Agility");
+            attribues[3] = new Attribute("Constitution");
+            attribues[4] = new Attribute("Charisma");
 
             return attribues;
         }

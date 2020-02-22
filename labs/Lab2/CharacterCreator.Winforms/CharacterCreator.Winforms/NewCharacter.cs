@@ -22,7 +22,6 @@ namespace CharacterCreator.Winforms
         {
         }
 
-        public Character Character { get; set; }
         public NewCharacter ( string title, Character newCharacter ) : this()
         {
             Text = title;
@@ -39,14 +38,22 @@ namespace CharacterCreator.Winforms
             DialogResult = DialogResult.Cancel;
             Close();
         }
-
-       protected override void OnLoad ( EventArgs e )
+        public Character Character { get; set; }
+        protected override void OnLoad ( EventArgs e )
         {
             base.OnLoad(e);
 
-            //populate combo
+            //populate profession combobox
             var professions = Professions.GetProfession();
             cmbProfession.Items.AddRange(professions);
+
+            //populate races combobox
+            var races = Races.GetRace();
+            cmbRace.Items.AddRange(races);
+
+            //populate attributes combobox
+            var attributes = Attributes.GetAttributes();
+            cmbAttributes.Items.AddRange(attributes);
 
             if (Character != null)
             {
@@ -54,9 +61,14 @@ namespace CharacterCreator.Winforms
                 txtDescription.Text = Character.Description;
 
                 if (Character.Profession != null)
-                    cmbProfession.SelectedText = Character.Profession.About;
+                    cmbProfession.SelectedItem = Character.Profession.About;
+
+                if (Character.Race != null)
+                    cmbRace.SelectedItem = Character.Race.About;
+
+                if (Character.Attribute != null)
+                    cmbAttributes.SelectedItem = Character.Attribute.About;
             };
-         
         }
 
         private Character GetCharacter ()

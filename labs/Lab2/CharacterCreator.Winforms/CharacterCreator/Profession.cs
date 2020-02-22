@@ -26,10 +26,10 @@ namespace CharacterCreator
         {
             var professions = new Profession[5];
             professions[0] = new Profession("Fighter");
-            professions[0] = new Profession("Hunter");
-            professions[0] = new Profession("Priest");
-            professions[0] = new Profession("Rogue");
-            professions[0] = new Profession("Wizard");
+            professions[1] = new Profession("Hunter");
+            professions[2] = new Profession("Priest");
+            professions[3] = new Profession("Rogue");
+            professions[4] = new Profession("Wizard");
 
             return professions;
         }

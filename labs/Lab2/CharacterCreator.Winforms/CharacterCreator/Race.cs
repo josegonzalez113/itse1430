@@ -12,9 +12,7 @@ namespace CharacterCreator
         {
             About = about ?? "";
         }
-
         public string About { get; }
-
         public override string ToString ()
         {
             return About;
@@ -28,10 +26,10 @@ namespace CharacterCreator
         {
             var races = new Race[5];
             races[0] = new Race("Dwarf");
-            races[0] = new Race("Elf");
-            races[0] = new Race("Gnome");
-            races[0] = new Race("Half Elf");
-            races[0] = new Race("Human");
+            races[1] = new Race("Elf");
+            races[2] = new Race("Gnome");
+            races[3] = new Race("Half Elf");
+            races[4] = new Race("Human");
 
             return races;
         }
