@@ -8,6 +8,7 @@ namespace CharacterCreator
 {
     public class Character
     {
+        public Character Character;
         public Character ( string about )
         {
             About = about ?? "";
@@ -19,6 +20,20 @@ namespace CharacterCreator
         {
             return About;
         }
+
+        public string Name
+        {
+            get { return _name ?? ""; }
+            set { _name = value?.Trim(); }
+        }
+        private string _name;
+
+        public string Description
+        {
+            get { return _description ?? ""; }
+            set { _description = value?.Trim(); }
+        }
+        private string _description;
     }
 
     public class Characters

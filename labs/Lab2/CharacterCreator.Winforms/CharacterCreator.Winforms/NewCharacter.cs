@@ -12,6 +12,7 @@ namespace CharacterCreator.Winforms
 {
     public partial class NewCharacter : Form
     {
+
         public NewCharacter ()
         {
             InitializeComponent();
@@ -49,16 +50,28 @@ namespace CharacterCreator.Winforms
 
             if (Character != null)
             {
-                cmbProfession.SelectedItem = Character.
-                /*txtDescription.Text = Movie.Description;
-                txtReleaseYear.Text = Movie.ReleaseYear.ToString();
-                txtRunLength.Text = Movie.RunLength.ToString();
-                chkIsClassic.Checked = Movie.IsClassic;*/
+                txtName.Text = Character.Name;
+                txtDescription.Text = Character.Description;
 
-                if (Movie.Genre != null)
-                    ddlGenres.SelectedText = Movie.Genre.Description;
+                if (Character != null)
+                    cmbProfession.SelectedText = Character.Description;
             };
          
+        }
+
+        private Character GetCharacter ()
+        {
+            var newCharacter = new Character();
+
+            //Null conditional
+            newCharacter.Name = txtName.Text?.Trim();
+            newCharacter.Description = txtDescription.Text.Trim();
+
+            //Pattern match
+            if (cmbProfession.SelectedItem is Character character)
+                newCharacter.Character = character;
+
+            return newCharacter;
         }
 
     }
