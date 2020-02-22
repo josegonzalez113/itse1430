@@ -22,9 +22,9 @@ namespace CharacterCreator.Winforms
         {
         }
 
-        public NewCharacter ( string title, Character newCharacter ) : this()
+        public NewCharacter ( string name, Character newCharacter ) : this()
         {
-            Text = title;
+            Name = name;
             Character = newCharacter;
         }
 
@@ -46,11 +46,6 @@ namespace CharacterCreator.Winforms
             Character = character;
             DialogResult = DialogResult.OK;
             Close(); // -> dismisses the form
-        }
-
-        private void ShowError ( object error )
-        {
-            throw new NotImplementedException();
         }
 
         private void OnCancel ( object sender, EventArgs e )
@@ -95,13 +90,17 @@ namespace CharacterCreator.Winforms
         {
             var character = new Character();
 
-            //Null conditional
+            //save the name/description
             character.Name = txtName.Text?.Trim();
             character.Description = txtDescription.Text.Trim();
 
-            //Pattern match
+            // save all the combo boxes
             if (cmbProfession.SelectedItem is Profession profession)
                 character.Profession = profession;
+            if (cmbRace.SelectedItem is Race race)
+                character.Race = race;
+            if (cmbAttributes.SelectedItem is Attribute attribute)
+                character.Attribute = attribute;
 
             return character;
         }

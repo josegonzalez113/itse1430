@@ -31,7 +31,6 @@ namespace CharacterCreator.Winforms
 
         private void OnNewCharacter ( object sender, EventArgs e )
         {
-
             NewCharacter temp = new NewCharacter();
             // show NewCharacter form as a dialog
             if (temp.ShowDialog(this) != DialogResult.OK) 
@@ -52,6 +51,7 @@ namespace CharacterCreator.Winforms
             _character = temp.Character;
         }
 
+        //Will display an error
         private bool DisplayConfirmation ( string message, string title )
         {
             var result = MessageBox.Show(message, title, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
