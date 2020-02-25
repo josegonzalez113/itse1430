@@ -45,20 +45,22 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(566, 376);
+            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancel.Location = new System.Drawing.Point(277, 359);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 0;
+            this.btnCancel.TabIndex = 7;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.OnCancel);
             // 
             // btnOk
             // 
-            this.btnOk.Location = new System.Drawing.Point(673, 376);
+            this.btnOk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnOk.Location = new System.Drawing.Point(196, 359);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(75, 23);
-            this.btnOk.TabIndex = 1;
+            this.btnOk.TabIndex = 6;
             this.btnOk.Text = "Ok";
             this.btnOk.UseVisualStyleBackColor = true;
             this.btnOk.Click += new System.EventHandler(this.OnOk);
@@ -66,7 +68,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(48, 40);
+            this.label1.Location = new System.Drawing.Point(84, 43);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(27, 13);
             this.label1.TabIndex = 2;
@@ -75,7 +77,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(48, 82);
+            this.label2.Location = new System.Drawing.Point(48, 85);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(63, 13);
             this.label2.TabIndex = 3;
@@ -84,7 +86,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(48, 132);
+            this.label3.Location = new System.Drawing.Point(40, 125);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(71, 13);
             this.label3.TabIndex = 4;
@@ -93,7 +95,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(51, 178);
+            this.label4.Location = new System.Drawing.Point(51, 161);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(60, 13);
             this.label4.TabIndex = 5;
@@ -101,54 +103,63 @@
             // 
             // chkIsClassic
             // 
+            this.chkIsClassic.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.chkIsClassic.AutoSize = true;
-            this.chkIsClassic.Location = new System.Drawing.Point(113, 248);
+            this.chkIsClassic.Location = new System.Drawing.Point(125, 254);
             this.chkIsClassic.Name = "chkIsClassic";
             this.chkIsClassic.Size = new System.Drawing.Size(70, 17);
-            this.chkIsClassic.TabIndex = 6;
+            this.chkIsClassic.TabIndex = 4;
             this.chkIsClassic.Text = "Is Classic";
             this.chkIsClassic.UseVisualStyleBackColor = true;
             // 
             // txtTitle
             // 
+            this.txtTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTitle.Location = new System.Drawing.Point(125, 40);
             this.txtTitle.Name = "txtTitle";
-            this.txtTitle.Size = new System.Drawing.Size(100, 20);
-            this.txtTitle.TabIndex = 7;
+            this.txtTitle.Size = new System.Drawing.Size(227, 20);
+            this.txtTitle.TabIndex = 0;
             // 
             // txtRunLength
             // 
             this.txtRunLength.Location = new System.Drawing.Point(125, 82);
             this.txtRunLength.Name = "txtRunLength";
-            this.txtRunLength.Size = new System.Drawing.Size(100, 20);
-            this.txtRunLength.TabIndex = 8;
+            this.txtRunLength.Size = new System.Drawing.Size(91, 20);
+            this.txtRunLength.TabIndex = 1;
             // 
             // txtReleaseYear
             // 
-            this.txtReleaseYear.Location = new System.Drawing.Point(125, 129);
+            this.txtReleaseYear.Location = new System.Drawing.Point(125, 122);
             this.txtReleaseYear.Name = "txtReleaseYear";
-            this.txtReleaseYear.Size = new System.Drawing.Size(100, 20);
-            this.txtReleaseYear.TabIndex = 9;
+            this.txtReleaseYear.Size = new System.Drawing.Size(91, 20);
+            this.txtReleaseYear.TabIndex = 2;
             // 
             // txtDescription
             // 
-            this.txtDescription.Location = new System.Drawing.Point(125, 175);
+            this.txtDescription.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtDescription.Location = new System.Drawing.Point(125, 161);
+            this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Size = new System.Drawing.Size(100, 20);
-            this.txtDescription.TabIndex = 10;
+            this.txtDescription.Size = new System.Drawing.Size(227, 72);
+            this.txtDescription.TabIndex = 3;
             // 
             // ddlGenres
             // 
+            this.ddlGenres.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.ddlGenres.FormattingEnabled = true;
-            this.ddlGenres.Location = new System.Drawing.Point(125, 296);
+            this.ddlGenres.Location = new System.Drawing.Point(125, 295);
             this.ddlGenres.Name = "ddlGenres";
-            this.ddlGenres.Size = new System.Drawing.Size(121, 21);
-            this.ddlGenres.TabIndex = 11;
+            this.ddlGenres.Size = new System.Drawing.Size(91, 21);
+            this.ddlGenres.TabIndex = 5;
             // 
             // label5
             // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(51, 299);
+            this.label5.Location = new System.Drawing.Point(75, 303);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(36, 13);
             this.label5.TabIndex = 12;
@@ -158,7 +169,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(395, 410);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.ddlGenres);
             this.Controls.Add(this.txtDescription);
@@ -174,6 +185,7 @@
             this.Controls.Add(this.btnCancel);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(411, 449);
             this.Name = "MovieForm";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
