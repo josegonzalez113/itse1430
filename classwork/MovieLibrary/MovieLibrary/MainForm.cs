@@ -48,15 +48,6 @@ namespace MovieLibrary
             MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
-        protected override void OnFormClosing ( FormClosingEventArgs e )
-        {
-            base.OnFormClosing(e);
-
-            if (_movie != null)
-                if (!DisplayConfirmation("Are you sure you want to close?", "Close"))
-                e.Cancel = true;
-        }
-
         void DisplayMovie ( Movie movie )
         {
             if (movie == null)
@@ -70,46 +61,123 @@ namespace MovieLibrary
         private void OnMovieAdd ( object sender, EventArgs e )
         {
             MovieForm child = new MovieForm();
+
             //child.show();
             if (child.ShowDialog(this) != DialogResult.OK)
                 return;
 
             //TODO: Save the movie
-            _movie = child.Movie;
+            //_movie = child.Movie;
 
-            //child.Show();
+            AddMovie(child.Movie);
+            UpdateUI();
+        }
+
+        protected override void OnLoad ( EventArgs e )
+        {
+            base.OnLoad(e);
+
+            UpdateUI();
+        }
+
+        private void UpdateUI ()
+        {
+            lstMovies.Items.Clear(); // remove all items from lstBox
+
+            var movies = GetMovies();
+            foreach (var movie in movies)
+            {
+                // ListBox cannot take a null oject
+                if (movie != null)
+                {
+                    lstMovies.Items.Add(movie);
+                }
+            };
+        }
+
+        private Movie[] GetMovies ()
+        {
+            return _movies;
+        }
+ 
+        private void AddMovie (Movie movie)
+        {
+            for (var index = 0; index< _movies.Length; ++index)
+            {
+                if (_movies[index] == null)
+                {
+                    _movies[index] = movie;
+                    break;
+                };
+            };
+        }
+
+        private Movie GetSelectedMovie ()
+        {
+            return lstMovies.SelectedItem as Movie;
+        }
+
+        private void UpdateMovie (Movie oldMovie, Movie newMovie)
+        {
+            for (var index = 0; index < _movies.Length; ++index)
+            {
+                if (_movies[index] == oldMovie)
+                {
+                    _movies[index] = newMovie;
+                    break;
+                };
+            };
+        }
+
+        private void DeleteMovie (Movie movie)
+        {
+            for (var index = 0; index < _movies.Length; ++index)
+            {
+                if (_movies[index] == movie)
+                {
+                    _movies[index] = null;
+                    break;
+                };
+            };
         }
 
         private void OnMovieEdit ( object sender, EventArgs e )
         {
             // Verify movie
-            if (_movie == null)
+            var movie = GetSelectedMovie();
+            if (movie == null)
                 return;
 
             var child = new MovieForm();
-            child.Movie = _movie;
+            child.Movie = movie;
             if (child.ShowDialog(this) != DialogResult.OK)
                 return;
 
             //TODO: Save the movie
-            _movie = child.Movie;
+            UpdateMovie(movie, child.Movie);
+            UpdateUI();
 
             //child.Show();
         }
 
-        private Movie _movie;
+        //private Movie _movie;
+        private Movie[] _movies = new Movie[100];
+
 
         private void OnMovieDelete ( object sender, EventArgs e )
         {
+            var movie = GetSelectedMovie();
+
             // Verify movie
-            if (_movie == null)
+            if (movie == null)
                 return;
 
-            if (!DisplayConfirmation($"Are you sure you want to delete {_movie.Title}?", "Delete"))
+            if (!DisplayConfirmation($"Are you sure you want to delete {movie.Title}?", "Delete"))
                 return;
 
             //TODO: Delete
-            _movie = null;
+            DeleteMovie(movie);
+            UpdateUI();
         }
 
         private void OnFileExit ( object sender, EventArgs e )
