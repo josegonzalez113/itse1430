@@ -23,12 +23,14 @@ namespace CharacterCreator.Winforms
             Close(); // simply will terminate the program
         }
 
+        /// <summary> Shows the AboutForm </summary>
         private void OnHelpAbout ( object sender, EventArgs e )
         {
             var about = new AboutForm(); // create a new instance of AboutForm()
             about.ShowDialog(this);
         }
 
+        /// <summary> Create a new character </summary>
         private void OnNewCharacter ( object sender, EventArgs e )
         {
             NewCharacter temp = new NewCharacter();
@@ -40,6 +42,7 @@ namespace CharacterCreator.Winforms
             _character = temp.Character;
         }
 
+        /// <summary> Edit the existing </summary>
         private void OnCharacterEdit ( object sender, EventArgs e )
         {
             var temp = new NewCharacter();
@@ -51,13 +54,14 @@ namespace CharacterCreator.Winforms
             _character = temp.Character;
         }
 
-        //Will display an error
+        /// <summary> Will display a dialog with a message </summary>
         private bool DisplayConfirmation ( string message, string title )
         {
             var result = MessageBox.Show(message, title, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
             return result == DialogResult.OK;
         }
 
+        /// <summary> If character is not null it will asl for confirmation </summary>
         private void OnCharacterDelete ( object sender, EventArgs e )
         {
             // Verify character is empty
