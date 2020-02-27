@@ -18,16 +18,19 @@ namespace CharacterCreator.Winforms
             InitializeComponent();
         }
 
+        /// <summary> Constructor chaining </summary>
         public NewCharacter ( Character newCharacter ) : this(newCharacter != null ? "Edit" : "Add", newCharacter)
         {
         }
 
+        /// <summary> Constructor chaining </summary>
         public NewCharacter ( string name, Character newCharacter ) : this()
         {
             Name = name;
             Character = newCharacter;
         }
 
+        /// <summary> Shows an error in a dialog box </summary>
         private void ShowError ( string message )
         {
             MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
