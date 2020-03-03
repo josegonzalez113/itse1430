@@ -21,8 +21,10 @@ namespace MovieLibrary.Business
                 return null;
             //TODO: Clone movie to store
             var item = CloneMovie(movie);
+            item.Id = _id++;
+            _movies.Add(item);
 
-            for (var index = 0; index< _movies.Length; ++index)
+            /*for (var index = 0; index< _movies.Count; ++index)
             {
                 if (_movies[index] == null)
                 {
@@ -32,7 +34,9 @@ namespace MovieLibrary.Business
                     return CloneMovie(item);
                 };
             };
-            return null;
+            return null;*/
+
+            return CloneMovie(item);
         }
 
         public void Delete ( int id )
@@ -40,21 +44,32 @@ namespace MovieLibrary.Business
             //TODO: Validate
             if (id <= 0)
                 return;
+
             //TODO: Find better way to find movie
-            for (var index = 0; index < _movies.Length; ++index)
+            var movie = FindById(id);
+            if (movie != null)
+                _movies.Remove(movie);
+
+            /*for (var index = 0; index < _movies.Count; ++index)
             {
                 if (_movies[index]?.Id == id)
                 {
                     _movies[index] = null;
                     return;
                 };
-            };
+            };*/
         }
 
         public Movie[] GetAll ()
         {
             //TODO: Clone objects
-            return _movies;
+            var items = new Movie[_movies.Count];
+            var index = 0;
+            foreach (var movie in _movies)
+            {
+                items[index++] = CloneMovie(movie);
+            }
+            return items;
         }
 
         //TODO: Validate
@@ -63,7 +78,7 @@ namespace MovieLibrary.Business
         //Todo: Shouldn't need the original movie
         public void Update (int id, Movie newMovie )
         {
-            for (var index = 0; index < _movies.Length; ++index)
+            for (var index = 0; index < _movies.Count; ++index)
             {
                 if (_movies[index]?.Id == id)
                 {
@@ -96,8 +111,18 @@ namespace MovieLibrary.Business
                 RunLength = movie.RunLength,
             };   
         }
+        private Movie FindById (int id)
+        {
+            foreach (var movie in _movies)
+            {
+                if (movie.Id == id)
+                    return movie;
+            }
+            return null;
+        }
 
-        private readonly Movie[] _movies = new Movie[100];
+        //private readonly Movie[] _movies = new Movie[100];
+        private readonly List<Movie> _movies = new List<Movie>();
         private int _id = 1;
     }
 }
