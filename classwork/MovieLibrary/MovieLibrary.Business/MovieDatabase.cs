@@ -76,16 +76,29 @@ namespace MovieLibrary.Business
         //TODO: Movie names must be unique
         //TODO: Clone movie to store
         //Todo: Shouldn't need the original movie
-        public void Update (int id, Movie newMovie )
+        public string Update (int id, Movie movie )
         {
-            for (var index = 0; index < _movies.Count; ++index)
-            {
-                if (_movies[index]?.Id == id)
-                {
-                    _movies[index] = newMovie;
-                    break;
-                };
-            };
+            // Validate
+            if (movie == null)
+                return "Movie is null";
+            if (!movie.Validate(out var error))
+                return error;
+            if (id <= 0)
+                return "Id is invalid";
+
+            var existing = FindById(id);
+            if (existing == null)
+                return "Movie not found";
+
+            // Movie names must be unique
+            var sameName = FindByTitle(movie.Title);
+            if (sameName != null && sameName.Id != id)
+                return "Movie must be unique";
+
+            // Update
+            CopyMovie(existing, movie, false);
+
+            return null;
         }
 
         private Movie FindByTitle ( string title )
@@ -100,7 +113,13 @@ namespace MovieLibrary.Business
 
         private Movie CloneMovie (Movie movie)
         {
-            //Object init syntax, less code
+
+            var item = new Movie();
+            CopyMovie(item, movie, true);
+
+            return item;
+
+            /*//Object init syntax, less code
             return new Movie() {
                 Id = movie.Id,
                 Title = movie.Title,
@@ -109,7 +128,7 @@ namespace MovieLibrary.Business
                 IsClassic = movie.IsClassic,
                 ReleaseYear = movie.ReleaseYear,
                 RunLength = movie.RunLength,
-            };   
+            };*/
         }
         private Movie FindById (int id)
         {
@@ -120,6 +139,22 @@ namespace MovieLibrary.Business
             }
             return null;
         }
+
+
+        private void CopyMovie (Movie target, Movie source, bool includeId )
+        {
+            if(includeId)
+                target.Id = source.Id;
+            target.Title = source.Title;
+            target.Description = source.Description;
+            if (source.Genre != null)
+                target.Genre = new Genre(source.Genre.Description);
+            else
+                target.Genre = null;
+            target.IsClassic = source.IsClassic;
+            target.ReleaseYear = source.ReleaseYear;
+            target.RunLength = source.RunLength;
+        } 
 
         //private readonly Movie[] _movies = new Movie[100];
         private readonly List<Movie> _movies = new List<Movie>();
