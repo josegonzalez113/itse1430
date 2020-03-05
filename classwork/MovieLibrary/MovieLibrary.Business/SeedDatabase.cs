@@ -8,7 +8,7 @@ namespace MovieLibrary.Business
 {
     public class SeedDatabase
     {
-        public MovieDatabase SeedIfEmpty (MovieDatabase database)
+        public IMovieDatabase SeedIfEmpty (IMovieDatabase database)
         {
             if (database.GetAll().Length == 0)
             {

@@ -16,13 +16,13 @@ namespace MovieLibrary
     {
 
         //private Movie _movie;
-        private readonly MovieDatabase _movies;
+        private readonly IMovieDatabase _movies;
 
         public MainForm ()
         {
             InitializeComponent();
 
-            _movies = new MovieDatabase();
+            _movies = new MemoryMovieDatabase();
         }
 
         private bool DisplayConfirmation (string message, string title)

@@ -6,8 +6,23 @@ using System.Threading.Tasks;
 
 namespace MovieLibrary.Business
 {
-    public class MovieDatabase
+
+
+    public class MemoryMovieDatabase : IMovieDatabase
     {
+        public Movie Get ( int id )
+        {
+            // TODO: Error
+            if (id <= 0)
+                return null;
+
+            var movie = FindById(id);
+            if (movie == null)
+                return null;
+
+            return CloneMovie(movie);
+        }
+
         public Movie Add ( Movie movie )
         {
             // Validate
@@ -76,7 +91,7 @@ namespace MovieLibrary.Business
         //TODO: Movie names must be unique
         //TODO: Clone movie to store
         //Todo: Shouldn't need the original movie
-        public string Update (int id, Movie movie )
+        public string Update ( int id, Movie movie )
         {
             // Validate
             if (movie == null)
@@ -111,7 +126,7 @@ namespace MovieLibrary.Business
             return null;
         }
 
-        private Movie CloneMovie (Movie movie)
+        private Movie CloneMovie ( Movie movie )
         {
 
             var item = new Movie();
@@ -130,7 +145,7 @@ namespace MovieLibrary.Business
                 RunLength = movie.RunLength,
             };*/
         }
-        private Movie FindById (int id)
+        private Movie FindById ( int id )
         {
             foreach (var movie in _movies)
             {
@@ -141,9 +156,9 @@ namespace MovieLibrary.Business
         }
 
 
-        private void CopyMovie (Movie target, Movie source, bool includeId )
+        private void CopyMovie ( Movie target, Movie source, bool includeId )
         {
-            if(includeId)
+            if (includeId)
                 target.Id = source.Id;
             target.Title = source.Title;
             target.Description = source.Description;
@@ -154,7 +169,7 @@ namespace MovieLibrary.Business
             target.IsClassic = source.IsClassic;
             target.ReleaseYear = source.ReleaseYear;
             target.RunLength = source.RunLength;
-        } 
+        }
 
         //private readonly Movie[] _movies = new Movie[100];
         private readonly List<Movie> _movies = new List<Movie>();
