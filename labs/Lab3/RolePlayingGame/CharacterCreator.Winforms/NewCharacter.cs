@@ -32,33 +32,6 @@ namespace CharacterCreator.Winforms
             Name = name;
             Character = newCharacter;
         }
-
-        /// <summary> Shows an error in a dialog box </summary>
-        private void ShowError ( string message )
-        {
-            MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
-
-        private void OnOk ( object sender, EventArgs e )
-        {
-            // Validation and error reporting
-            var character = GetCharacter();
-            if (!character.Validate(out var error))
-            {
-                ShowError(error);
-                return;
-            }
-
-            Character = character;
-            DialogResult = DialogResult.OK;
-            Close(); // -> dismisses the form
-        }
-
-        private void OnCancel ( object sender, EventArgs e )
-        {
-            DialogResult = DialogResult.Cancel;
-            Close();
-        }
         public Character Character { get; set; }
         protected override void OnLoad ( EventArgs e )
         {
@@ -89,7 +62,39 @@ namespace CharacterCreator.Winforms
 
                 if (Character.Attribute != null)
                     cmbAttributes.SelectedItem = Character.Attribute.About;
+
+                ValidateChildren();
             };
+        }
+
+        private void OnCancel ( object sender, EventArgs e )
+        {
+            DialogResult = DialogResult.Cancel;
+            Close();
+        }
+
+        private void OnOk ( object sender, EventArgs e )
+        {
+            if (!ValidateChildren()) // if something return false during validation, it shows error.
+                return;
+
+            // Validation and error reporting
+            var character = GetCharacter();
+            if (!character.Validate(out var error))
+            {
+                ShowError(error);
+                return;
+            }
+
+            Character = character;
+            DialogResult = DialogResult.OK;
+            Close(); // -> dismisses the form
+        }
+
+        /// <summary> Shows an error in a dialog box </summary>
+        private void ShowError ( string message )
+        {
+            MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private Character GetCharacter ()
@@ -111,5 +116,34 @@ namespace CharacterCreator.Winforms
             return character;
         }
 
+        private int GetAsInt32 ( Control control )
+        {
+            return GetAsInt32(control, 0);
+        }
+        private int GetAsInt32 ( Control control, int emptyValue )
+        {
+            // check for empty string
+            if (String.IsNullOrEmpty(control.Text))
+                return emptyValue;
+
+            //convert string into int
+            if (Int32.TryParse(control.Text, out var result))
+                return result;
+            //return errror
+            return -1;
+        }
+
+        private void OnValidateName ( object sender, CancelEventArgs e )
+        {
+            var control = sender as TextBox;
+            if (String.IsNullOrEmpty(control.Text))
+            {
+                _errors.SetError(control, "Name is required");
+                e.Cancel = true;
+            } else // will get rid of the error circle next to the box after inserting data
+            {
+                _errors.SetError(control, "");
+            }
+        }
     }
 }

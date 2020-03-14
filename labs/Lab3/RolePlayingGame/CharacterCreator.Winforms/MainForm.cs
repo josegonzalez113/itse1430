@@ -16,7 +16,7 @@ namespace CharacterCreator.Winforms
 {
     public partial class MainForm : Form
     {
-        private Character _character;
+
         private readonly IMovieDatabase _characters;
 
 
@@ -70,18 +70,18 @@ namespace CharacterCreator.Winforms
 
         private void UpdateUI ()
         {
-            lstMovies.Items.Clear(); // remove all items from lstBox
+            listCharacters.Items.Clear(); // remove all items from lstBox
 
             var characters = _characters.GetAll();
             foreach (var movie in characters)
             {
-                lstMovies.Items.Add(character);
+                listCharacters.Items.Add(character);
             };
         }
 
         private Character GetSelectedCharacter ()
         {
-            return lstMovies.SelectedItem as Character;
+            return listCharacters.SelectedItem as Character;
         }
 
         /// <summary> Create a new character </summary>
@@ -93,7 +93,7 @@ namespace CharacterCreator.Winforms
                 return;
 
             //TODO: Save the character
-            _character = temp.Character;
+            _characters = temp.Character;
         }
 
         /// <summary> Edit the existing </summary>
