@@ -21,6 +21,19 @@ namespace CharacterCreator.Winforms
             InitializeComponent();
         }
 
+        /// <summary> Will display a dialog with a message </summary>
+        private bool DisplayConfirmation ( string message, string title )
+        {
+            var result = MessageBox.Show(message, title, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            return result == DialogResult.OK;
+        }
+
+        /// <summary> Shows an error in a dialog box </summary>
+        private void ShowError ( string message )
+        {
+            MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
         private Character _character;
         private void OnFileExit ( object sender, EventArgs e )
         {
@@ -56,13 +69,6 @@ namespace CharacterCreator.Winforms
 
             //TODO: Save the character
             _character = temp.Character;
-        }
-
-        /// <summary> Will display a dialog with a message </summary>
-        private bool DisplayConfirmation ( string message, string title )
-        {
-            var result = MessageBox.Show(message, title, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-            return result == DialogResult.OK;
         }
 
         /// <summary> If character is not null it will asl for confirmation </summary>
