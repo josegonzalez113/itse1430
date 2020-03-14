@@ -16,9 +16,15 @@ namespace CharacterCreator.Winforms
 {
     public partial class MainForm : Form
     {
+        private Character _character;
+        private readonly IMovieDatabase _characters;
+
+
         public MainForm ()
         {
             InitializeComponent();
+
+            //_character = new MemoryCharacterDatabase();
         }
 
         /// <summary> Will display a dialog with a message </summary>
@@ -34,17 +40,48 @@ namespace CharacterCreator.Winforms
             MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
-        private Character _character;
-        private void OnFileExit ( object sender, EventArgs e )
+        private void OnMovieAdd ( object sender, EventArgs e )
         {
-            Close(); // simply will terminate the program
+            NewCharacter child = new NewCharacter();
+
+            do
+            {
+                if (child.ShowDialog(this) != DialogResult.OK)
+                    return;
+
+                //TODO: Save the character
+                var character = _characters.Add(child.Character);
+                if (character != null)
+                {
+                    UpdateUI();
+                    return;
+                }
+                ShowError("Add failed");
+            } while (true);
         }
 
-        /// <summary> Shows the AboutForm </summary>
-        private void OnHelpAbout ( object sender, EventArgs e )
+        protected override void OnLoad ( EventArgs e )
         {
-            var about = new AboutForm(); // create a new instance of AboutForm()
-            about.ShowDialog(this);
+            base.OnLoad(e);
+            new SeedDatabase().SeedIfEmpty(_characters);
+
+            UpdateUI();
+        }
+
+        private void UpdateUI ()
+        {
+            lstMovies.Items.Clear(); // remove all items from lstBox
+
+            var characters = _characters.GetAll();
+            foreach (var movie in characters)
+            {
+                lstMovies.Items.Add(character);
+            };
+        }
+
+        private Character GetSelectedCharacter ()
+        {
+            return lstMovies.SelectedItem as Character;
         }
 
         /// <summary> Create a new character </summary>
@@ -62,25 +99,57 @@ namespace CharacterCreator.Winforms
         /// <summary> Edit the existing </summary>
         private void OnCharacterEdit ( object sender, EventArgs e )
         {
-            var temp = new NewCharacter();
-            temp.Character = _character;
-            if (temp.ShowDialog(this) != DialogResult.OK)
+            // Verify movie
+            var character = GetSelectedCharacter();
+            if (character == null)
                 return;
 
-            //TODO: Save the character
-            _character = temp.Character;
+            var child = new NewCharacter();
+            child.Character = character;
+
+            do
+            {
+                if (child.ShowDialog(this) != DialogResult.OK)
+                    return;
+
+                //TODO: Save the character
+                var error = _characters.Update(character.Id, child.Character);
+                if (String.IsNullOrEmpty(error))
+                {
+                    UpdateUI();
+                    return;
+                }
+                ShowError(error);
+            } while (true);
         }
 
         /// <summary> If character is not null it will asl for confirmation </summary>
         private void OnCharacterDelete ( object sender, EventArgs e )
         {
-            // Verify character is empty
-            if (_character == null)
+            var character = GetSelectedCharacter();
+
+            // Verify movie
+            if (character == null)
                 return;
 
-            if (!DisplayConfirmation($"Are you sure you want to delete {_character.Name}?", "Delete"))
+            if (!DisplayConfirmation($"Are you sure you want to delete {character.Name}?", "Delete"))
                 return;
-            _character = null; // set all characteristics back to null
+
+            //TODO: Delete
+            _characters.Delete(character.Id);
+            UpdateUI();
+        }
+
+        private void OnFileExit ( object sender, EventArgs e )
+        {
+            Close(); // simply will terminate the program
+        }
+
+        /// <summary> Shows the AboutForm </summary>
+        private void OnHelpAbout ( object sender, EventArgs e )
+        {
+            var about = new AboutForm(); // create a new instance of AboutForm()
+            about.ShowDialog(this);
         }
     }
 }
