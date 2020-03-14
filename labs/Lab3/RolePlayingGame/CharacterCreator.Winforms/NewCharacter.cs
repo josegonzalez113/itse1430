@@ -1,4 +1,7 @@
-﻿using System;
+﻿// ITSE 1430
+// Jose Gonzalez
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
