@@ -17,14 +17,14 @@ namespace CharacterCreator.Winforms
     public partial class MainForm : Form
     {
 
-        private readonly IMovieDatabase _characters;
+        private readonly ICharacterRoster _characters;
 
 
         public MainForm ()
         {
             InitializeComponent();
 
-            //_character = new MemoryCharacterDatabase();
+            _characters = new ICharacterRoster();
         }
 
         /// <summary> Will display a dialog with a message </summary>
@@ -63,7 +63,7 @@ namespace CharacterCreator.Winforms
         protected override void OnLoad ( EventArgs e )
         {
             base.OnLoad(e);
-            new SeedDatabase().SeedIfEmpty(_characters);
+            //new SeedDatabase().SeedIfEmpty(_characters);
 
             UpdateUI();
         }
@@ -73,27 +73,15 @@ namespace CharacterCreator.Winforms
             listCharacters.Items.Clear(); // remove all items from lstBox
 
             var characters = _characters.GetAll();
-            foreach (var movie in characters)
+            foreach (var chatacter in characters)
             {
-                listCharacters.Items.Add(character);
+                listCharacters.Items.Add(chatacter);
             };
         }
 
         private Character GetSelectedCharacter ()
         {
             return listCharacters.SelectedItem as Character;
-        }
-
-        /// <summary> Create a new character </summary>
-        private void OnNewCharacter ( object sender, EventArgs e )
-        {
-            NewCharacter temp = new NewCharacter();
-            // show NewCharacter form as a dialog
-            if (temp.ShowDialog(this) != DialogResult.OK) 
-                return;
-
-            //TODO: Save the character
-            _characters = temp.Character;
         }
 
         /// <summary> Edit the existing </summary>
@@ -123,6 +111,29 @@ namespace CharacterCreator.Winforms
             } while (true);
         }
 
+        /// <summary> Create a new character </summary>
+        private void OnNewCharacter ( object sender, EventArgs e )
+        {
+            NewCharacter temp = new NewCharacter();
+
+            do
+            {
+                // show NewCharacter form as a dialog
+                if (temp.ShowDialog(this) != DialogResult.OK)
+                    return;
+
+                //TODO: Save the character
+                var character = _characters.Add(temp.Character);
+                if (character != null)
+                {
+                    UpdateUI();
+                    return;
+                }
+                ShowError("Add failed");
+            } while (true);
+        }
+
+        
         /// <summary> If character is not null it will asl for confirmation </summary>
         private void OnCharacterDelete ( object sender, EventArgs e )
         {

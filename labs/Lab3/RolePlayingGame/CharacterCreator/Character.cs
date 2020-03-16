@@ -8,6 +8,8 @@ namespace CharacterCreator
 {
     public class Character
     {
+        public int Id { get; set; }
+
         public Profession Profession { get; set; }
         public Race Race { get; set; }
         public Attribute Attribute { get; set; }

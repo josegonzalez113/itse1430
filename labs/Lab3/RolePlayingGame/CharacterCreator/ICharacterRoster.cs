@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace CharacterCreator
 {
-    public class MemoryMovieDatabase
-    { 
+    public class ICharacterRoster
+    {
         public Character Get ( int id )
         {
             // TODO: Error
@@ -18,7 +18,7 @@ namespace CharacterCreator
             if (character == null)
                 return null;
 
-                return CloneCharacter(character);
+            return CloneCharacter(character);
         }
 
         public Character Add ( Character character )
@@ -57,7 +57,7 @@ namespace CharacterCreator
             //TODO: Clone objects
             var items = new Character[_character.Count];
             var index = 0;
-            foreach (var movie in _character)
+            foreach (var character in _character)
             {
                 items[index++] = CloneCharacter(character);
             }
@@ -127,8 +127,8 @@ namespace CharacterCreator
         {
             if (includeId)
                 target.Id = source.Id;
-                target.Name = source.Name;
-                target.Description = source.Description;
+            target.Name = source.Name;
+            target.Description = source.Description;
 
             if (source.Profession != null)
                 target.Profession = new Profession(source.Profession.About);
@@ -138,7 +138,7 @@ namespace CharacterCreator
             if (source.Race != null)
                 target.Race = new Race(source.Race.About);
             else
-                target.Race= = null;
+                target.Race = null;
 
             if (source.Attribute != null)
                 target.Attribute = new Attribute(source.Attribute.About);
@@ -150,5 +150,5 @@ namespace CharacterCreator
         private readonly List<Character> _character = new List<Character>();
         private int _id = 1;
     }
-  
+
 }
