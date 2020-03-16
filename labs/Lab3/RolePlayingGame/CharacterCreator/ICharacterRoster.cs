@@ -89,11 +89,11 @@ namespace CharacterCreator
             return null;
         }
 
-        private Character FindByName ( string title )
+        private Character FindByName ( string name )
         {
             foreach (var character in _character)
             {
-                if (String.Compare(character?.Name, title, true) == 0)
+                if (String.Compare(character?.Name, name, true) == 0)
                     return character;
             }
             return null;

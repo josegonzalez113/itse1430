@@ -21,7 +21,6 @@ namespace CharacterCreator.Winforms
 
         private readonly ICharacterRoster _characters;
 
-
         public MainForm ()
         {
             InitializeComponent();
@@ -42,7 +41,7 @@ namespace CharacterCreator.Winforms
             MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
-        private void OnMovieAdd ( object sender, EventArgs e )
+        private void OnCharacterAdd ( object sender, EventArgs e )
         {
             NewCharacter child = new NewCharacter();
 
@@ -65,7 +64,6 @@ namespace CharacterCreator.Winforms
         protected override void OnLoad ( EventArgs e )
         {
             base.OnLoad(e);
-            //new SeedDatabase().SeedIfEmpty(_characters);
 
             UpdateUI();
         }

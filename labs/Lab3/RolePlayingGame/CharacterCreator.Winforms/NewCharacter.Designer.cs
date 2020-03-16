@@ -100,7 +100,6 @@
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(121, 20);
             this.txtName.TabIndex = 6;
-            this.txtName.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidateName);
             // 
             // cmbProfession
             // 
