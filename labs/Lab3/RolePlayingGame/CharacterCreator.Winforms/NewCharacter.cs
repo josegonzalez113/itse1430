@@ -55,13 +55,13 @@ namespace CharacterCreator.Winforms
                 txtDescription.Text = Character.Description;
 
                 if (Character.Profession != null)
-                    cmbProfession.SelectedItem = Character.Profession.About;
+                    cmbProfession.SelectedText = Character.Profession.About;
 
                 if (Character.Race != null)
-                    cmbRace.SelectedItem = Character.Race.About;
+                    cmbRace.SelectedText = Character.Race.About;
 
                 if (Character.Attribute != null)
-                    cmbAttributes.SelectedItem = Character.Attribute.About;
+                    cmbAttributes.SelectedText = Character.Attribute.About;
 
                 ValidateChildren();
             };
