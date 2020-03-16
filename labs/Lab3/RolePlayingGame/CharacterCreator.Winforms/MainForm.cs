@@ -73,9 +73,9 @@ namespace CharacterCreator.Winforms
             listCharacters.Items.Clear(); // remove all items from lstBox
 
             var characters = _characters.GetAll();
-            foreach (var chatacter in characters)
+            foreach (var character in characters)
             {
-                listCharacters.Items.Add(chatacter);
+                listCharacters.Items.Add(character);
             };
         }
 
@@ -108,28 +108,6 @@ namespace CharacterCreator.Winforms
                     return;
                 }
                 ShowError(error);
-            } while (true);
-        }
-
-        /// <summary> Create a new character </summary>
-        private void OnNewCharacter ( object sender, EventArgs e )
-        {
-            NewCharacter temp = new NewCharacter();
-
-            do
-            {
-                // show NewCharacter form as a dialog
-                if (temp.ShowDialog(this) != DialogResult.OK)
-                    return;
-
-                //TODO: Save the character
-                var character = _characters.Add(temp.Character);
-                if (character != null)
-                {
-                    UpdateUI();
-                    return;
-                }
-                ShowError("Add failed");
             } while (true);
         }
 

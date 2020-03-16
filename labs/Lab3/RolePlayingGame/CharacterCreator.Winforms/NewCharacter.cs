@@ -133,7 +133,7 @@ namespace CharacterCreator.Winforms
             return -1;
         }
 
-        /*private void OnValidateName ( object sender, CancelEventArgs e )
+        private void OnValidateName ( object sender, CancelEventArgs e )
         {
             var control = sender as TextBox;
             if (String.IsNullOrEmpty(control.Text))
@@ -144,6 +144,6 @@ namespace CharacterCreator.Winforms
             {
                 _errors.SetError(control, "");
             }
-        }*/
+        }
     }
 }
