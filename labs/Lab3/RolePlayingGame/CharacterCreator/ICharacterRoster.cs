@@ -29,7 +29,7 @@ namespace CharacterCreator
             if (!character.Validate(out var error))
                 return null;
             // Character names must be unique
-            var existing = FindByTitle(character.Name);
+            var existing = FindByName(character.Name);
             if (existing != null)
                 return null;
             //TODO: Clone character to store
@@ -64,10 +64,6 @@ namespace CharacterCreator
             return items;
         }
 
-        //TODO: Validate
-        //TODO: Character names must be unique
-        //TODO: Clone character to store
-        //Todo: Shouldn't need the original character
         public string Update ( int id, Character character )
         {
             // Validate
@@ -83,7 +79,7 @@ namespace CharacterCreator
                 return "Character not found";
 
             // Movie names must be unique
-            var sameName = FindByTitle(character.Name);
+            var sameName = FindByName(character.Name);
             if (sameName != null && sameName.Id != id)
                 return "Character must be unique";
 
@@ -93,7 +89,7 @@ namespace CharacterCreator
             return null;
         }
 
-        private Character FindByTitle ( string title )
+        private Character FindByName ( string title )
         {
             foreach (var character in _character)
             {
@@ -122,7 +118,6 @@ namespace CharacterCreator
             return null;
         }
 
-
         private void CopyCharacter ( Character target, Character source, bool includeId )
         {
             if (includeId)
@@ -146,7 +141,6 @@ namespace CharacterCreator
                 target.Attribute = null;
         }
 
-        //private readonly Movie[] _movies = new Movie[100];
         private readonly List<Character> _character = new List<Character>();
         private int _id = 1;
     }
