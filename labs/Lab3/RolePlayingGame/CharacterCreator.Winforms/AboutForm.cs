@@ -17,7 +17,7 @@ namespace CharacterCreator.Winforms
             this.Text = String.Format("About {0}", AssemblyTitle);
             this.labelProductName.Text = "Jose Gonzalez";
             this.labelVersion.Text = "ITSE 1430";
-            this.labelCopyright.Text = "Lab 2";
+            this.labelCopyright.Text = "Lab 3";
             this.labelCompanyName.Text = "Role Playing Game";
             this.textBoxDescription.Text = "Create your own character";
         }
