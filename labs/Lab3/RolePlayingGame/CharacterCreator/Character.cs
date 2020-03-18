@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CharacterCreator
 {
-    public class Character
+    public class Character : IValidatableObject
     {
         public int Id { get; set; }
 

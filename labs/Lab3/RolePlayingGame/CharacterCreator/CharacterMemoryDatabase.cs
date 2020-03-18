@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace CharacterCreator
 {
-    public class CharacterDatabase : ICharacterRoster
+    public class CharacterMemoryDatabase : ICharacterRoster
     {
-
-        private readonly List<Character> _characters = new List<Character>();
-        private int _id = 1;
 
         public Character Add ( Character character )
         {
@@ -151,5 +148,8 @@ namespace CharacterCreator
             } else
                 target.Attribute = null;
         }
+
+        private readonly List<Character> _characters = new List<Character>();
+        private int _id = 1;
     }
 }

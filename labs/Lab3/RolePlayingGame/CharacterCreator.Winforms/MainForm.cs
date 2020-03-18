@@ -25,7 +25,7 @@ namespace CharacterCreator.Winforms
         {
             InitializeComponent();
 
-            _characters = new CharacterDatabase();
+            _characters = new CharacterMemoryDatabase();
         }
 
         /// <summary> Will display a dialog with a message </summary>

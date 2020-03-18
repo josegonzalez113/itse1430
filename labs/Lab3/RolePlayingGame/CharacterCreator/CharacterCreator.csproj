@@ -43,7 +43,7 @@
   <ItemGroup>
     <Compile Include="Attribute.cs" />
     <Compile Include="Character.cs" />
-    <Compile Include="CharacterDatabase.cs" />
+    <Compile Include="CharacterMemoryDatabase.cs" />
     <Compile Include="ICharacterRoster.cs" />
     <Compile Include="IValidatableObject.cs" />
     <Compile Include="Profession.cs" />
