@@ -41,8 +41,8 @@
             this.cmbAttributes = new System.Windows.Forms.ComboBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
-            this._errors = new System.Windows.Forms.ErrorProvider(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this._errors)).BeginInit();
+            this.ErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.ErrorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // labelName
@@ -148,9 +148,9 @@
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.OnCancel);
             // 
-            // _errors
+            // ErrorProvider
             // 
-            this._errors.ContainerControl = this;
+            this.ErrorProvider.ContainerControl = this;
             // 
             // NewCharacter
             // 
@@ -172,7 +172,7 @@
             this.Name = "NewCharacter";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Create New Character";
-            ((System.ComponentModel.ISupportInitialize)(this._errors)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ErrorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -192,6 +192,6 @@
         private System.Windows.Forms.ComboBox cmbAttributes;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnCancel;
-        private System.Windows.Forms.ErrorProvider _errors;
+        private System.Windows.Forms.ErrorProvider ErrorProvider;
     }
 }

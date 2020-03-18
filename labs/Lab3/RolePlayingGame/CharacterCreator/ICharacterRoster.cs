@@ -8,18 +8,8 @@ namespace CharacterCreator
 {
     public class ICharacterRoster
     {
-        public Character Get ( int id )
-        {
-            // TODO: Error
-            if (id <= 0)
-                return null;
-
-            var character = FindById(id);
-            if (character == null)
-                return null;
-
-            return CloneCharacter(character);
-        }
+        private readonly List<Character> _characters = new List<Character>();
+        private int _id = 1;
 
         public Character Add ( Character character )
         {
@@ -35,7 +25,7 @@ namespace CharacterCreator
             //TODO: Clone character to store
             var item = CloneCharacter(character);
             item.Id = _id++;
-            _character.Add(item);
+            _characters.Add(item);
 
             return CloneCharacter(item);
         }
@@ -49,15 +39,28 @@ namespace CharacterCreator
             //TODO: Find better way to find character
             var character = FindById(id);
             if (character != null)
-                _character.Remove(character);
+                _characters.Remove(character);
+        }
+
+        public Character Get ( int id )
+        {
+            // TODO: Error
+            if (id <= 0)
+                return null;
+
+            var character = FindById(id);
+            if (character == null)
+                return null;
+
+            return CloneCharacter(character);
         }
 
         public Character[] GetAll ()
         {
             //TODO: Clone objects
-            var items = new Character[_character.Count];
+            var items = new Character[_characters.Count];
             var index = 0;
-            foreach (var character in _character)
+            foreach (var character in _characters)
             {
                 items[index++] = CloneCharacter(character);
             }
@@ -89,9 +92,10 @@ namespace CharacterCreator
             return null;
         }
 
+        // helper method for the Update() method.
         private Character FindByName ( string name )
         {
-            foreach (var character in _character)
+            foreach (var character in _characters)
             {
                 if (String.Compare(character?.Name, name, true) == 0)
                     return character;
@@ -99,6 +103,7 @@ namespace CharacterCreator
             return null;
         }
 
+        // helper method for the GetAll() method.
         private Character CloneCharacter ( Character character )
         {
 
@@ -108,9 +113,10 @@ namespace CharacterCreator
             return item;
         }
 
+        // helper method for the Update() method.
         private Character FindById ( int id )
         {
-            foreach (var character in _character)
+            foreach (var character in _characters)
             {
                 if (character.Id == id)
                     return character;
@@ -118,6 +124,7 @@ namespace CharacterCreator
             return null;
         }
 
+        // helper method for the Update() method.
         private void CopyCharacter ( Character target, Character source, bool includeId )
         {
             if (includeId)
@@ -146,9 +153,6 @@ namespace CharacterCreator
             else
                 target.Attribute = null;
         }
-
-        private readonly List<Character> _character = new List<Character>();
-        private int _id = 1;
     }
 
 }

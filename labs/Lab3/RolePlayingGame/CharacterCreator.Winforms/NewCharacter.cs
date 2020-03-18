@@ -138,11 +138,11 @@ namespace CharacterCreator.Winforms
             var control = sender as TextBox;
             if (String.IsNullOrEmpty(control.Text))
             {
-                _errors.SetError(control, "Name is required");
+                ErrorProvider.SetError(control, "Name is required");
                 e.Cancel = true;
             } else // will get rid of the error circle next to the box after inserting data
             {
-                _errors.SetError(control, "");
+                ErrorProvider.SetError(control, "");
             }
         }
     }

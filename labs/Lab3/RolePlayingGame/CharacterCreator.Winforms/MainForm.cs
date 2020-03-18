@@ -75,7 +75,7 @@ namespace CharacterCreator.Winforms
             var characters = _characters.GetAll();
             foreach (var character in characters)
             {
-                listCharacters.Items.Add(character);
+                listCharacters.Items.Add(character.Name);
             };
         }
 
