@@ -50,7 +50,7 @@ namespace CharacterCreator.Winforms
                 if (child.ShowDialog(this) != DialogResult.OK)
                     return;
 
-                //TODO: Save the character
+                // Save the character
                 var character = _characters.Add(child.Character);
                 if (character != null)
                 {

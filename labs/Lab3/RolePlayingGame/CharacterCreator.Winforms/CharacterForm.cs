@@ -40,31 +40,42 @@ namespace CharacterCreator.Winforms
             //populate profession combobox
             var professions = Professions.GetProfession();
             cmbProfession.Items.AddRange(professions);
+            var professionPower = Powers.GetProfessionPower();
+            cmbProfessionPower.Items.AddRange(professionPower);
 
             //populate races combobox
             var races = Races.GetRace();
             cmbRace.Items.AddRange(races);
+            var racePower = Powers.GetRacePower();
+            cmbRacePower.Items.AddRange(racePower);
 
             //populate attributes combobox
             var attributes = Attributes.GetAttributes();
             cmbAttributes.Items.AddRange(attributes);
-            var attributePower = Attributes.GetAttributePower();
+            var attributePower = Powers.GetAttributePower();
             cmbAttributesPower.Items.AddRange(attributePower);
 
             if (Character != null)
             {
+                // text box save
                 txtName.Text = Character.Name;
                 txtDescription.Text = Character.Description;
 
+                // combo box save
                 if (Character.Profession != null)
                     cmbProfession.SelectedText = Character.Profession.About;
-
                 if (Character.Race != null)
                     cmbRace.SelectedText = Character.Race.About;
-
                 if (Character.Attribute != null)
                     cmbAttributes.SelectedText = Character.Attribute.About;
-                    cmbAttributesPower.SelectedText = Character.Attribute.Info;
+
+                // combo box save
+                if (Character.Power != null)
+                    cmbProfessionPower.SelectedText = Character.Power.About;
+                if (Character.Power != null)
+                    cmbRacePower.SelectedText = Character.Power.About;
+                if (Character.Power != null)
+                    cmbAttributesPower.SelectedText = Character.Power.About;
 
                 ValidateChildren();
             };
@@ -100,7 +111,7 @@ namespace CharacterCreator.Winforms
             MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
-        private Character GetCharacter ()
+        private Character GetCharacter () // Todo:
         {
             var character = new Character();
 
@@ -108,13 +119,21 @@ namespace CharacterCreator.Winforms
             character.Name = txtName.Text?.Trim();
             character.Description = txtDescription.Text.Trim();
 
-            // save all the combo boxes
+            // save text combo boxes
             if (cmbProfession.SelectedItem is Profession profession)
                 character.Profession = profession;
             if (cmbRace.SelectedItem is Race race)
                 character.Race = race;
             if (cmbAttributes.SelectedItem is Attribute attribute)
                 character.Attribute = attribute;
+
+            // save power combo box
+            if (cmbProfessionPower.SelectedItem is Power professionPow)
+                character.Power = professionPow;
+            if (cmbRacePower.SelectedItem is Power racePow)
+                character.Power = racePow;
+            if (cmbAttributesPower.SelectedItem is Power attributePow)
+                character.Power = attributePow;
 
             return character;
         }
@@ -142,19 +161,6 @@ namespace CharacterCreator.Winforms
             if (String.IsNullOrEmpty(control.Text))
             {
                 ErrorProvider.SetError(control, "Name is required");
-                e.Cancel = true;
-            } else // will get rid of the error circle next to the box after inserting data
-            {
-                ErrorProvider.SetError(control, "");
-            }
-        }
-
-        private void OnValidateDescription ( object sender, CancelEventArgs e ) //todo: connect to ui
-        {
-            var control = sender as TextBox;
-            if (String.IsNullOrEmpty(control.Text))
-            {
-                ErrorProvider.SetError(control, "Description is required");
                 e.Cancel = true;
             } else // will get rid of the error circle next to the box after inserting data
             {

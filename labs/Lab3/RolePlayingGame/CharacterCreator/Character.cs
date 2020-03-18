@@ -14,6 +14,8 @@ namespace CharacterCreator
         public Race Race { get; set; }
         public Attribute Attribute { get; set; }
 
+        public Power Power { get; set; }
+
         public string Name
         {
             get { return _name ?? ""; }
@@ -39,7 +41,6 @@ namespace CharacterCreator
             };
 
             // Profession, race, attributes are required
-
 
             error = null;
             return true;

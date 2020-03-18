@@ -144,7 +144,7 @@ namespace CharacterCreator
 
             if (source.Attribute != null)
             {
-                target.Attribute = new Attribute(source.Attribute.About, "");
+                target.Attribute = new Attribute(source.Attribute.About);
             } else
                 target.Attribute = null;
         }

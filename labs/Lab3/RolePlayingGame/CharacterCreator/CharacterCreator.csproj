@@ -46,6 +46,7 @@
     <Compile Include="MemoryCharacterDatabase.cs" />
     <Compile Include="ICharacterRoster.cs" />
     <Compile Include="IValidatableObject.cs" />
+    <Compile Include="Power.cs" />
     <Compile Include="Profession.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Race.cs" />
