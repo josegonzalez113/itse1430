@@ -76,7 +76,7 @@ namespace MovieLibrary
         protected override void OnLoad ( EventArgs e )
         {
             base.OnLoad(e);
-            new SeedDatabase().SeedIfEmpty(_movies);
+            //new SeedDatabase().SeedIfEmpty(_movies);
 
             UpdateUI();
         }

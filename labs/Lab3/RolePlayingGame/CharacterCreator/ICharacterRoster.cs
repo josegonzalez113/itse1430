@@ -126,17 +126,23 @@ namespace CharacterCreator
             target.Description = source.Description;
 
             if (source.Profession != null)
+            {
                 target.Profession = new Profession(source.Profession.About);
+            }
             else
                 target.Profession = null;
 
             if (source.Race != null)
+            {
                 target.Race = new Race(source.Race.About);
+            }   
             else
                 target.Race = null;
 
             if (source.Attribute != null)
+            {
                 target.Attribute = new Attribute(source.Attribute.About);
+            }
             else
                 target.Attribute = null;
         }
