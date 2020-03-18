@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CharacterCreator
 {
-    public class Character : IValidatableObject
+    public class Character
     {
         public int Id { get; set; }
 
@@ -30,7 +30,7 @@ namespace CharacterCreator
 
         
 
-    public bool Validate ( out string error )
+    public bool Validate ( out string error ) // TODO:
         {
             if (String.IsNullOrEmpty(Name))
             {
@@ -38,11 +38,8 @@ namespace CharacterCreator
                 return false;
             };
 
-            if (String.IsNullOrEmpty(Description))
-            {
-                error = "Description is required";
-                return false;
-            };
+            // Profession, race, attributes are required
+
 
             error = null;
             return true;

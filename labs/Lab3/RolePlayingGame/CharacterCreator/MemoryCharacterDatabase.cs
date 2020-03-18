@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CharacterCreator
 {
-    public class CharacterMemoryDatabase : ICharacterRoster
+    public class MemoryCharacterDatabase : ICharacterRoster
     {
 
         public Character Add ( Character character )
@@ -55,7 +55,7 @@ namespace CharacterCreator
 
         public Character[] GetAll ()
         {
-            //TODO: Clone objects
+            // Clone objects
             var items = new Character[_characters.Count];
             var index = 0;
             foreach (var character in _characters)
@@ -69,7 +69,7 @@ namespace CharacterCreator
         {
             // Validate
             if (character == null)
-                return "Character is null";
+                return "The updated character is invalid";
             if (!character.Validate(out var error))
                 return error;
             if (id <= 0)
@@ -77,12 +77,12 @@ namespace CharacterCreator
 
             var existing = FindById(id);
             if (existing == null)
-                return "Character not found";
+                return "The existing character cannot be found or is invalid";
 
             // Movie names must be unique
             var sameName = FindByName(character.Name);
             if (sameName != null && sameName.Id != id)
-                return "Character must be unique";
+                return "Character with the same name already exists";
 
             // Update
             CopyCharacter(existing, character, false);
@@ -144,7 +144,7 @@ namespace CharacterCreator
 
             if (source.Attribute != null)
             {
-                target.Attribute = new Attribute(source.Attribute.About);
+                target.Attribute = new Attribute(source.Attribute.About, "");
             } else
                 target.Attribute = null;
         }

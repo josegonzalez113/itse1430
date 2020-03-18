@@ -1,6 +1,6 @@
 ﻿namespace CharacterCreator.Winforms
 {
-    partial class NewCharacter
+    partial class CharacterForm
     {
         /// <summary>
         /// Required designer variable.
@@ -42,6 +42,9 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.ErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.cmbProfessionPower = new System.Windows.Forms.ComboBox();
+            this.cmbRacePower = new System.Windows.Forms.ComboBox();
+            this.cmbAttributesPower = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.ErrorProvider)).BeginInit();
             this.SuspendLayout();
             // 
@@ -152,11 +155,38 @@
             // 
             this.ErrorProvider.ContainerControl = this;
             // 
-            // NewCharacter
+            // cmbProfessionPower
+            // 
+            this.cmbProfessionPower.FormattingEnabled = true;
+            this.cmbProfessionPower.Location = new System.Drawing.Point(230, 110);
+            this.cmbProfessionPower.Name = "cmbProfessionPower";
+            this.cmbProfessionPower.Size = new System.Drawing.Size(48, 21);
+            this.cmbProfessionPower.TabIndex = 12;
+            // 
+            // cmbRacePower
+            // 
+            this.cmbRacePower.FormattingEnabled = true;
+            this.cmbRacePower.Location = new System.Drawing.Point(230, 183);
+            this.cmbRacePower.Name = "cmbRacePower";
+            this.cmbRacePower.Size = new System.Drawing.Size(48, 21);
+            this.cmbRacePower.TabIndex = 13;
+            // 
+            // cmbAttributesPower
+            // 
+            this.cmbAttributesPower.FormattingEnabled = true;
+            this.cmbAttributesPower.Location = new System.Drawing.Point(230, 255);
+            this.cmbAttributesPower.Name = "cmbAttributesPower";
+            this.cmbAttributesPower.Size = new System.Drawing.Size(48, 21);
+            this.cmbAttributesPower.TabIndex = 14;
+            // 
+            // CharacterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.cmbAttributesPower);
+            this.Controls.Add(this.cmbRacePower);
+            this.Controls.Add(this.cmbProfessionPower);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.cmbAttributes);
@@ -169,7 +199,7 @@
             this.Controls.Add(this.labelRace);
             this.Controls.Add(this.labelProfession);
             this.Controls.Add(this.labelName);
-            this.Name = "NewCharacter";
+            this.Name = "CharacterForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Create New Character";
             ((System.ComponentModel.ISupportInitialize)(this.ErrorProvider)).EndInit();
@@ -193,5 +223,8 @@
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.ErrorProvider ErrorProvider;
+        private System.Windows.Forms.ComboBox cmbAttributesPower;
+        private System.Windows.Forms.ComboBox cmbRacePower;
+        private System.Windows.Forms.ComboBox cmbProfessionPower;
     }
 }

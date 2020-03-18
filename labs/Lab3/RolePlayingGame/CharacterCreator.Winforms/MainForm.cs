@@ -25,7 +25,7 @@ namespace CharacterCreator.Winforms
         {
             InitializeComponent();
 
-            _characters = new CharacterMemoryDatabase();
+            _characters = new MemoryCharacterDatabase();
         }
 
         /// <summary> Will display a dialog with a message </summary>
@@ -43,7 +43,7 @@ namespace CharacterCreator.Winforms
 
         private void OnCharacterAdd ( object sender, EventArgs e )
         {
-            NewCharacter child = new NewCharacter();
+            CharacterForm child = new CharacterForm();
 
             do
             {
@@ -75,7 +75,7 @@ namespace CharacterCreator.Winforms
             var characters = _characters.GetAll();
             foreach (var character in characters)
             {
-                listCharacters.Items.Add(character.Name);
+                listCharacters.Items.Add(character);
             };
         }
 
@@ -92,7 +92,7 @@ namespace CharacterCreator.Winforms
             if (character == null)
                 return;
 
-            var child = new NewCharacter();
+            var child = new CharacterForm();
             child.Character = character;
 
             do
@@ -100,7 +100,7 @@ namespace CharacterCreator.Winforms
                 if (child.ShowDialog(this) != DialogResult.OK)
                     return;
 
-                //TODO: Save the character
+                // Save the character
                 var error = _characters.Update(character.Id, child.Character);
                 if (String.IsNullOrEmpty(error))
                 {
@@ -124,7 +124,7 @@ namespace CharacterCreator.Winforms
             if (!DisplayConfirmation($"Are you sure you want to delete {character.Name}?", "Delete"))
                 return;
 
-            //TODO: Delete
+            // Delete
             _characters.Delete(character.Id);
             UpdateUI();
         }

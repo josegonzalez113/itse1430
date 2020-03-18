@@ -14,20 +14,20 @@ using CharacterCreator;
 
 namespace CharacterCreator.Winforms
 {
-    public partial class NewCharacter : Form
+    public partial class CharacterForm : Form
     {
-        public NewCharacter ()
+        public CharacterForm ()
         {
             InitializeComponent();
         }
 
         /// <summary> Constructor chaining </summary>
-        public NewCharacter ( Character newCharacter ) : this(newCharacter != null ? "Edit" : "Add", newCharacter)
+        public CharacterForm ( Character newCharacter ) : this(newCharacter != null ? "Edit" : "Add", newCharacter)
         {
         }
 
         /// <summary> Constructor chaining </summary>
-        public NewCharacter ( string name, Character newCharacter ) : this()
+        public CharacterForm ( string name, Character newCharacter ) : this()
         {
             Name = name;
             Character = newCharacter;
@@ -48,6 +48,8 @@ namespace CharacterCreator.Winforms
             //populate attributes combobox
             var attributes = Attributes.GetAttributes();
             cmbAttributes.Items.AddRange(attributes);
+            var attributePower = Attributes.GetAttributePower();
+            cmbAttributesPower.Items.AddRange(attributePower);
 
             if (Character != null)
             {
@@ -62,6 +64,7 @@ namespace CharacterCreator.Winforms
 
                 if (Character.Attribute != null)
                     cmbAttributes.SelectedText = Character.Attribute.About;
+                    cmbAttributesPower.SelectedText = Character.Attribute.Info;
 
                 ValidateChildren();
             };
@@ -139,6 +142,19 @@ namespace CharacterCreator.Winforms
             if (String.IsNullOrEmpty(control.Text))
             {
                 ErrorProvider.SetError(control, "Name is required");
+                e.Cancel = true;
+            } else // will get rid of the error circle next to the box after inserting data
+            {
+                ErrorProvider.SetError(control, "");
+            }
+        }
+
+        private void OnValidateDescription ( object sender, CancelEventArgs e ) //todo: connect to ui
+        {
+            var control = sender as TextBox;
+            if (String.IsNullOrEmpty(control.Text))
+            {
+                ErrorProvider.SetError(control, "Description is required");
                 e.Cancel = true;
             } else // will get rid of the error circle next to the box after inserting data
             {
