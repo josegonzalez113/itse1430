@@ -28,7 +28,9 @@ namespace CharacterCreator
         }
         private string _description;
 
-        public bool Validate ( out string error )
+        
+
+    public bool Validate ( out string error )
         {
             if (String.IsNullOrEmpty(Name))
             {
