@@ -111,7 +111,7 @@ namespace CharacterCreator.Winforms
             MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
-        private Character GetCharacter () // Todo:
+        private Character GetCharacter () // Todo: profession, race and attributes are required.
         {
             var character = new Character();
 

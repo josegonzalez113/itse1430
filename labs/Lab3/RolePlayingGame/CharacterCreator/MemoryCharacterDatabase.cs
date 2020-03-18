@@ -147,6 +147,13 @@ namespace CharacterCreator
                 target.Attribute = new Attribute(source.Attribute.About);
             } else
                 target.Attribute = null;
+
+            // power combo box  //// continue working
+            if (source.Power != null)
+            {
+                target.Power = new Power(source.Power.About);
+            } else
+                target.Power = null;
         }
 
         private readonly List<Character> _characters = new List<Character>();
