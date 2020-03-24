@@ -7,7 +7,23 @@ using System.Threading.Tasks;
 namespace MovieLibrary.Business
 {
 
+    /*public interface ISelectableObject 
+    {
+        void Select ();
+    }
 
+    public interface IResizableObject
+    {
+        void Resize (int width, int height);
+    }
+
+    public struct SelectableResizableObject : IResizableObject, ISelectableObject
+    {
+        public void Resize ( int width, int height );
+        public void Select ();
+    }*/
+
+    // Is-a relationship
     public class MemoryMovieDatabase : IMovieDatabase
     {
         public Movie Get ( int id )
@@ -75,7 +91,7 @@ namespace MovieLibrary.Business
             };*/
         }
 
-        public Movie[] GetAll ()
+        public IEnumerable<Movie> GetAll ()
         {
             //TODO: Clone objects
             var items = new Movie[_movies.Count];

@@ -10,7 +10,7 @@ namespace MovieLibrary.Business
     {
         public IMovieDatabase SeedIfEmpty (IMovieDatabase database)
         {
-            if (database.GetAll().Length == 0)
+            if (!database.GetAll().Any())
             {
                 database.Add(new Movie() { Title = "Jaws", RunLength = 60, ReleaseYear = 2000 });
                 database.Add(new Movie() { Title = "Avatar", RunLength = 60, ReleaseYear = 2000 });
