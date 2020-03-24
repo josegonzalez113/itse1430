@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 namespace MovieLibrary.Business
 {
     /// <summary> Represents a movie.</summary>
-    public class Movie
+    public class Movie : IValidatableObject
     {/// <summary> Gets or set the title.</summary>
 
         public Genre Genre { get; set; }
@@ -87,33 +88,32 @@ namespace MovieLibrary.Business
         {
             return Title;
         }
-
-        public bool Validate ( out string error)
+        public IEnumerable<ValidationResult> Validate ( ValidationContext validationContext )
         {
             //Title is required
             //if (txtTitle.Text?.Trim() == "")
             if (String.IsNullOrEmpty(Title))
             {
-                error = "Title is required";
-                return false;
+                yield return new ValidationResult("Title is required", new[] { nameof(Title)});
+                //error = "Title is required";
             };
 
             // Run Length has to be >=0
             if (RunLength < 0)
             {
-                error = "Run Length has to be >= to zero";
-                return false;
+                yield return new ValidationResult("Run Length has to be >= to zero", new[] { nameof(RunLength) });
+                //error = "Run Length has to be >= to zero";
             };
 
             //Release Year >= 1900
             if (ReleaseYear < 1900)
             {
-                error = "Release year has to be >= 1900";
-                return false;
+                yield return new ValidationResult("Release year has to be >= 1900", new[] { nameof(ReleaseYear) });
+                //error = "Release year has to be >= 1900";
             };
 
-            error = null;
-            return true;
+            //error = null;
+            //return true;
         }
     }
 }

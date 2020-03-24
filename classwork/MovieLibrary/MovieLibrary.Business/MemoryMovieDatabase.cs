@@ -7,22 +7,6 @@ using System.Threading.Tasks;
 namespace MovieLibrary.Business
 {
 
-    /*public interface ISelectableObject 
-    {
-        void Select ();
-    }
-
-    public interface IResizableObject
-    {
-        void Resize (int width, int height);
-    }
-
-    public struct SelectableResizableObject : IResizableObject, ISelectableObject
-    {
-        public void Resize ( int width, int height );
-        public void Select ();
-    }*/
-
     // Is-a relationship
     public class MemoryMovieDatabase : IMovieDatabase
     {
@@ -41,31 +25,36 @@ namespace MovieLibrary.Business
 
         public Movie Add ( Movie movie )
         {
-            // Validate
+            //TODO: Validate
             if (movie == null)
                 return null;
-            if (!movie.Validate(out var error))
+
+            //.NET validation
+            var errors = new ObjectValidator().Validate(movie);
+            if (errors.Any())
+                //if (!Validator.TryValidateObject(movie, new ValidationContext(movie), errors, true))
+                //if (!movie.Validate(out var error))
                 return null;
-            // Movie names must be unique
+
+            //Movie names must be unique
             var existing = FindByTitle(movie.Title);
             if (existing != null)
                 return null;
-            //TODO: Clone movie to store
+
+            //TODO: Clone movie to store     
             var item = CloneMovie(movie);
             item.Id = _id++;
             _movies.Add(item);
+            //for (var index = 0; index < _movies.Count; ++index)
+            //{
+            //    if (_movies[index] == null)
+            //    {
+            //        _movies[index] = item;
+            //        item.Id = _id++;
 
-            /*for (var index = 0; index< _movies.Count; ++index)
-            {
-                if (_movies[index] == null)
-                {
-                    _movies[index] = item;
-                    item.Id = _id++;
-
-                    return CloneMovie(item);
-                };
-            };
-            return null;*/
+            //        return CloneMovie(item);
+            //    };
+            //};
 
             return CloneMovie(item);
         }
@@ -93,14 +82,21 @@ namespace MovieLibrary.Business
 
         public IEnumerable<Movie> GetAll ()
         {
+            //return _movies;
             //TODO: Clone objects
-            var items = new Movie[_movies.Count];
+            /*var items = new Movie[_movies.Count];
             var index = 0;
             foreach (var movie in _movies)
             {
                 items[index++] = CloneMovie(movie);
             }
-            return items;
+            return items;*/
+
+            //Use an iterator Luke
+            foreach (var movie in _movies)
+            {
+                yield return CloneMovie(movie);
+            };
         }
 
         //TODO: Validate
@@ -109,11 +105,16 @@ namespace MovieLibrary.Business
         //Todo: Shouldn't need the original movie
         public string Update ( int id, Movie movie )
         {
-            // Validate
+            //TODO: Validate
             if (movie == null)
                 return "Movie is null";
-            if (!movie.Validate(out var error))
-                return error;
+
+            //TODO: Fix this
+            var errors = new ObjectValidator().Validate(movie);
+            if (errors.Any())
+                //if (!movie.Validate(out var error))
+                return "Error";
+
             if (id <= 0)
                 return "Id is invalid";
 
@@ -121,12 +122,12 @@ namespace MovieLibrary.Business
             if (existing == null)
                 return "Movie not found";
 
-            // Movie names must be unique
+            //Movie names must be unique
             var sameName = FindByTitle(movie.Title);
             if (sameName != null && sameName.Id != id)
                 return "Movie must be unique";
 
-            // Update
+            //Update
             CopyMovie(existing, movie, false);
 
             return null;
