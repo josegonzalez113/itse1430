@@ -98,63 +98,8 @@ namespace MovieLibrary.Business
 
         protected abstract void UpdateCore ( int id, Movie movie );
 
-        private Movie FindByTitle ( string title )
-        {
-            foreach (var movie in _movies)
-            {
-                if (String.Compare(movie?.Title, title, true) == 0)
-                    return movie;
-            }
-            return null;
-        }
+        protected abstract Movie FindByTitle ( string title );
 
-        private Movie CloneMovie ( Movie movie )
-        {
-
-            var item = new Movie();
-            CopyMovie(item, movie, true);
-
-            return item;
-
-            /*//Object init syntax, less code
-            return new Movie() {
-                Id = movie.Id,
-                Title = movie.Title,
-                Description = movie.Description,
-                Genre = new Genre(movie.Genre.Description),
-                IsClassic = movie.IsClassic,
-                ReleaseYear = movie.ReleaseYear,
-                RunLength = movie.RunLength,
-            };*/
-        }
-
-        private Movie FindById ( int id )
-        {
-            foreach (var movie in _movies)
-            {
-                if (movie.Id == id)
-                    return movie;
-            }
-            return null;
-        }
-
-        private void CopyMovie ( Movie target, Movie source, bool includeId )
-        {
-            if (includeId)
-                target.Id = source.Id;
-            target.Title = source.Title;
-            target.Description = source.Description;
-            if (source.Genre != null)
-                target.Genre = new Genre(source.Genre.Description);
-            else
-                target.Genre = null;
-            target.IsClassic = source.IsClassic;
-            target.ReleaseYear = source.ReleaseYear;
-            target.RunLength = source.RunLength;
-        }
-
-        //private readonly Movie[] _movies = new Movie[100];
-        private readonly List<Movie> _movies = new List<Movie>();
-        private int _id = 1;
+        protected abstract Movie FindById ( int id );
     }
 }

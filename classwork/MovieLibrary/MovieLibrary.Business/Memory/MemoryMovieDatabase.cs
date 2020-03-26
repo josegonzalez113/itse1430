@@ -103,7 +103,7 @@ namespace MovieLibrary.Business.Memory
 
         }
 
-        private Movie FindByTitle ( string title )
+        protected override Movie FindByTitle ( string title )
         {
             foreach (var movie in _movies)
             {
@@ -132,7 +132,7 @@ namespace MovieLibrary.Business.Memory
                 RunLength = movie.RunLength,
             };*/
         }
-        private Movie FindById ( int id )
+        protected override Movie FindById ( int id )
         {
             foreach (var movie in _movies)
             {
@@ -141,7 +141,6 @@ namespace MovieLibrary.Business.Memory
             }
             return null;
         }
-
 
         private void CopyMovie ( Movie target, Movie source, bool includeId )
         {
