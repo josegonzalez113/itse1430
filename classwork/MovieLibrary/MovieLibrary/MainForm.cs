@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MovieLibrary.Business;
+using MovieLibrary.Business.Memory;
 using MovieLibrary.WinForms;
 
 namespace MovieLibrary

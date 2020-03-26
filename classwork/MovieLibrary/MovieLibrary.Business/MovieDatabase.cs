@@ -8,7 +8,7 @@ namespace MovieLibrary.Business
 {
 
     // Is-a relationship
-    public class MemoryMovieDatabase : IMovieDatabase
+    public class MovieDatabase : IMovieDatabase
     {
         public Movie Get ( int id )
         {
@@ -41,23 +41,11 @@ namespace MovieLibrary.Business
             if (existing != null)
                 return null;
 
-            //TODO: Clone movie to store     
-            var item = CloneMovie(movie);
-            item.Id = _id++;
-            _movies.Add(item);
-            //for (var index = 0; index < _movies.Count; ++index)
-            //{
-            //    if (_movies[index] == null)
-            //    {
-            //        _movies[index] = item;
-            //        item.Id = _id++;
+            return AddCore(movie);
 
-            //        return CloneMovie(item);
-            //    };
-            //};
-
-            return CloneMovie(item);
         }
+
+        protected abstract Movie AddCore ( Movie movie );
 
         public void Delete ( int id )
         {
@@ -162,6 +150,7 @@ namespace MovieLibrary.Business
                 RunLength = movie.RunLength,
             };*/
         }
+
         private Movie FindById ( int id )
         {
             foreach (var movie in _movies)
@@ -171,7 +160,6 @@ namespace MovieLibrary.Business
             }
             return null;
         }
-
 
         private void CopyMovie ( Movie target, Movie source, bool includeId )
         {

@@ -44,8 +44,9 @@
   <ItemGroup>
     <Compile Include="Genre.cs" />
     <Compile Include="IMovieDatabase.cs" />
+    <Compile Include="Memory\MemoryMovieDatabase.cs" />
     <Compile Include="Movie.cs" />
-    <Compile Include="MemoryMovieDatabase.cs" />
+    <Compile Include="MovieDatabase.cs" />
     <Compile Include="ObjectValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SeedDatabase.cs" />
