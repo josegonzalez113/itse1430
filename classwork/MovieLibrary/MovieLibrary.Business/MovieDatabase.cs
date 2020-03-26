@@ -8,7 +8,7 @@ namespace MovieLibrary.Business
 {
 
     // Is-a relationship
-    public class MovieDatabase : IMovieDatabase
+    public abstract class MovieDatabase : IMovieDatabase
     {
         public Movie Get ( int id )
         {
@@ -16,12 +16,10 @@ namespace MovieLibrary.Business
             if (id <= 0)
                 return null;
 
-            var movie = FindById(id);
-            if (movie == null)
-                return null;
-
-            return CloneMovie(movie);
+            return GetCore(id);
         }
+
+        protected abstract Movie GetCore (int id);
 
         public Movie Add ( Movie movie )
         {
@@ -53,39 +51,17 @@ namespace MovieLibrary.Business
             if (id <= 0)
                 return;
 
-            //TODO: Find better way to find movie
-            var movie = FindById(id);
-            if (movie != null)
-                _movies.Remove(movie);
-
-            /*for (var index = 0; index < _movies.Count; ++index)
-            {
-                if (_movies[index]?.Id == id)
-                {
-                    _movies[index] = null;
-                    return;
-                };
-            };*/
+            DeleteCore(id);
         }
+
+        protected abstract void DeleteCore ( int id );
 
         public IEnumerable<Movie> GetAll ()
         {
-            //return _movies;
-            //TODO: Clone objects
-            /*var items = new Movie[_movies.Count];
-            var index = 0;
-            foreach (var movie in _movies)
-            {
-                items[index++] = CloneMovie(movie);
-            }
-            return items;*/
-
-            //Use an iterator Luke
-            foreach (var movie in _movies)
-            {
-                yield return CloneMovie(movie);
-            };
+            return GetAllCore();
         }
+
+        protected abstract IEnumerable<Movie> GetAllCore ();
 
         //TODO: Validate
         //TODO: Movie names must be unique
@@ -115,11 +91,12 @@ namespace MovieLibrary.Business
             if (sameName != null && sameName.Id != id)
                 return "Movie must be unique";
 
-            //Update
-            CopyMovie(existing, movie, false);
+            UpdateCore(id, movie);
 
             return null;
         }
+
+        protected abstract void UpdateCore ( int id, Movie movie );
 
         private Movie FindByTitle ( string title )
         {

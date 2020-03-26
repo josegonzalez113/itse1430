@@ -25,11 +25,8 @@ namespace MovieLibrary.Business.Memory
     // Is-a relationship
     public class MemoryMovieDatabase : MovieDatabase
     {
-        public Movie Get ( int id )
+        protected override Movie GetCore ( int id )
         {
-            // TODO: Error
-            if (id <= 0)
-                return null;
 
             var movie = FindById(id);
             if (movie == null)
@@ -58,12 +55,8 @@ namespace MovieLibrary.Business.Memory
             return CloneMovie(item);
         }
 
-        public void Delete ( int id )
+        protected override void DeleteCore ( int id )
         {
-            //TODO: Validate
-            if (id <= 0)
-                return;
-
             //TODO: Find better way to find movie
             var movie = FindById(id);
             if (movie != null)
@@ -79,7 +72,7 @@ namespace MovieLibrary.Business.Memory
             };*/
         }
 
-        public IEnumerable<Movie> GetAll ()
+        protected override IEnumerable<Movie> GetAllCore ()
         {
             //return _movies;
             //TODO: Clone objects
@@ -102,34 +95,12 @@ namespace MovieLibrary.Business.Memory
         //TODO: Movie names must be unique
         //TODO: Clone movie to store
         //Todo: Shouldn't need the original movie
-        public string Update ( int id, Movie movie )
+        protected override void UpdateCore ( int id, Movie movie )
         {
-            //TODO: Validate
-            if (movie == null)
-                return "Movie is null";
-
-            //TODO: Fix this
-            var errors = new ObjectValidator().Validate(movie);
-            if (errors.Any())
-                //if (!movie.Validate(out var error))
-                return "Error";
-
-            if (id <= 0)
-                return "Id is invalid";
-
             var existing = FindById(id);
-            if (existing == null)
-                return "Movie not found";
 
-            //Movie names must be unique
-            var sameName = FindByTitle(movie.Title);
-            if (sameName != null && sameName.Id != id)
-                return "Movie must be unique";
-
-            //Update
             CopyMovie(existing, movie, false);
 
-            return null;
         }
 
         private Movie FindByTitle ( string title )
