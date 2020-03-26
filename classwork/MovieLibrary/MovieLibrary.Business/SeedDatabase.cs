@@ -6,9 +6,15 @@ using System.Threading.Tasks;
 
 namespace MovieLibrary.Business
 {
-    public class SeedDatabase
+    public static class SeedDatabase
     {
-        public IMovieDatabase SeedIfEmpty (IMovieDatabase database)
+        //Extension method - are static methods of static classes that appear as instance members on the applied type
+        // Rule 1: Must be static method
+        // Rule 2: Owning type mst be static
+        // Rule 3: The first parameter must be proceeded with keyword 'this'
+        // Rule 4: Should behave just like instance member
+        // Rule 5: Do not add frivalous methods to core types
+        public static IMovieDatabase SeedIfEmpty ( this IMovieDatabase database )
         {
             if (!database.GetAll().Any())
             {

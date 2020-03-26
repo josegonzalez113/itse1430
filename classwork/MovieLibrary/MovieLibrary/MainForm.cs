@@ -77,7 +77,12 @@ namespace MovieLibrary
         protected override void OnLoad ( EventArgs e )
         {
             base.OnLoad(e);
-            new SeedDatabase().SeedIfEmpty(_movies);
+
+            // SeedDatabase.SeedIfEmpty(_movies); // compile to this
+
+            //Call extension method as though it is an instance
+            //Discover it            
+            _movies.SeedIfEmpty();
 
             UpdateUI();
         }

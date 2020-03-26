@@ -80,7 +80,8 @@ namespace MovieLibrary.WinForms
             // Validation and error reporting
             var movie = GetMovie();
 
-            var errors = new ObjectValidator().Validate(movie);
+            //var errors = new ObjectValidator().Validate(movie);
+            var errors = ObjectValidator.Validate(movie);
             if(errors.Any())
             //if (!movie.Validate(out var error))
             {
@@ -138,10 +139,11 @@ namespace MovieLibrary.WinForms
             // check for empty string
             if (String.IsNullOrEmpty(control.Text))
                 return emptyValue;
-
+            
             //convert string into int
             if (Int32.TryParse(control.Text, out var result))
                 return result;
+
             //return errror
             return -1;
         }

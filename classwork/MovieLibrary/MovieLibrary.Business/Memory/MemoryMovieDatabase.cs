@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace MovieLibrary.Business.Memory
 {
@@ -48,7 +49,7 @@ namespace MovieLibrary.Business.Memory
             //        return CloneMovie(item);
             //    };
             //};
-
+            
             return CloneMovie(item);
         }
 
@@ -58,7 +59,7 @@ namespace MovieLibrary.Business.Memory
             var movie = FindById(id);
             if (movie != null)
                 _movies.Remove(movie);
-
+            
             /*for (var index = 0; index < _movies.Count; ++index)
             {
                 if (_movies[index]?.Id == id)
@@ -96,6 +97,7 @@ namespace MovieLibrary.Business.Memory
         {
             var existing = FindById(id);
 
+            // Update
             CopyMovie(existing, movie, false);
 
         }
