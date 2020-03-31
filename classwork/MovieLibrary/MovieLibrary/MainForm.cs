@@ -111,6 +111,7 @@ namespace MovieLibrary
 
             //
             // IEnumerable<T> returning LINQ methods are deferred execution
+            // All other methods execute immediately - To?, First?, Last?, Single?
             //
 
             // SelectedObjectCollection : IEnumerable
