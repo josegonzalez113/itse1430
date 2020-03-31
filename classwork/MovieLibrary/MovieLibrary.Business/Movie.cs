@@ -14,21 +14,15 @@ namespace MovieLibrary.Business
         public Genre Genre { get; set; }
         public string Title
         {
-            get 
-            {
-                // Long long way
-                /*if(_title == null)
-                return "";
-                return _title;*/
+            //Never return null from a string property, always return empty string
+            //get { return _title ?? ""; }
+            get => _title ?? "";
 
-                //Long way
-                //return(_title != null) ? _title: "");
-
-                //Correct way
-                return _title ?? "";
-            }
-            set { _title = value?.Trim(); }
+            //Use null conditional operator if instance value can be null
+            //set { _title = value?.Trim(); }
+            set => _title = value?.Trim(); // expression body
         }
+
         private string _title;
 
         /// <summary> Gets or sets the run length in minutes.</summary>
@@ -44,8 +38,11 @@ namespace MovieLibrary.Business
         /// <summary> Gets or sets the description.</summary>
         public string Description
         {
-            get { return _description ?? ""; }
-            set { _description = value?.Trim(); }
+            //get { return _description ?? ""; }
+            get =>  _description ?? "";
+            //set { _description = value?.Trim(); }
+            set => _description = value?.Trim(); 
+
         }
         private string _description;
 
@@ -70,10 +67,13 @@ namespace MovieLibrary.Business
 
         public bool IsClassic { get; set; }
 
-        public bool isBlackAndWhite
-        {
-            get { return ReleaseYear <= 1930; }
-        }
+        //Expression body, value
+        public bool isBlackAndWhite => ReleaseYear <= 1930; // get only
+        //public bool isBlackAndWhite => ReleaseYear <= 1930; // rewrite
+        //{
+        //    //get { return ReleaseYear <= 1930; }
+        //    get => ReleaseYear <= 1930; 
+        //}
 
         /*public int Id
         {
@@ -84,10 +84,12 @@ namespace MovieLibrary.Business
 
         public int Id { get; set; }
 
-        public override string ToString ()
-        {
-            return Title;
-        }
+        // Expression body, method
+        public override string ToString () => Title;
+        //{
+        //    return Title;
+        //}
+
         public IEnumerable<ValidationResult> Validate ( ValidationContext validationContext )
         {
             //Title is required

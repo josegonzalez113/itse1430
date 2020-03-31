@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Linq; // Language Intergrated Natural Query
+
 using System.Windows.Forms;
 using MovieLibrary.Business;
 using MovieLibrary.Business.Memory;
@@ -87,20 +82,50 @@ namespace MovieLibrary
             UpdateUI();
         }
 
+        // new
+        private string SortByTitle ( Movie movie ) => movie.Title;
+        private int SortByReleaseYear ( Movie movie ) => movie.ReleaseYear;
         private void UpdateUI ()
         {
             lstMovies.Items.Clear(); // remove all items from lstBox
 
-            var movies = _movies.GetAll();
-            foreach (var movie in movies)
-            {
-                    lstMovies.Items.Add(movie);
-            };
+            var movies = _movies.GetAll()
+                                .OrderBy(SortByTitle) // IEnumerable<T> OrderBy<T> (this IEnumerable<T>, source, Func<T>, string> sorter)
+                                .ThenByDescending(SortByReleaseYear);
+
+            // T[] ToArray (this IEnumerable<T> source) = returns source as an array
+            // List<T> ToList (this IEnumerable<T> source) = returns source as a List<T>
+            lstMovies.Items.AddRange(movies.ToArray()); // Enumerable.ToArray(movies)
+            //foreach (var movie in movies)
+            //{
+            //       lstMovies.Items.Add(movie);
+            // };
         }
 
         private Movie GetSelectedMovie ()
         {
-            return lstMovies.SelectedItem as Movie;
+            // Preferred
+            //return lstMovies.SelectedItem as Movie;
+
+            //
+            // IEnumerable<T> returning LINQ methods are deferred execution
+            //
+
+            // SelectedObjectCollection : IEnumerable
+            // IEnumerable<T> Cast<T> (this IEnumerable soruce)
+            // IEnumerbale<T> OfTytpe<T> (this IEnumerable soruce)
+            var selectedItems = lstMovies.SelectedItems.OfType<Movie>();
+
+            // T? FirstOrDefault (this IEnumerable<T>) :: return first item that meets criteria or default for type if none
+            // T? LastOrDefault (this IEnumerable<T>) :: Returns last item that meets criteria or default for type if none; not always supported
+
+            // T First ( this IEnumerable<T> ) :: Returns first item that meets criteria or default for type if none
+            // T Last ( this IEnumerable<T> ) :: Returns first item that meets criteria or blows up
+
+            // T? SingleOrDefault ( this IEnumerable<T> ) :: Returns the only item that meets criteria or default for type if none, blows up if more than one meets criteria
+            // T Single ( this IEnumerable<T> ) :: Returns the only item that meets criteria or blows up
+            return selectedItems.FirstOrDefault();
+            
         }
 
         private void OnMovieEdit ( object sender, EventArgs e )

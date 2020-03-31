@@ -131,11 +131,14 @@ namespace MovieLibrary.Business.Memory
                 RunLength = movie.RunLength,
             };*/
         }
-        protected override Movie FindById ( int id )
+
+        //private bool IsId ( Movie movie ) => movie.Id == id;
+        protected override Movie FindById ( int id ) //=> _movies.FirstOrDefault(IsId);
         {
+
             foreach (var movie in _movies)
             {
-                if (movie.Id == id)
+               if (movie.Id == id)
                     return movie;
             }
             return null;

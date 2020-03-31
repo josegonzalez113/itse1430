@@ -13,7 +13,7 @@ namespace MovieLibrary.Business
         // Rule 2: Owning type mst be static
         // Rule 3: The first parameter must be proceeded with keyword 'this'
         // Rule 4: Should behave just like instance member
-        // Rule 5: Do not add frivalous methods to core types
+        // Rudddle 5: Do not add frivalous methods to core types
         public static IMovieDatabase SeedIfEmpty ( this IMovieDatabase database )
         {
             if (!database.GetAll().Any())
