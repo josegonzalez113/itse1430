@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Jose Gonzalez
+
+using System;
 using System.Linq; // Language Intergrated Natural Query
 
 using System.Windows.Forms;
