@@ -32,6 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -43,9 +44,11 @@
   <ItemGroup>
     <Compile Include="Attribute.cs" />
     <Compile Include="Character.cs" />
-    <Compile Include="MemoryCharacterDatabase.cs" />
+    <Compile Include="CharacterDatabase.cs" />
     <Compile Include="ICharacterRoster.cs" />
     <Compile Include="IValidatableObject.cs" />
+    <Compile Include="Memory\MemoryCharacterDatabase.cs" />
+    <Compile Include="ObjectValidator.cs" />
     <Compile Include="Power.cs" />
     <Compile Include="Profession.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

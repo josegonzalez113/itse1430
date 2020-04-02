@@ -3,16 +3,12 @@
 // todo
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using CharacterCreator.Winforms;
 using CharacterCreator;
+using CharacterCreator.Winforms;
+using System.Data;
+
 
 namespace CharacterCreator.Winforms
 {
@@ -72,15 +68,23 @@ namespace CharacterCreator.Winforms
         {
             listCharacters.Items.Clear(); // remove all items from lstBox
 
-            var characters = _characters.GetAll();
+            var characters = from character in _characters.GetAll()
+                         where character.Id > 0
+                         orderby character.Name descending
+                         select character;
+
+            listCharacters.Items.AddRange(characters.ToArray());
+
+            /*var characters = _characters.GetAll();
             foreach (var character in characters)
             {
                 listCharacters.Items.Add(character);
-            };
+            };*/
         }
 
         private Character GetSelectedCharacter ()
         {
+            //var selectedCharacters = listCharacters.SelectedItem.OfType<Character>();
             return listCharacters.SelectedItem as Character;
         }
 

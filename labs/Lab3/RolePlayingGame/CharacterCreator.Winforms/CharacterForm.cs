@@ -94,9 +94,11 @@ namespace CharacterCreator.Winforms
 
             // Validation and error reporting
             var character = GetCharacter();
-            if (!character.Validate(out var error))
+
+            var errors = ObjectValidator.Validate(character);
+            if (errors.Any())
             {
-                ShowError(error);
+                ShowError("error");
                 return;
             }
 

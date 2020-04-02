@@ -15,7 +15,7 @@ namespace CharacterCreator
 
         Character Get ( int id );
 
-        Character[] GetAll ();
+        IEnumerable<Character> GetAll ();
 
         string Update ( int id, Character character );
     }
