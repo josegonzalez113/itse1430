@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 namespace MovieLibrary.Business.Memory
@@ -82,10 +83,15 @@ namespace MovieLibrary.Business.Memory
             }
             return items;*/
 
+            Debug.WriteLine("Starting GetAllCore");
+
             //Use an iterator Luke
             foreach (var movie in _movies)
             {
+                Debug.WriteLine($"Returning{movie.Id}");
                 yield return CloneMovie(movie);
+                Debug.WriteLine($"Returned{movie.Id}");
+
             };
         }
 
@@ -133,16 +139,28 @@ namespace MovieLibrary.Business.Memory
         }
 
         //private bool IsId ( Movie movie ) => movie.Id == id;
-        protected override Movie FindById ( int id ) //=> _movies.FirstOrDefault(IsId);
-        {
 
-            foreach (var movie in _movies)
-            {
-               if (movie.Id == id)
-                    return movie;
-            }
-            return null;
-        }
+        //Lambda syntax ::= parameters => body
+        // 0 parameters () => ?     Func<?>
+        // 1 parameter, 1 return type ::=   x => E   ,  _ => E         Func<T, ?>
+        // 2+ parameters (x,y) => ?                                    Func<S, T, ?>
+        // no return type => {}                                        Action<>
+        // Multiple statement expressions => { S* }
+        //      x => { Console.WriteLine(x); var y = x; return x; }
+        //
+        // General rules around lambdas
+        //   1. No ref or out parameters
+        //   2. Closure- any changes to captured values are lost
+        protected override Movie FindById ( int id ) => _movies.FirstOrDefault(m => m.Id == id );
+        //{
+        //    _movies.FirstOrDefault(m => m.Id == id);
+        //    foreach (var movie in _movies)
+        //    {
+        //       if (movie.Id == id)
+        //            return movie;
+        //    }
+        //    return null;
+        //}
 
         private void CopyMovie ( Movie target, Movie source, bool includeId )
         {

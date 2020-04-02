@@ -85,18 +85,18 @@ namespace MovieLibrary
         }
 
         // new
-        private string SortByTitle ( Movie movie ) => movie.Title;
-        private int SortByReleaseYear ( Movie movie ) => movie.ReleaseYear;
+        //private string SortByTitle ( Movie movie ) => movie.Title;
+        //private int SortByReleaseYear ( Movie movie ) => movie.ReleaseYear;
         private void UpdateUI ()
         {
             lstMovies.Items.Clear(); // remove all items from lstBox
 
             var movies = _movies.GetAll()
-                                .OrderBy(SortByTitle) // IEnumerable<T> OrderBy<T> (this IEnumerable<T>, source, Func<T>, string> sorter)
-                                .ThenByDescending(SortByReleaseYear);
+                                .OrderBy(movie => movie.Title) // IEnumerable<T> OrderBy<T> (this IEnumerable<T>, source, Func<T>, string> sorter)
+                                .ThenByDescending(movie => movie.ReleaseYear);
 
             // T[] ToArray (this IEnumerable<T> source) = returns source as an array
-            // List<T> ToList (this IEnumerable<T> source) = returns source as a List<T>
+            // List<T> ToList (this IEnumerable<T> source) = returns source as a List<T7>
             lstMovies.Items.AddRange(movies.ToArray()); // Enumerable.ToArray(movies)
             //foreach (var movie in movies)
             //{
