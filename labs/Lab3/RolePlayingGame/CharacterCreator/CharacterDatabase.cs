@@ -59,7 +59,6 @@ namespace CharacterCreator
 
             var errors = ObjectValidator.Validate(character);
             if (errors.Any())
-                //if (!movie.Validate(out var error))
                 return "Error";
 
                 if (id <= 0)

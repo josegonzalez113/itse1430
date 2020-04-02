@@ -48,7 +48,7 @@ namespace CharacterCreator
             var item = FindById(id);
 
             // Update
-            CopyCharacter(item, character, true);
+            CopyCharacter(item, character, false);
         }
 
         protected override Character FindByName ( string name ) => (from character in _characters
@@ -60,7 +60,7 @@ namespace CharacterCreator
         {
 
             var item = new Character();
-            CopyCharacter(item, character, false);
+            CopyCharacter(item, character, true);
 
             return item;
         }
@@ -74,8 +74,8 @@ namespace CharacterCreator
             
             if (includeId)
                 target.Id = source.Id;
-                /*target.Name = source.Name;
-                target.Description = source.Description;
+                target.Name = source.Name;
+                /*target.Description = source.Description;
             // profession
             if (source.Profession != null)
                 target.Profession = new Profession(source.Profession.About);
