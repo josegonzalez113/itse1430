@@ -108,15 +108,15 @@ namespace MovieLibrary.Business.Memory
 
         }
 
-        protected override Movie FindByTitle ( string title )
-        {
-            foreach (var movie in _movies)
-            {
-                if (String.Compare(movie?.Title, title, true) == 0)
-                    return movie;
-            }
-            return null;
-        }
+        protected override Movie FindByTitle ( string title ) => _movies.FirstOrDefault(m => String.Compare(m?.Title, title, true) == 0);
+        //{
+        //    foreach (var movie in _movies)
+        //    {
+        //        if (String.Compare(movie?.Title, title, true) == 0)
+        //            return movie;
+        //    }
+        //    return null;
+        //}
 
         private Movie CloneMovie ( Movie movie )
         {
