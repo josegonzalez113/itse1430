@@ -1,6 +1,6 @@
 ﻿// ITSE 1430
 // Jose Gonzalez
-// todo
+// Lab 3
 
 using System;
 using System.Linq;
