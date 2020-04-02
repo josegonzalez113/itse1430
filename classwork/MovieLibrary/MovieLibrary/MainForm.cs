@@ -91,9 +91,17 @@ namespace MovieLibrary
         {
             lstMovies.Items.Clear(); // remove all items from lstBox
 
-            var movies = _movies.GetAll()
-                                .OrderBy(movie => movie.Title) // IEnumerable<T> OrderBy<T> (this IEnumerable<T>, source, Func<T>, string> sorter)
-                                .ThenByDescending(movie => movie.ReleaseYear);
+            //var movies = _movies.GetAll()
+            //                    .OrderBy(movie => movie.Title) // IEnumerable<T> OrderBy<T> (this IEnumerable<T>, source, Func<T>, string> sorter)
+            //                    .ThenByDescending(movie => movie.ReleaseYear);
+
+            //Linq syntax
+            // from: movie in IEnumerable<T>
+            // select: movie
+            var movies = from movie in _movies.GetAll()
+                         where movie.Id > 0
+                         orderby movie.Title, movie.ReleaseYear descending
+                         select movie;
 
             // T[] ToArray (this IEnumerable<T> source) = returns source as an array
             // List<T> ToList (this IEnumerable<T> source) = returns source as a List<T7>

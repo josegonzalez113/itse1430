@@ -73,26 +73,26 @@ namespace MovieLibrary.Business.Memory
 
         protected override IEnumerable<Movie> GetAllCore ()
         {
-            //return _movies;
-            //TODO: Clone objects
-            /*var items = new Movie[_movies.Count];
-            var index = 0;
-            foreach (var movie in _movies)
-            {
-                items[index++] = CloneMovie(movie);
-            }
-            return items;*/
+            // Filtering
+            var items = _movies.Where(m => true);
 
-            Debug.WriteLine("Starting GetAllCore");
+            //Transform
+            return _movies.Select(m => CloneMovie(m));
 
-            //Use an iterator Luke
-            foreach (var movie in _movies)
-            {
-                Debug.WriteLine($"Returning{movie.Id}");
-                yield return CloneMovie(movie);
-                Debug.WriteLine($"Returned{movie.Id}");
+            //items.Any() => true if any elements or any elements meet a condition
+            //items.All() => true for all elements
+            //new[] { 1, 2 }.Join(new[] { 3, 4, });
+            //items.Max(i => i.Id); .Min(); .Sum()
 
-            };
+            //Debug.WriteLine("Starting GetAllCore");
+            ////Use an iterator Luke
+            //foreach (var movie in _movies)
+            //{
+            //    Debug.WriteLine($"Returning{movie.Id}");
+            //    yield return CloneMovie(movie);
+            //    Debug.WriteLine($"Returned{movie.Id}");
+
+            //};
         }
 
         //TODO: Validate
@@ -108,13 +108,33 @@ namespace MovieLibrary.Business.Memory
 
         }
 
-        protected override Movie FindByTitle ( string title ) => _movies.FirstOrDefault(m => String.Compare(m?.Title, title, true) == 0);
+        // Example of complicated querying with programmatic filters
+        private IEnumerable<Movie> Query ( string title, int releaseYear )
+        {
+            var query = from movie in _movies
+                        select movie;
+
+            if (!String.IsNullOrEmpty(title))
+                query = query.Where(m => String.Compare(m.Title, title, true) == 0);
+
+            if (releaseYear > 0)
+                query = query.Where(m => m.ReleaseYear >= releaseYear);
+
+            return query.ToList();
+        }
+
+        protected override Movie FindByTitle ( string title ) => (from movie in _movies
+                                                                  where String.Compare(movie.Title, title, true) == 0
+                                                                  select movie).FirstOrDefault();
+        // 1. Expression body   //=> _movies.FirstOrDefault(m => String.Compare(m?.Title, title, true) == 0);
+        // 2. Long way 
         //{
         //    foreach (var movie in _movies)
         //    {
         //        if (String.Compare(movie?.Title, title, true) == 0)
         //            return movie;
-        //    }
+        //    };
+
         //    return null;
         //}
 
