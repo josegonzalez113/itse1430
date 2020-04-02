@@ -8,7 +8,6 @@ namespace CharacterCreator
 
         public Character Get ( int id )
         {
-            // TODO: Error
             if (id <= 0)
                 return null;
 
@@ -61,6 +60,7 @@ namespace CharacterCreator
             var errors = ObjectValidator.Validate(character);
             if (errors.Any())
                 //if (!movie.Validate(out var error))
+                return "Error";
 
                 if (id <= 0)
                 return "Id is invalid";
@@ -82,7 +82,6 @@ namespace CharacterCreator
 
         protected abstract void UpdateCore ( int id, Character movie );
 
-        // helper method for the Update() method.
         protected abstract Character FindByName ( string name );
 
         protected abstract Character FindById ( int id );

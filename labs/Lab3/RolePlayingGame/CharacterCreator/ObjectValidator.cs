@@ -8,7 +8,6 @@ namespace CharacterCreator
     {
         public static IEnumerable<ValidationResult> Validate ( object value )
         {
-            //this.InstanceFoo()
             StaticFoo();
             var errors = new List<ValidationResult>();
 

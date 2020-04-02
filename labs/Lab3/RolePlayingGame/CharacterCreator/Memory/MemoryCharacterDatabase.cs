@@ -48,7 +48,7 @@ namespace CharacterCreator
             var item = FindById(id);
 
             // Update
-            CopyCharacter(item, character, false);
+            CopyCharacter(item, character, true);
         }
 
         protected override Character FindByName ( string name ) => (from character in _characters
@@ -60,7 +60,7 @@ namespace CharacterCreator
         {
 
             var item = new Character();
-            CopyCharacter(item, character, true);
+            CopyCharacter(item, character, false);
 
             return item;
         }
@@ -69,12 +69,12 @@ namespace CharacterCreator
         protected override Character FindById ( int id ) => _characters.FirstOrDefault(c => c.Id == id);
 
         // helper method for the Update() method.
-        private void CopyCharacter ( Character target, Character source, bool includeId )
+         private void CopyCharacter ( Character target, Character source, bool includeId )
         {
             
             if (includeId)
                 target.Id = source.Id;
-                target.Name = source.Name;
+                /*target.Name = source.Name;
                 target.Description = source.Description;
             // profession
             if (source.Profession != null)
@@ -95,7 +95,7 @@ namespace CharacterCreator
             if (source.Power != null)
                 target.Power = new Power(source.Power.About);
             else
-                target.Power = null;
+                target.Power = null;*/
         }
 
         private readonly List<Character> _characters = new List<Character>();
