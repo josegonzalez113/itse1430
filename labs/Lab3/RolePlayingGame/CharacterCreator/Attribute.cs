@@ -15,10 +15,7 @@ namespace CharacterCreator
 
         public string About { get; }
 
-        public override string ToString ()
-        {
-            return About;
-        }
+        public override string ToString () => About;
     }
     public class Attributes
     {

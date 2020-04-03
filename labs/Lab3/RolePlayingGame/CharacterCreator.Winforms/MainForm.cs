@@ -60,7 +60,7 @@ namespace CharacterCreator.Winforms
         protected override void OnLoad ( EventArgs e )
         {
             base.OnLoad(e);
-
+            _characters.SeedIfEmpty();
             UpdateUI();
         }
 

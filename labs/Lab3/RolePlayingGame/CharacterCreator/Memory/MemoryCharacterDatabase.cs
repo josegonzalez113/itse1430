@@ -8,7 +8,6 @@ namespace CharacterCreator
     {
         protected override Character GetCore ( int id )
         {
-
             var character = FindById(id);
             if (character == null)
                 return null;
@@ -27,8 +26,6 @@ namespace CharacterCreator
 
         protected override void DeleteCore ( int id )
         {
-
-            //TODO: Find better way to find character
             var character = FindById(id);
             if (character != null)
                 _characters.Remove(character);
@@ -54,8 +51,6 @@ namespace CharacterCreator
         protected override Character FindByName ( string name ) => (from character in _characters
                                                                   where String.Compare(character.Name, name, true) == 0
                                                                   select character).FirstOrDefault();
-
-        // helper method for the GetAll() method.
         private Character CloneCharacter ( Character character )
         {
 
@@ -65,18 +60,16 @@ namespace CharacterCreator
             return item;
         }
 
-        // helper method for the Update() method.
         protected override Character FindById ( int id ) => _characters.FirstOrDefault(c => c.Id == id);
 
-        // helper method for the Update() method.
          private void CopyCharacter ( Character target, Character source, bool includeId )
         {
-            
+
             if (includeId)
                 target.Id = source.Id;
                 target.Name = source.Name;
-                /*target.Description = source.Description;
-            // profession
+                target.Description = source.Description;
+            //profession
             if (source.Profession != null)
                 target.Profession = new Profession(source.Profession.About);
             else
@@ -95,7 +88,7 @@ namespace CharacterCreator
             if (source.Power != null)
                 target.Power = new Power(source.Power.About);
             else
-                target.Power = null;*/
+                target.Power = null;
         }
 
         private readonly List<Character> _characters = new List<Character>();
