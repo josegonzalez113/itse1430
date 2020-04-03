@@ -49,8 +49,17 @@ namespace CharacterCreator
         }
 
         protected override Character FindByName ( string name ) => (from character in _characters
-                                                                  where String.Compare(character.Name, name, true) == 0
-                                                                  select character).FirstOrDefault();
+                                                                    where String.Compare(character.Name, name, true) == 0
+                                                                    select character).FirstOrDefault();
+        //protected override Character FindByName ( string name )
+        //{
+        //    foreach (var character in _characters)
+        //    {
+        //        if (String.Compare(character?.Name, name, true) == 0)
+        //            return character;
+        //    }
+        //    return null;
+        //}
         private Character CloneCharacter ( Character character )
         {
 
@@ -61,8 +70,17 @@ namespace CharacterCreator
         }
 
         protected override Character FindById ( int id ) => _characters.FirstOrDefault(c => c.Id == id);
+        //protected override Character FindById ( int id )
+        //{
+        //    foreach (var character in _characters)
+        //    {
+        //        if (character.Id == id)
+        //            return character;
+        //    }
+        //    return null;
+        //}
 
-         private void CopyCharacter ( Character target, Character source, bool includeId )
+        private void CopyCharacter ( Character target, Character source, bool includeId )
         {
 
             if (includeId)

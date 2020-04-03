@@ -27,10 +27,10 @@ namespace CharacterCreator.Winforms
         }
 
         /// <summary> Constructor chaining </summary>
-        public CharacterForm ( string name, Character newCharacter ) : this()
+        public CharacterForm ( string name, Character character ) : this()
         {
             Name = name;
-            Character = newCharacter;
+            Character = character;
         }
         public Character Character { get; set; }
         protected override void OnLoad ( EventArgs e )
