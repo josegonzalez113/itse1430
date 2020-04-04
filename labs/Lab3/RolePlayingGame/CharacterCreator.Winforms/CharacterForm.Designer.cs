@@ -52,7 +52,7 @@
             // labelName
             // 
             this.labelName.AutoSize = true;
-            this.labelName.Location = new System.Drawing.Point(25, 32);
+            this.labelName.Location = new System.Drawing.Point(26, 46);
             this.labelName.Name = "labelName";
             this.labelName.Size = new System.Drawing.Size(35, 13);
             this.labelName.TabIndex = 0;
@@ -61,7 +61,7 @@
             // labelProfession
             // 
             this.labelProfession.AutoSize = true;
-            this.labelProfession.Location = new System.Drawing.Point(25, 110);
+            this.labelProfession.Location = new System.Drawing.Point(20, 103);
             this.labelProfession.Name = "labelProfession";
             this.labelProfession.Size = new System.Drawing.Size(56, 13);
             this.labelProfession.TabIndex = 1;
@@ -70,7 +70,7 @@
             // labelRace
             // 
             this.labelRace.AutoSize = true;
-            this.labelRace.Location = new System.Drawing.Point(25, 183);
+            this.labelRace.Location = new System.Drawing.Point(26, 162);
             this.labelRace.Name = "labelRace";
             this.labelRace.Size = new System.Drawing.Size(33, 13);
             this.labelRace.TabIndex = 2;
@@ -79,7 +79,7 @@
             // labelAttributes
             // 
             this.labelAttributes.AutoSize = true;
-            this.labelAttributes.Location = new System.Drawing.Point(25, 255);
+            this.labelAttributes.Location = new System.Drawing.Point(20, 222);
             this.labelAttributes.Name = "labelAttributes";
             this.labelAttributes.Size = new System.Drawing.Size(51, 13);
             this.labelAttributes.TabIndex = 3;
@@ -88,7 +88,7 @@
             // labelDescription
             // 
             this.labelDescription.AutoSize = true;
-            this.labelDescription.Location = new System.Drawing.Point(25, 342);
+            this.labelDescription.Location = new System.Drawing.Point(20, 302);
             this.labelDescription.Name = "labelDescription";
             this.labelDescription.Size = new System.Drawing.Size(60, 13);
             this.labelDescription.TabIndex = 4;
@@ -96,14 +96,20 @@
             // 
             // txtDescription
             // 
-            this.txtDescription.Location = new System.Drawing.Point(101, 342);
+            this.txtDescription.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtDescription.Location = new System.Drawing.Point(92, 278);
+            this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Size = new System.Drawing.Size(292, 20);
+            this.txtDescription.Size = new System.Drawing.Size(216, 82);
             this.txtDescription.TabIndex = 5;
             // 
             // txtName
             // 
-            this.txtName.Location = new System.Drawing.Point(92, 32);
+            this.txtName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtName.Location = new System.Drawing.Point(92, 43);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(121, 20);
             this.txtName.TabIndex = 6;
@@ -112,7 +118,7 @@
             // cmbProfession
             // 
             this.cmbProfession.FormattingEnabled = true;
-            this.cmbProfession.Location = new System.Drawing.Point(92, 110);
+            this.cmbProfession.Location = new System.Drawing.Point(92, 103);
             this.cmbProfession.Name = "cmbProfession";
             this.cmbProfession.Size = new System.Drawing.Size(121, 21);
             this.cmbProfession.TabIndex = 7;
@@ -121,7 +127,7 @@
             // cmbRace
             // 
             this.cmbRace.FormattingEnabled = true;
-            this.cmbRace.Location = new System.Drawing.Point(92, 183);
+            this.cmbRace.Location = new System.Drawing.Point(92, 159);
             this.cmbRace.Name = "cmbRace";
             this.cmbRace.Size = new System.Drawing.Size(121, 21);
             this.cmbRace.TabIndex = 8;
@@ -130,7 +136,7 @@
             // cmbAttributes
             // 
             this.cmbAttributes.FormattingEnabled = true;
-            this.cmbAttributes.Location = new System.Drawing.Point(92, 255);
+            this.cmbAttributes.Location = new System.Drawing.Point(92, 219);
             this.cmbAttributes.Name = "cmbAttributes";
             this.cmbAttributes.Size = new System.Drawing.Size(121, 21);
             this.cmbAttributes.TabIndex = 9;
@@ -138,7 +144,8 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(683, 392);
+            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSave.Location = new System.Drawing.Point(277, 391);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 10;
@@ -148,7 +155,8 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(588, 392);
+            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancel.Location = new System.Drawing.Point(181, 391);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 11;
@@ -163,7 +171,7 @@
             // cmbProfessionPower
             // 
             this.cmbProfessionPower.FormattingEnabled = true;
-            this.cmbProfessionPower.Location = new System.Drawing.Point(230, 110);
+            this.cmbProfessionPower.Location = new System.Drawing.Point(230, 103);
             this.cmbProfessionPower.Name = "cmbProfessionPower";
             this.cmbProfessionPower.Size = new System.Drawing.Size(48, 21);
             this.cmbProfessionPower.TabIndex = 12;
@@ -172,7 +180,7 @@
             // cmbRacePower
             // 
             this.cmbRacePower.FormattingEnabled = true;
-            this.cmbRacePower.Location = new System.Drawing.Point(230, 183);
+            this.cmbRacePower.Location = new System.Drawing.Point(230, 159);
             this.cmbRacePower.Name = "cmbRacePower";
             this.cmbRacePower.Size = new System.Drawing.Size(48, 21);
             this.cmbRacePower.TabIndex = 13;
@@ -181,7 +189,7 @@
             // cmbAttributesPower
             // 
             this.cmbAttributesPower.FormattingEnabled = true;
-            this.cmbAttributesPower.Location = new System.Drawing.Point(230, 255);
+            this.cmbAttributesPower.Location = new System.Drawing.Point(230, 219);
             this.cmbAttributesPower.Name = "cmbAttributesPower";
             this.cmbAttributesPower.Size = new System.Drawing.Size(48, 21);
             this.cmbAttributesPower.TabIndex = 14;
@@ -189,8 +197,9 @@
             // 
             // optional
             // 
+            this.optional.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.optional.AutoSize = true;
-            this.optional.Location = new System.Drawing.Point(399, 345);
+            this.optional.Location = new System.Drawing.Point(323, 302);
             this.optional.Name = "optional";
             this.optional.Size = new System.Drawing.Size(50, 13);
             this.optional.TabIndex = 15;
@@ -200,7 +209,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(801, 450);
+            this.ClientSize = new System.Drawing.Size(385, 440);
             this.Controls.Add(this.optional);
             this.Controls.Add(this.cmbAttributesPower);
             this.Controls.Add(this.cmbRacePower);
@@ -217,6 +226,8 @@
             this.Controls.Add(this.labelRace);
             this.Controls.Add(this.labelProfession);
             this.Controls.Add(this.labelName);
+            this.MaximumSize = new System.Drawing.Size(600, 600);
+            this.MinimumSize = new System.Drawing.Size(401, 479);
             this.Name = "CharacterForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Create New Character";

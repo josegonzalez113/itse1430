@@ -223,6 +223,5 @@ namespace CharacterCreator.Winforms
                 ErrorProvider.SetError(control, "");
             }
         }
-
     }
 }
