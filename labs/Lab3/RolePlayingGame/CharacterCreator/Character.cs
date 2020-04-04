@@ -60,9 +60,3 @@ namespace CharacterCreator
         }
     }
 }
-
-//Name: (Required) The name of the character.
-//Profession: (Required) The profession of the character. The available professions are: Fighter, Hunter, Priest, Rogue and Wizard.
-//Race: (Required) The race of the character. The available races are: Dwarf, Elf, Gnome, Half Elf and Human.
-//Attributes: (Required) A set of numeric attributes that define a character. The attributes are: Strength, Intelligence, Agility, Constitution and Charisma.The values can be between 1 and 100.
-//Description: The optional, biographic details of the character.
