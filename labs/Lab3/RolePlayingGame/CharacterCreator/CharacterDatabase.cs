@@ -32,7 +32,7 @@ namespace CharacterCreator
             if (item != null)
                 return null;
 
-            return AddCore(item);
+            return AddCore(character);
         }
 
         protected abstract Character AddCore ( Character character);
