@@ -8,10 +8,7 @@ namespace CharacterCreator
 {
     public class Race
     {
-        public Race ( string about )
-        {
-            About = about ?? "";
-        }
+        public Race ( string about ) => About = about ?? "";
         public string About { get; }
         public override string ToString () => About;
     }

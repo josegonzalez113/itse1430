@@ -8,10 +8,7 @@ namespace CharacterCreator
 {
     public class Attribute
     {
-        public Attribute ( string about)
-        {
-            About = about ?? "";
-        }
+        public Attribute ( string about) => About = about ?? "";
 
         public string About { get; }
 

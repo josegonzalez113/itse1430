@@ -115,6 +115,7 @@
             this.cmbProfession.Name = "cmbProfession";
             this.cmbProfession.Size = new System.Drawing.Size(121, 21);
             this.cmbProfession.TabIndex = 7;
+            this.cmbProfession.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidateProfession);
             // 
             // cmbRace
             // 
@@ -123,6 +124,7 @@
             this.cmbRace.Name = "cmbRace";
             this.cmbRace.Size = new System.Drawing.Size(121, 21);
             this.cmbRace.TabIndex = 8;
+            this.cmbRace.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidateRace);
             // 
             // cmbAttributes
             // 
@@ -131,6 +133,7 @@
             this.cmbAttributes.Name = "cmbAttributes";
             this.cmbAttributes.Size = new System.Drawing.Size(121, 21);
             this.cmbAttributes.TabIndex = 9;
+            this.cmbAttributes.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidateAttributes);
             // 
             // btnSave
             // 

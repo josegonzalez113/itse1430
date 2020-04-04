@@ -157,6 +157,8 @@ namespace CharacterCreator.Winforms
             return -1;
         }
 
+        // Validating...
+        //Name textBox
         private void OnValidateName ( object sender, CancelEventArgs e )
         {
             var control = sender as TextBox;
@@ -169,5 +171,45 @@ namespace CharacterCreator.Winforms
                 ErrorProvider.SetError(control, "");
             }
         }
+        // Profession combobox
+        private void OnValidateProfession ( object sender, CancelEventArgs e )
+        {
+            var control = sender as ComboBox;
+            if (String.IsNullOrEmpty(control.Text))
+            {
+                ErrorProvider.SetError(control, "Profession is required");
+                e.Cancel = true;
+            } else // will get rid of the error circle next to the box after inserting data
+            {
+                ErrorProvider.SetError(control, "");
+            }
+        }
+        // Race combobox
+        private void OnValidateRace ( object sender, CancelEventArgs e )
+        {
+            var control = sender as ComboBox;
+            if (String.IsNullOrEmpty(control.Text))
+            {
+                ErrorProvider.SetError(control, "Race is required");
+                e.Cancel = true;
+            } else // will get rid of the error circle next to the box after inserting data
+            {
+                ErrorProvider.SetError(control, "");
+            }
+        }
+        // Attributes combobox
+        private void OnValidateAttributes ( object sender, CancelEventArgs e )
+        {
+            var control = sender as ComboBox;
+            if (String.IsNullOrEmpty(control.Text))
+            {
+                ErrorProvider.SetError(control, "Attribute is required");
+                e.Cancel = true;
+            } else // will get rid of the error circle next to the box after inserting data
+            {
+                ErrorProvider.SetError(control, "");
+            }
+        }
+
     }
 }

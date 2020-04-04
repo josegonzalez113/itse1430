@@ -8,17 +8,11 @@ namespace CharacterCreator
 {
     public class Power
     {
-        public Power ( string about )
-        {
-            About = about ?? "";
-        }
+        public Power ( string about ) => About = about ?? "";
 
         public string About { get; }
 
-        public override string ToString ()
-        {
-            return About;
-        }
+        public override string ToString () => About;
     }
 
     public class Powers

@@ -8,10 +8,7 @@ namespace CharacterCreator
 {
     public class Profession
     {
-        public Profession ( string about )
-        {
-            About = about ?? "";
-        }
+        public Profession ( string about ) => About = about ?? "";
         public string About { get; }
         public override string ToString () => About;
     }
