@@ -179,7 +179,7 @@ namespace CharacterCreator.Winforms
             {
                 ErrorProvider.SetError(control, "Profession is required");
                 e.Cancel = true;
-            } else // will get rid of the error circle next to the box after inserting data
+            } else
             {
                 ErrorProvider.SetError(control, "");
             }
@@ -192,7 +192,7 @@ namespace CharacterCreator.Winforms
             {
                 ErrorProvider.SetError(control, "Race is required");
                 e.Cancel = true;
-            } else // will get rid of the error circle next to the box after inserting data
+            } else
             {
                 ErrorProvider.SetError(control, "");
             }
@@ -205,7 +205,20 @@ namespace CharacterCreator.Winforms
             {
                 ErrorProvider.SetError(control, "Attribute is required");
                 e.Cancel = true;
-            } else // will get rid of the error circle next to the box after inserting data
+            } else 
+            {
+                ErrorProvider.SetError(control, "");
+            }
+        }
+        // Power
+        private void OnValidatePower ( object sender, CancelEventArgs e )
+        {
+            var control = sender as ComboBox;
+            if (String.IsNullOrEmpty(control.Text))
+            {
+                ErrorProvider.SetError(control, "Power is required");
+                e.Cancel = true;
+            } else
             {
                 ErrorProvider.SetError(control, "");
             }

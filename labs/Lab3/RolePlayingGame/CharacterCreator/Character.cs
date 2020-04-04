@@ -12,6 +12,7 @@ namespace CharacterCreator
         public Race Race { get; set; }
         public Attribute Attribute { get; set; }
         public Power Power { get; set; }
+        public Powers Powers { get; set; }
 
         public string Name
         {
@@ -50,6 +51,11 @@ namespace CharacterCreator
             if (String.IsNullOrEmpty(Attribute.About))
             {
                 yield return new ValidationResult("Attribute is required", new[] { nameof(Profession) });
+            };
+            // Power
+            if (String.IsNullOrEmpty(Power.About))
+            {
+                yield return new ValidationResult("Power is required", new[] { nameof(Power) });
             };
         }
     }

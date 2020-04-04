@@ -45,6 +45,7 @@
             this.cmbProfessionPower = new System.Windows.Forms.ComboBox();
             this.cmbRacePower = new System.Windows.Forms.ComboBox();
             this.cmbAttributesPower = new System.Windows.Forms.ComboBox();
+            this.optional = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.ErrorProvider)).BeginInit();
             this.SuspendLayout();
             // 
@@ -147,7 +148,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(578, 392);
+            this.btnCancel.Location = new System.Drawing.Point(588, 392);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 11;
@@ -166,6 +167,7 @@
             this.cmbProfessionPower.Name = "cmbProfessionPower";
             this.cmbProfessionPower.Size = new System.Drawing.Size(48, 21);
             this.cmbProfessionPower.TabIndex = 12;
+            this.cmbProfessionPower.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidatePower);
             // 
             // cmbRacePower
             // 
@@ -174,6 +176,7 @@
             this.cmbRacePower.Name = "cmbRacePower";
             this.cmbRacePower.Size = new System.Drawing.Size(48, 21);
             this.cmbRacePower.TabIndex = 13;
+            this.cmbRacePower.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidatePower);
             // 
             // cmbAttributesPower
             // 
@@ -182,12 +185,23 @@
             this.cmbAttributesPower.Name = "cmbAttributesPower";
             this.cmbAttributesPower.Size = new System.Drawing.Size(48, 21);
             this.cmbAttributesPower.TabIndex = 14;
+            this.cmbAttributesPower.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidatePower);
+            // 
+            // optional
+            // 
+            this.optional.AutoSize = true;
+            this.optional.Location = new System.Drawing.Point(399, 345);
+            this.optional.Name = "optional";
+            this.optional.Size = new System.Drawing.Size(50, 13);
+            this.optional.TabIndex = 15;
+            this.optional.Text = "(optional)";
             // 
             // CharacterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(801, 450);
+            this.Controls.Add(this.optional);
             this.Controls.Add(this.cmbAttributesPower);
             this.Controls.Add(this.cmbRacePower);
             this.Controls.Add(this.cmbProfessionPower);
@@ -230,5 +244,6 @@
         private System.Windows.Forms.ComboBox cmbAttributesPower;
         private System.Windows.Forms.ComboBox cmbRacePower;
         private System.Windows.Forms.ComboBox cmbProfessionPower;
+        private System.Windows.Forms.Label optional;
     }
 }
