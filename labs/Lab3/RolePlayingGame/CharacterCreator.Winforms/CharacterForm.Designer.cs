@@ -55,7 +55,7 @@
             this.labelName.Location = new System.Drawing.Point(26, 46);
             this.labelName.Name = "labelName";
             this.labelName.Size = new System.Drawing.Size(35, 13);
-            this.labelName.TabIndex = 0;
+            this.labelName.TabIndex = 10;
             this.labelName.Text = "Name";
             // 
             // labelProfession
@@ -64,7 +64,7 @@
             this.labelProfession.Location = new System.Drawing.Point(20, 103);
             this.labelProfession.Name = "labelProfession";
             this.labelProfession.Size = new System.Drawing.Size(56, 13);
-            this.labelProfession.TabIndex = 1;
+            this.labelProfession.TabIndex = 11;
             this.labelProfession.Text = "Profession";
             // 
             // labelRace
@@ -73,7 +73,7 @@
             this.labelRace.Location = new System.Drawing.Point(26, 162);
             this.labelRace.Name = "labelRace";
             this.labelRace.Size = new System.Drawing.Size(33, 13);
-            this.labelRace.TabIndex = 2;
+            this.labelRace.TabIndex = 12;
             this.labelRace.Text = "Race";
             // 
             // labelAttributes
@@ -82,7 +82,7 @@
             this.labelAttributes.Location = new System.Drawing.Point(20, 222);
             this.labelAttributes.Name = "labelAttributes";
             this.labelAttributes.Size = new System.Drawing.Size(51, 13);
-            this.labelAttributes.TabIndex = 3;
+            this.labelAttributes.TabIndex = 13;
             this.labelAttributes.Text = "Attributes";
             // 
             // labelDescription
@@ -91,7 +91,7 @@
             this.labelDescription.Location = new System.Drawing.Point(20, 302);
             this.labelDescription.Name = "labelDescription";
             this.labelDescription.Size = new System.Drawing.Size(60, 13);
-            this.labelDescription.TabIndex = 4;
+            this.labelDescription.TabIndex = 14;
             this.labelDescription.Text = "Description";
             // 
             // txtDescription
@@ -103,7 +103,7 @@
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.Size = new System.Drawing.Size(216, 82);
-            this.txtDescription.TabIndex = 5;
+            this.txtDescription.TabIndex = 7;
             // 
             // txtName
             // 
@@ -112,7 +112,7 @@
             this.txtName.Location = new System.Drawing.Point(92, 43);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(121, 20);
-            this.txtName.TabIndex = 6;
+            this.txtName.TabIndex = 0;
             this.txtName.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidateName);
             // 
             // cmbProfession
@@ -121,7 +121,7 @@
             this.cmbProfession.Location = new System.Drawing.Point(92, 103);
             this.cmbProfession.Name = "cmbProfession";
             this.cmbProfession.Size = new System.Drawing.Size(121, 21);
-            this.cmbProfession.TabIndex = 7;
+            this.cmbProfession.TabIndex = 1;
             this.cmbProfession.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidateProfession);
             // 
             // cmbRace
@@ -130,7 +130,7 @@
             this.cmbRace.Location = new System.Drawing.Point(92, 159);
             this.cmbRace.Name = "cmbRace";
             this.cmbRace.Size = new System.Drawing.Size(121, 21);
-            this.cmbRace.TabIndex = 8;
+            this.cmbRace.TabIndex = 3;
             this.cmbRace.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidateRace);
             // 
             // cmbAttributes
@@ -139,7 +139,7 @@
             this.cmbAttributes.Location = new System.Drawing.Point(92, 219);
             this.cmbAttributes.Name = "cmbAttributes";
             this.cmbAttributes.Size = new System.Drawing.Size(121, 21);
-            this.cmbAttributes.TabIndex = 9;
+            this.cmbAttributes.TabIndex = 5;
             this.cmbAttributes.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidateAttributes);
             // 
             // btnSave
@@ -148,7 +148,7 @@
             this.btnSave.Location = new System.Drawing.Point(277, 391);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
-            this.btnSave.TabIndex = 10;
+            this.btnSave.TabIndex = 9;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.OnOk);
@@ -159,13 +159,14 @@
             this.btnCancel.Location = new System.Drawing.Point(181, 391);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 11;
+            this.btnCancel.TabIndex = 8;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.OnCancel);
             // 
             // ErrorProvider
             // 
+            this.ErrorProvider.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this.ErrorProvider.ContainerControl = this;
             // 
             // cmbProfessionPower
@@ -174,7 +175,7 @@
             this.cmbProfessionPower.Location = new System.Drawing.Point(230, 103);
             this.cmbProfessionPower.Name = "cmbProfessionPower";
             this.cmbProfessionPower.Size = new System.Drawing.Size(48, 21);
-            this.cmbProfessionPower.TabIndex = 12;
+            this.cmbProfessionPower.TabIndex = 2;
             this.cmbProfessionPower.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidatePower);
             // 
             // cmbRacePower
@@ -183,7 +184,7 @@
             this.cmbRacePower.Location = new System.Drawing.Point(230, 159);
             this.cmbRacePower.Name = "cmbRacePower";
             this.cmbRacePower.Size = new System.Drawing.Size(48, 21);
-            this.cmbRacePower.TabIndex = 13;
+            this.cmbRacePower.TabIndex = 4;
             this.cmbRacePower.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidatePower);
             // 
             // cmbAttributesPower
@@ -192,7 +193,7 @@
             this.cmbAttributesPower.Location = new System.Drawing.Point(230, 219);
             this.cmbAttributesPower.Name = "cmbAttributesPower";
             this.cmbAttributesPower.Size = new System.Drawing.Size(48, 21);
-            this.cmbAttributesPower.TabIndex = 14;
+            this.cmbAttributesPower.TabIndex = 6;
             this.cmbAttributesPower.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidatePower);
             // 
             // optional

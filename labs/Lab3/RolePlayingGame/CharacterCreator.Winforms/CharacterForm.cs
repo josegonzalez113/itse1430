@@ -57,11 +57,11 @@ namespace CharacterCreator.Winforms
 
             if (Character != null)
             {
-                // text box save
+                // save textbox
                 txtName.Text = Character.Name;
                 txtDescription.Text = Character.Description;
 
-                // combo box save
+                // save  combobox for the following
                 if (Character.Profession != null)
                     cmbProfession.SelectedText = Character.Profession.About;
                 if (Character.Race != null)
@@ -69,13 +69,13 @@ namespace CharacterCreator.Winforms
                 if (Character.Attribute != null)
                     cmbAttributes.SelectedText = Character.Attribute.About;
 
-                // combo box save
+                // save 3 power combobox 
                 if (Character.Power != null)
                     cmbProfessionPower.SelectedText = Character.Power.About;
-                if (Character.Power != null)
-                    cmbRacePower.SelectedText = Character.Power.About;
-                if (Character.Power != null)
-                    cmbAttributesPower.SelectedText = Character.Power.About;
+                if (Character.Power1 != null)
+                    cmbRacePower.SelectedText = Character.Power1.About;
+                if (Character.Power2 != null)
+                    cmbAttributesPower.SelectedText = Character.Power2.About;
 
                 ValidateChildren();
             };
@@ -113,7 +113,7 @@ namespace CharacterCreator.Winforms
             MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
-        private Character GetCharacter () // Todo: profession, race and attributes are required.
+        private Character GetCharacter () // save a character
         {
             var character = new Character();
 
@@ -132,10 +132,10 @@ namespace CharacterCreator.Winforms
             // save power combo box
             if (cmbProfessionPower.SelectedItem is Power professionPow)
                 character.Power = professionPow;
-            if (cmbRacePower.SelectedItem is Power racePow)
-                character.Power = racePow;
-            if (cmbAttributesPower.SelectedItem is Power attributePow)
-                character.Power = attributePow;
+            if (cmbRacePower.SelectedItem is Power1 racePow)
+                character.Power1 = racePow;
+            if (cmbAttributesPower.SelectedItem is Power2 attributePow)
+                character.Power2 = attributePow;
 
             return character;
         }
@@ -171,6 +171,7 @@ namespace CharacterCreator.Winforms
                 ErrorProvider.SetError(control, "");
             }
         }
+
         // Profession combobox
         private void OnValidateProfession ( object sender, CancelEventArgs e )
         {
@@ -184,6 +185,7 @@ namespace CharacterCreator.Winforms
                 ErrorProvider.SetError(control, "");
             }
         }
+
         // Race combobox
         private void OnValidateRace ( object sender, CancelEventArgs e )
         {
@@ -197,6 +199,7 @@ namespace CharacterCreator.Winforms
                 ErrorProvider.SetError(control, "");
             }
         }
+
         // Attributes combobox
         private void OnValidateAttributes ( object sender, CancelEventArgs e )
         {
@@ -210,7 +213,8 @@ namespace CharacterCreator.Winforms
                 ErrorProvider.SetError(control, "");
             }
         }
-        // Power
+
+        // Power, 3 combobox 
         private void OnValidatePower ( object sender, CancelEventArgs e )
         {
             var control = sender as ComboBox;

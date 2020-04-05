@@ -89,6 +89,16 @@ namespace CharacterCreator
                 target.Power = new Power(source.Power.About);
             else
                 target.Power = null;
+            //Power1
+            if (source.Power1 != null)
+                target.Power1 = new Power1(source.Power1.About);
+            else
+                target.Power1 = null;
+            //Power2
+            if (source.Power2 != null)
+                target.Power2 = new Power2(source.Power2.About);
+            else
+                target.Power2 = null;
         }
 
         private readonly List<Character> _characters = new List<Character>();

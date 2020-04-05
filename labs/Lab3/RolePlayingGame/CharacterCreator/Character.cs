@@ -12,7 +12,9 @@ namespace CharacterCreator
         public Race Race { get; set; }
         public Attribute Attribute { get; set; }
         public Power Power { get; set; }
-        public Powers Powers { get; set; }
+        public Power1 Power1 { get; set; }
+        public Power2 Power2 { get; set; }
+
 
         public string Name
         {
