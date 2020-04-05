@@ -84,7 +84,6 @@ namespace CharacterCreator.Winforms
 
         private Character GetSelectedCharacter ()
         {
-            //var selectedCharacters = listCharacters.SelectedItem.OfType<Character>();
             return listCharacters.SelectedItem as Character;
         }
 
@@ -114,7 +113,6 @@ namespace CharacterCreator.Winforms
                 ShowError(error);
             } while (true);
         }
-
         
         /// <summary> If character is not null it will asl for confirmation </summary>
         private void OnCharacterDelete ( object sender, EventArgs e )

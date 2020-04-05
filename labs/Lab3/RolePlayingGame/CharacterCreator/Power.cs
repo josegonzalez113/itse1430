@@ -58,7 +58,6 @@ namespace CharacterCreator
 
             return power;
         }
-
         public static Power2[] GetAttributePower ()
         {
             var power = new Power2[5];
@@ -71,5 +70,4 @@ namespace CharacterCreator
             return power;
         }
     }
-
 }
