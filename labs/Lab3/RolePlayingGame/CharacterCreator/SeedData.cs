@@ -22,7 +22,6 @@ namespace CharacterCreator
                 foreach (var item in items)
                     database.Add(item);
             };
-
             return database;
         }
     }
