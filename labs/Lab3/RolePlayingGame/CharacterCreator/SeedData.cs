@@ -12,16 +12,13 @@ namespace CharacterCreator
         {
             if (!database.GetAll().Any())
             {
-                // Collection initializer syntax- works with anything with an Add method
-                var example = new Character() { Name = "Jose"};
+                var example = new Character() { Name = "Jose", Description = "hello" };
                 var items = new[]
                 {
-                    new Character() { Name = "Michelle"},
+                    new Character() { Name = "Michelle", Description = "hello"},
                     example,
                 };
 
-                //var character = new Characeter();
-                //character.Name = "Jaws";
                 foreach (var item in items)
                     database.Add(item);
             };
