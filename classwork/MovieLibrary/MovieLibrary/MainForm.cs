@@ -81,7 +81,20 @@ namespace MovieLibrary
 
             //Call extension method as though it is an instance
             //Discover it            
-            _movies.SeedIfEmpty();
+            //_movies.SeedIfEmpty();
+            try
+            {
+                _movies.SeedIfEmpty();
+            } catch (InvalidOperationException)
+            {
+                DisplayError("Invalid op");
+            } catch (ArgumentException)
+            {
+                DisplayError("Invalid argument");
+            } catch(Exception ex)
+            {
+                DisplayError(ex.Message);
+            }
 
             UpdateUI();
         }
@@ -97,13 +110,29 @@ namespace MovieLibrary
             //                    .OrderBy(movie => movie.Title) // IEnumerable<T> OrderBy<T> (this IEnumerable<T>, source, Func<T>, string> sorter)
             //                    .ThenByDescending(movie => movie.ReleaseYear);
 
-            //Linq syntax
-            // from: movie in IEnumerable<T>
-            // select: movie
-            var movies = from movie in _movies.GetAll()
-                         where movie.Id > 0
-                         orderby movie.Title, movie.ReleaseYear descending
-                         select movie;
+            // Error handling - 
+            //try
+            //{s*} 
+            //catch(T id)
+            //{s*}
+            var movies = Enumerable.Empty<Movie>();
+            try
+            {
+                movies = _movies.GetAll();
+            } catch(Exception e)
+            {
+                DisplayError($"Failed to load movies: {e.Message}");
+            };
+
+            //LINQ syntax 
+            //  from movie in IEnumerable<T>
+            //  [where expression]
+            //  [orderby property1 [, other properties]
+            //  select movie
+            movies = from movie in movies
+                     where movie.Id > 0
+                     orderby movie.Title, movie.ReleaseYear descending
+                     select movie;
 
             // T[] ToArray (this IEnumerable<T> source) = returns source as an array
             // List<T> ToList (this IEnumerable<T> source) = returns source as a List<T7>
