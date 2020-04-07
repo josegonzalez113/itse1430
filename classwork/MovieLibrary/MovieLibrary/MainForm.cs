@@ -1,6 +1,6 @@
 ﻿// Jose Gonzalez
-// ITSE 
-// Class Lab
+// ITSE 1430
+// Class Lab 
 
 using System;
 using System.Linq; // Language Intergrated Natural Query

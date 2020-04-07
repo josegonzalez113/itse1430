@@ -108,21 +108,6 @@ namespace MovieLibrary.Business.Memory
 
         }
 
-        // Example of complicated querying with programmatic filters
-        private IEnumerable<Movie> Query ( string title, int releaseYear )
-        {
-            var query = from movie in _movies
-                        select movie;
-
-            if (!String.IsNullOrEmpty(title))
-                query = query.Where(m => String.Compare(m.Title, title, true) == 0);
-
-            if (releaseYear > 0)
-                query = query.Where(m => m.ReleaseYear >= releaseYear);
-
-            return query.ToList();
-        }
-
         protected override Movie FindByTitle ( string title ) => (from movie in _movies
                                                                   where String.Compare(movie.Title, title, true) == 0
                                                                   select movie).FirstOrDefault();
@@ -195,6 +180,21 @@ namespace MovieLibrary.Business.Memory
             target.IsClassic = source.IsClassic;
             target.ReleaseYear = source.ReleaseYear;
             target.RunLength = source.RunLength;
+        }
+
+        // Example of complicated querying with programmatic filters
+        private IEnumerable<Movie> Query ( string title, int releaseYear )
+        {
+            var query = from movie in _movies
+                        select movie;
+
+            if (!String.IsNullOrEmpty(title))
+                query = query.Where(m => String.Compare(m.Title, title, true) == 0);
+
+            if (releaseYear > 0)
+                query = query.Where(m => m.ReleaseYear >= releaseYear);
+
+            return query.ToList();
         }
 
         //private readonly Movie[] _movies = new Movie[100];

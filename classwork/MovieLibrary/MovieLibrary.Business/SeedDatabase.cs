@@ -27,6 +27,11 @@ namespace MovieLibrary.Business
                     demo,
                 };
 
+                //var arr = new Movie[4];
+                //arr[0] = ??
+                //var list = new List<Movie>() { demo };
+                //list.Add();
+
                 //var movie = new Movie();
                 //movie.Title = "Jaws";
                 //movie.RunLength = 210;
