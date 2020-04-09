@@ -73,7 +73,7 @@ namespace MovieLibrary.Business.Memory
 
         protected override IEnumerable<Movie> GetAllCore ()
         {
-            throw new Exception("Failed");
+            //throw new Exception("Failed");
 
             // Filtering
             var items = _movies.Where(m => true);

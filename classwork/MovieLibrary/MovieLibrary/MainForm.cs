@@ -1,13 +1,12 @@
-﻿// Jose Gonzalez
+﻿// Jose Gonzalez/
 // ITSE 1430
 // Class Lab 
 
 using System;
-using System.Linq; // Language Intergrated Natural Query
-
+using System.Linq;   //Language Integrated Natural Query
 using System.Windows.Forms;
+using MovieLibrary.Business.FileSystem;
 using MovieLibrary.Business;
-using MovieLibrary.Business.Memory;
 using MovieLibrary.WinForms;
 
 namespace MovieLibrary
@@ -16,13 +15,11 @@ namespace MovieLibrary
     {
 
         //private Movie _movie;
-        private readonly IMovieDatabase _movies;
+        private IMovieDatabase _movies;
 
         public MainForm ()
         {
             InitializeComponent();
-
-            _movies = new MemoryMovieDatabase();
         }
 
         private bool DisplayConfirmation (string message, string title)
@@ -76,6 +73,7 @@ namespace MovieLibrary
         protected override void OnLoad ( EventArgs e )
         {
             base.OnLoad(e);
+            _movies = new FileMovieDatabase("movies.csv");
 
             // SeedDatabase.SeedIfEmpty(_movies); // compile to this
 

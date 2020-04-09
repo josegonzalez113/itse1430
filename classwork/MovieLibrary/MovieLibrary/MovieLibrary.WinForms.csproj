@@ -104,6 +104,10 @@
       <Project>{381e7c0c-9722-4fbe-a0cb-9a034f661a82}</Project>
       <Name>MovieLibrary.Business</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MovieLibrary.FileSystem\MovieLibrary.FileSystem.csproj">
+      <Project>{BBF3DC6C-5468-4B0B-8962-C83909607672}</Project>
+      <Name>MovieLibrary.FileSystem</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
