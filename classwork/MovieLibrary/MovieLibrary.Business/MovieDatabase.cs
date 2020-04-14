@@ -8,25 +8,34 @@ namespace MovieLibrary.Business
     // Is-a relationship
     public abstract class MovieDatabase : IMovieDatabase
     {
-        protected abstract Movie GetCore (int id); 
+        protected abstract Movie GetCore (int id);
 
         public Movie Add ( Movie movie )
         {
-            //TODO: Validate
             if (movie == null)
-                //throw new Exception("Movie is null");
-                //return null;
                 throw new ArgumentNullException(nameof(movie), "Movie is null");
+            //return null;
 
             //.NET validation
             ObjectValidator.Validate(movie);
 
             //Movie names must be unique
-            var existing = FindByTitle(movie.Title);
-            if (existing != null)
-                throw new InvalidOperationException("Movie must be unique");
+            try
+            {
+                var existing = FindByTitle(movie.Title);
+                if (existing != null)
+                    throw new InvalidOperationException("Movie must be unique");
 
-            return AddCore(movie);
+                return AddCore(movie);
+            } catch (InvalidOperationException)
+            {
+                //Rethrow exception
+                throw;
+            } catch (Exception e)
+            {
+                //Rewrite exception with original exception as the inner exception
+                throw new InvalidOperationException("Error adding movie", e);
+            };
         }
 
         protected abstract Movie AddCore ( Movie movie );
