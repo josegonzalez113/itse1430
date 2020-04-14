@@ -52,12 +52,18 @@ namespace MovieLibrary.Business.FileSystem
                 return null;
 
             //IOException
-            var stream = File.OpenRead(_filename);
+            //var stream = File.OpenRead(_filename);
 
-            // Read the stream using ReadLine
-            try
+            //IDisposable syntax
+            //Using statement takes an IDisposable expression and guarantees call to Dispose
+            //Equivalent to try-finally
+            //using (var reader = new StreamReader(stream))
+            using (var reader = new StreamReader(_filename))
             {
-                var reader = new StreamReader(stream);
+                //SR is the textual stream reader
+                //StreamWriter - writing textual streams
+                //BinaryReader - reading binary data
+                //BinaryWriter - writing binary data                    
                 while (!reader.EndOfStream)
                 {
                     //reader.ReadToEnd();
@@ -66,13 +72,33 @@ namespace MovieLibrary.Business.FileSystem
                     if (movie?.Id == id)
                         return movie;
                 };
-            } finally
-            {
-                stream.Close();
             };
+
+            //// Read the stream using ReadLine
+            //try
+            //{
+            //    //SR is the textual stream reader
+            //    //StreamWriter - writing textual streams
+            //    //BinaryReader - reading binary data
+            //    //BinaryWriter - writing binary data
+            //    reader = new StreamReader(stream);
+            //    while (!reader.EndOfStream)
+            //    {
+            //        //reader.ReadToEnd();
+            //        var line = reader.ReadLine();
+            //        var movie = LoadMovie(line);
+            //        if (movie?.Id == id)
+            //            return movie;
+            //    };
+            //} finally
+            //{
+            //    reader.Close();
+            //    //stream.Close();  //CLosed automatically be reader
+            //};
 
             return null;
         }
+
 
         protected override IEnumerable<Movie> GetAllCore ()
         {
