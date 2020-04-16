@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using MovieLibrary.Business;
 using MovieLibrary.WinForms;
 using MovieLibrary.Business.FileSystem;
+using System.Configuration;
 
 namespace MovieLibrary
 {
@@ -75,24 +76,27 @@ namespace MovieLibrary
             base.OnLoad(e);
             _movies = new FileMovieDatabase("movies.csv");
 
+            var connString = ConfigurationManager.ConnectionStrings["MovieDatabase"];
+            //new System.Data.SqlClient.SqlConnection(connString.ConnectionString).Open();
+
             // SeedDatabase.SeedIfEmpty(_movies); // compile to this
 
-            //Call extension method as though it is an instance
-            //Discover it            
-            //_movies.SeedIfEmpty();
-            try
-            {
-                _movies.SeedIfEmpty();
-            } catch (InvalidOperationException)
-            {
-                DisplayError("Invalid op");
-            } catch (ArgumentException)
-            {
-                DisplayError("Invalid argument");
-            } catch(Exception ex)
-            {
-                DisplayError(ex.Message);
-            }
+            ////Call extension method as though it is an instance
+            ////Discover it            
+            ////_movies.SeedIfEmpty();
+            //try
+            //{
+            //    _movies.SeedIfEmpty();
+            //} catch (InvalidOperationException)
+            //{
+            //    DisplayError("Invalid op");
+            //} catch (ArgumentException)
+            //{
+            //    DisplayError("Invalid argument");
+            //} catch(Exception ex)
+            //{
+            //    DisplayError(ex.Message);
+            //}
 
             UpdateUI();
         }
