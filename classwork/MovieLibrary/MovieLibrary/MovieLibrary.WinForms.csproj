@@ -104,6 +104,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MovieLibrary.Business.SqlServer\MovieLibrary.Business.SqlServer.csproj">
+      <Project>{6AD047D9-323B-4224-AD96-E707D57A6866}</Project>
+      <Name>MovieLibrary.Business.SqlServer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MovieLibrary.Business\MovieLibrary.Business.csproj">
       <Project>{381e7c0c-9722-4fbe-a0cb-9a034f661a82}</Project>
       <Name>MovieLibrary.Business</Name>

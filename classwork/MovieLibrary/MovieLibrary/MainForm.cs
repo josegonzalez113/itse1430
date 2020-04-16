@@ -9,6 +9,7 @@ using MovieLibrary.Business;
 using MovieLibrary.WinForms;
 using MovieLibrary.Business.FileSystem;
 using System.Configuration;
+using MovieLibrary.Business.SqlServer;
 
 namespace MovieLibrary
 {
@@ -74,9 +75,8 @@ namespace MovieLibrary
         protected override void OnLoad ( EventArgs e )
         {
             base.OnLoad(e);
-            _movies = new FileMovieDatabase("movies.csv");
-
             var connString = ConfigurationManager.ConnectionStrings["MovieDatabase"];
+            _movies = new SqlMovieDatabase(connString.ConnectionString);
             //new System.Data.SqlClient.SqlConnection(connString.ConnectionString).Open();
 
             // SeedDatabase.SeedIfEmpty(_movies); // compile to this
