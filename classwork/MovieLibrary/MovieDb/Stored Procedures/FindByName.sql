@@ -13,7 +13,7 @@ AS BEGIN
 
     SET @name = LTRIM(RTRIM(ISNULL(@name, '')))
 
-    SELECT Id, Name, Description, Rating, ReleaseYear, RunLength, HasSeen
+    SELECT Id, Name, Description, Genre, ReleaseYear, RunLength, IsClassic
     FROM Movies
     WHERE Name = @name
 END

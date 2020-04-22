@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -28,7 +29,7 @@ namespace MovieLibrary.Business.SqlServer
                 cmd.Parameters.Add(pName);
 
                 //2. Shorter way
-                var pGenre = cmd.Parameters.Add("@rating", System.Data.SqlDbType.NVarChar);
+                var pGenre = cmd.Parameters.Add("@genre", System.Data.SqlDbType.NVarChar);
                 if (movie.Genre != null)
                     pGenre.Value = movie.Genre.Description;
 
@@ -36,7 +37,7 @@ namespace MovieLibrary.Business.SqlServer
                 cmd.Parameters.AddWithValue("@description", movie.Description);
                 cmd.Parameters.AddWithValue("@releaseYear", movie.ReleaseYear);
                 cmd.Parameters.AddWithValue("@runLength", movie.RunLength);
-                cmd.Parameters.AddWithValue("@hasSeen", movie.IsClassic);
+                cmd.Parameters.AddWithValue("@isClassic", movie.IsClassic);
 
                 //Executes the command and returns the first value of the first row, if any
                 var result = cmd.ExecuteScalar();
@@ -58,12 +59,26 @@ namespace MovieLibrary.Business.SqlServer
 
         protected override IEnumerable<Movie> GetAllCore ()
         {
+            var items = new List<Movie>();
             using (var conn = OpenConnection())
             {
-                //TODO: Logic
+                var cmd = conn.CreateCommand();
+                cmd.CommandText = "GetMovies";
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                //Buffered approach - Dataset
+                var ds = new DataSet();
+
+                //Intermediary
+                var da = new SqlDataAdapter();
+                da.SelectCommand = cmd;
+
+                //Populate data
+                da.Fill(ds);
+                
             };
 
-            return _movies;
+            return items;
         }
 
         private SqlConnection OpenConnection ()

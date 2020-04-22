@@ -4,32 +4,30 @@
 -- PARAMS:
 --    id - The ID of the existing movie.
 --    name - The name of the movie. Must be unique and cannot be empty.
---    rating - The rating of the movie. Cannot be empty.
 --    releaseYear - The release year. If specified must be >= 0.
 --    runLength - The run length. If specified must be >= 0.
 --    description - Specifies the description of the movie.
+--    genre - The optional genre.
+--    isClassic - Determines if this is a classic movie.
 --
 -- RETURNS: None.
 --
 CREATE PROCEDURE [dbo].[UpdateMovie]
     @id INT,
 	@name NVARCHAR(255),
-    @rating NVARCHAR(20),    
     @description NVARCHAR(MAX) = NULL,
+    @genre NVARCHAR(10) = NULL,    
     @releaseYear INT = NULL,
     @runLength INT = NULL,
-    @hasSeen BIT = NULL
+    @isClassic BIT = NULL
 AS BEGIN
     SET NOCOUNT ON;
 
     SET @name = LTRIM(RTRIM(ISNULL(@name, '')))
-    SET @rating = LTRIM(RTRIM(ISNULL(@rating, '')))
 
     -- Validate
 	IF LEN(@name) = 0
         THROW 51000, 'Name cannot be empty.', 1
-    IF LEN(@rating) = 0
-        THROW 51000, 'Rating cannot be empty.', 1
     
     IF ISNULL(@releaseYear, 0) < 0
         THROW 51001, 'ReleaseYear must be >= 0.', 1
@@ -47,13 +45,17 @@ AS BEGIN
     IF LEN(@description) = 0 
         SET @description = NULL
 
+    SET @genre = LTRIM(RTRIM(ISNULL(@genre, '')))
+    IF LEN(@genre) = 0 
+        SET @genre = NULL
+
     UPDATE Movies
     SET
         Name = @name, 
         Description = @description, 
-        Rating = @rating, 
+        Genre = @genre, 
         ReleaseYear = @releaseYear, 
         RunLength = @runLength, 
-        HasSeen = @hasSeen
+        IsClassic = @isClassic
     WHERE Id = @id
 END
