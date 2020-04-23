@@ -162,17 +162,80 @@ namespace MovieLibrary.Business.SqlServer
         }
         protected override Movie FindByTitle ( string title )
         {
-            var items = GetAllCore();
+            //Streamed approach
+            using (var conn = OpenConnection())
+            {
+                var cmd = conn.CreateCommand();
+                cmd.CommandText = "FindByName";
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@name", title);
 
-            return items.FirstOrDefault(m => String.Compare(m.Title, title, true) == 0);
+                //Error - clean up reader
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var movie = new Movie() {
+                            Id = Convert.ToInt32(reader[0]),     //Dictionary with zero-based ordinal
+                            Title = reader["Name"]?.ToString(),  //Dictionary with column name
+
+                            Description = reader.GetString(2),   //GetType(ordinal)
+
+                            ReleaseYear = reader.GetFieldValue<int>(4),  //Generic(ordinal)                            
+                            RunLength = reader.GetFieldValue<int>(5),
+                            IsClassic = reader.GetBoolean(6)
+                        };
+
+                        //Handle DBNull.Value
+                        var ordinal = reader.GetOrdinal("Genre");
+                        var genre = !reader.IsDBNull(ordinal) ? reader.GetFieldValue<string>(ordinal) : null;
+                        if (!String.IsNullOrEmpty(genre))
+                            movie.Genre = new Genre(genre);
+
+                        return movie;
+                    };
+                };
+            };
+            return null;
         }
 
         protected override Movie FindById ( int id )
         {
-            //TODO: Inefficient
-            var items = GetAllCore();
+            //Streamed approach
+            using (var conn = OpenConnection())
+            {
+                var cmd = conn.CreateCommand();
+                cmd.CommandText = "GetMovie";
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@id", id);
 
-            return items.FirstOrDefault(i => i.Id == id);
+                //Error - Clean up reader
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var movie = new Movie() {
+                            Id = Convert.ToInt32(reader[0]),     //Dictionary with zero-based ordinal
+                            Title = reader["Name"]?.ToString(),  //Dictionary column name
+
+                            Description = reader.GetString(2),   //GetType(ordinal)
+
+                            ReleaseYear = reader.GetFieldValue<int>(4),  //Generic(ordinal)
+                            RunLength = reader.GetFieldValue<int>(5),
+                            IsClassic = reader.GetBoolean(6)
+                        };
+
+                        //Handle DBNull.Value
+                        var ordinal = reader.GetOrdinal("Genre");
+                        var genre = !reader.IsDBNull(ordinal) ? reader.GetFieldValue<string>(ordinal) : null;
+                        if (!String.IsNullOrEmpty(genre))
+                            movie.Genre = new Genre(genre);
+
+                        return movie;
+                    };
+                };
+            };
+            return null;
         }
 
         private readonly string _connectionString;
