@@ -23,7 +23,7 @@ namespace Nile.Stores
             // Product must be unique
             try
             {
-                var existing = FindByName(product.Name);
+                var existing = FindProduct(product.Id);
                 if (existing != null)
                     throw new InvalidOperationException("Product must be unique");
 
@@ -77,17 +77,11 @@ namespace Nile.Stores
             if (id <= 0)
                 throw new ArgumentOutOfRangeException(nameof(id), "Id must be greater than zero");
 
-            var existing = FindById(id);
+            var existing = FindProduct(id);
             if (existing == null)
                 throw new ArgumentException("Product not found", nameof(id));
 
-            //Movie names must be unique
-            var sameName = FindByName(product.Name);
-            if (sameName != null && sameName.Id != id)
-                throw new InvalidOperationException("Product must be unique");
-            //return "Movie must be unique";
-
-            UpdateCore(id, product);
+            UpdateCore(existing, product);
 
             return null;
         }
@@ -103,12 +97,8 @@ namespace Nile.Stores
         protected abstract Product UpdateCore( Product existing, Product newItem );
 
         protected abstract Product AddCore( Product product );
+
+        protected abstract Product FindProduct (int id);
         #endregion
-
-        protected abstract void UpdateCore ( int id, Product product );
-
-        protected abstract Product FindByName ( string title );
-
-        protected abstract Product FindById ( int id );
     }
 }

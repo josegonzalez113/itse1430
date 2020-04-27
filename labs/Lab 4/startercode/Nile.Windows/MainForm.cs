@@ -10,13 +10,13 @@ namespace Nile.Windows
     {
         #region Construction
 
-        public MainForm()
+        public MainForm ()
         {
             InitializeComponent();
         }
         #endregion
 
-        protected override void OnLoad( EventArgs e )
+        protected override void OnLoad ( EventArgs e )
         {
             base.OnLoad(e);
 
@@ -27,12 +27,12 @@ namespace Nile.Windows
 
         #region Event Handlers
 
-        private void OnFileExit( object sender, EventArgs e )
+        private void OnFileExit ( object sender, EventArgs e )
         {
             Close();
         }
 
-        private void OnProductAdd( object sender, EventArgs e )
+        private void OnProductAdd ( object sender, EventArgs e )
         {
             var child = new ProductDetailForm("Product Details");
             if (child.ShowDialog(this) != DialogResult.OK)
@@ -44,7 +44,7 @@ namespace Nile.Windows
             UpdateList();
         }
 
-        private void OnProductEdit( object sender, EventArgs e )
+        private void OnProductEdit ( object sender, EventArgs e )
         {
             var product = GetSelectedProduct();
             if (product == null)
@@ -54,18 +54,18 @@ namespace Nile.Windows
             };
 
             EditProduct(product);
-        }        
+        }
 
-        private void OnProductDelete( object sender, EventArgs e )
+        private void OnProductDelete ( object sender, EventArgs e )
         {
             var product = GetSelectedProduct();
             if (product == null)
                 return;
 
             DeleteProduct(product);
-        }        
-                
-        private void OnEditRow( object sender, DataGridViewCellEventArgs e )
+        }
+
+        private void OnEditRow ( object sender, DataGridViewCellEventArgs e )
         {
             var grid = sender as DataGridView;
 
@@ -80,7 +80,7 @@ namespace Nile.Windows
                 EditProduct(item);
         }
 
-        private void OnKeyDownGrid( object sender, KeyEventArgs e )
+        private void OnKeyDownGrid ( object sender, KeyEventArgs e )
         {
             if (e.KeyCode != Keys.Delete)
                 return;
@@ -88,18 +88,12 @@ namespace Nile.Windows
             var product = GetSelectedProduct();
             if (product != null)
                 DeleteProduct(product);
-			
-			//Don't continue with key
+
+            //Don't continue with key
             e.SuppressKeyPress = true;
         }
 
         #endregion
-        private void OnHelpAbout ( object sender, EventArgs e )
-        {
-            var about = new AboutForm();
-
-            about.ShowDialog(this);
-        }
 
         #region Private Members
 
@@ -125,7 +119,7 @@ namespace Nile.Windows
 
             //TODO: Handle errors
             //Save product
-            _database.Update(child.Product);
+            _database.Update(product.Id, child.Product);
             UpdateList();
         }
 

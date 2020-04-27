@@ -79,7 +79,7 @@ namespace Nile.Stores
         }
 
         //Find a product by ID
-        private Product FindProduct ( int id )
+        protected override Product FindProduct ( int id )
         {
             foreach (var product in _products)
             {
