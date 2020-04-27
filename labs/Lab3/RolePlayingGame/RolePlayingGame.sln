@@ -4,10 +4,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.29102.190
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CharacterCreator.Winforms", "CharacterCreator.Winforms\CharacterCreator.Winforms.csproj", "{1396EB97-94E7-4D49-BA33-054B0E5B3BDF}"
+	ProjectSection(ProjectDependencies) = postProject
+		{071136B6-76E5-48B3-A2AC-76EA5F583CE1} = {071136B6-76E5-48B3-A2AC-76EA5F583CE1}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CharacterCreator", "CharacterCreator\CharacterCreator.csproj", "{533A212C-47FF-458F-AE1D-9459C1872A43}"
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "NileDatabase", "..\..\Lab 4\RolePlayingGame\startercode\NileDatabase\NileDatabase.sqlproj", "{56C0ADF1-90E3-4E66-998C-20FE50D88A2D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CharacterLibrary.FileSystem", "CharacterLibrary.FileSystem\CharacterLibrary.FileSystem.csproj", "{071136B6-76E5-48B3-A2AC-76EA5F583CE1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,6 +34,10 @@ Global
 		{56C0ADF1-90E3-4E66-998C-20FE50D88A2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{56C0ADF1-90E3-4E66-998C-20FE50D88A2D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{56C0ADF1-90E3-4E66-998C-20FE50D88A2D}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{071136B6-76E5-48B3-A2AC-76EA5F583CE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{071136B6-76E5-48B3-A2AC-76EA5F583CE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{071136B6-76E5-48B3-A2AC-76EA5F583CE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{071136B6-76E5-48B3-A2AC-76EA5F583CE1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
