@@ -46,11 +46,6 @@ namespace Nile
                 yield return new ValidationResult("Name is required and cannot be empty", new[] { nameof(Name) });
             };
 
-            if (Id <= 0)
-            {
-                yield return new ValidationResult("Id must be greater than or equal to zero", new[] { nameof(Id) });
-            }
-
             if (Price <= 0)
             {
                 yield return new ValidationResult("Price must be greater than or equal to zero", new[] { nameof(Price) });
