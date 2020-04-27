@@ -5,6 +5,7 @@ VisualStudioVersion = 16.0.29102.190
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CharacterCreator.Winforms", "CharacterCreator.Winforms\CharacterCreator.Winforms.csproj", "{1396EB97-94E7-4D49-BA33-054B0E5B3BDF}"
 	ProjectSection(ProjectDependencies) = postProject
+		{AC2EFB81-CE50-4D26-B9D6-003564E9C7F8} = {AC2EFB81-CE50-4D26-B9D6-003564E9C7F8}
 		{071136B6-76E5-48B3-A2AC-76EA5F583CE1} = {071136B6-76E5-48B3-A2AC-76EA5F583CE1}
 	EndProjectSection
 EndProject
@@ -13,6 +14,8 @@ EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "NileDatabase", "..\..\Lab 4\RolePlayingGame\startercode\NileDatabase\NileDatabase.sqlproj", "{56C0ADF1-90E3-4E66-998C-20FE50D88A2D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CharacterLibrary.FileSystem", "CharacterLibrary.FileSystem\CharacterLibrary.FileSystem.csproj", "{071136B6-76E5-48B3-A2AC-76EA5F583CE1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieLibrary.Business.SqlServer", "MovieLibrary.Business.SqlServer\MovieLibrary.Business.SqlServer.csproj", "{AC2EFB81-CE50-4D26-B9D6-003564E9C7F8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,6 +41,10 @@ Global
 		{071136B6-76E5-48B3-A2AC-76EA5F583CE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{071136B6-76E5-48B3-A2AC-76EA5F583CE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{071136B6-76E5-48B3-A2AC-76EA5F583CE1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC2EFB81-CE50-4D26-B9D6-003564E9C7F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC2EFB81-CE50-4D26-B9D6-003564E9C7F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC2EFB81-CE50-4D26-B9D6-003564E9C7F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC2EFB81-CE50-4D26-B9D6-003564E9C7F8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
