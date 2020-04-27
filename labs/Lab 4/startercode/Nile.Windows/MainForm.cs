@@ -1,5 +1,7 @@
 /*
+ * Jose Gonzalez
  * ITSE 1430
+ * Lab 4
  */
 using System;
 using System.Windows.Forms;
