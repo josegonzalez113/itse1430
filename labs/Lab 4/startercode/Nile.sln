@@ -1,8 +1,11 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26403.7
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29905.134
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nile.Windows", "Nile.Windows\Nile.Windows.csproj", "{8F5366FA-58D9-4DD3-89C7-66975A72F676}"
+	ProjectSection(ProjectDependencies) = postProject
+		{56C0ADF1-90E3-4E66-998C-20FE50D88A2D} = {56C0ADF1-90E3-4E66-998C-20FE50D88A2D}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nile", "Nile\Nile.csproj", "{93BD7A37-01A9-498D-8479-67BEF715EA20}"
 EndProject

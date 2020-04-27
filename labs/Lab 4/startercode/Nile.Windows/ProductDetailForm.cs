@@ -97,6 +97,32 @@ namespace Nile.Windows
                 _errors.SetError(_txtPrice, "");
         }
         #endregion
+        private void OnValidateName ( object sender, CancelEventArgs e )
+        {
+            var control = sender as TextBox;
+            if (String.IsNullOrEmpty(control.Text))
+            {
+                _errors.SetError(control, "Name is required");
+                e.Cancel = true;
+            } else // will get rid of the error circle next to the box after inserting data
+            {
+                _errors.SetError(control, "");
+            }
+        }
+
+        private void OnValidatePrice ( object sender, CancelEventArgs e )
+        {
+            var control = sender as Control;
+            var value = GetAsInt32(control, 0);
+            if (value < 0)
+            {
+                _errors.SetError(control, "Price must be greater than or equal to zero.");
+                e.Cancel = true;
+            } else
+            {
+                _errors.SetError(control, "");
+            }
+        }
 
         #region Private Members
 
@@ -107,7 +133,24 @@ namespace Nile.Windows
 
             //Validate price            
             return -1;
-        }                      
+        }
         #endregion
+        private int GetAsInt32 ( Control control )
+        {
+            return GetAsInt32(control, 0);
+        }
+        private int GetAsInt32 ( Control control, int emptyValue )
+        {
+            // check for empty string
+            if (String.IsNullOrEmpty(control.Text))
+                return emptyValue;
+
+            //convert string into int
+            if (Int32.TryParse(control.Text, out var result))
+                return result;
+
+            //return errror
+            return -1;
+        }
     }
 }

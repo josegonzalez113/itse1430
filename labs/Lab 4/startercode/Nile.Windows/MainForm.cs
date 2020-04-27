@@ -26,7 +26,7 @@ namespace Nile.Windows
         }
 
         #region Event Handlers
-        
+
         private void OnFileExit( object sender, EventArgs e )
         {
             Close();
@@ -94,6 +94,12 @@ namespace Nile.Windows
         }
 
         #endregion
+        private void OnHelpAbout ( object sender, EventArgs e )
+        {
+            var about = new AboutForm();
+
+            about.ShowDialog(this);
+        }
 
         #region Private Members
 

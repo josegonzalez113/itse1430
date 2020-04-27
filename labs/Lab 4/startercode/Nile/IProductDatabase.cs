@@ -29,6 +29,6 @@ namespace Nile
         /// <summary>Updates a product.</summary>
         /// <param name="product">The product to update.</param>
         /// <returns>The updated product.</returns>
-        Product Update ( Product product );
+        Product Update ( int id, Product product );
     }
 }
