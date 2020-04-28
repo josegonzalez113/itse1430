@@ -12,6 +12,10 @@ namespace MovieLibrary.Business
     {/// <summary> Gets or set the title.</summary>
 
         public Genre Genre { get; set; }
+
+        //[RequiredAttribute()] //long, long, form
+        //[RequiredAttribute] // long form
+        [Required(AllowEmptyStrings = false)] //preferred version
         public string Title
         {
             //Never return null from a string property, always return empty string
@@ -32,7 +36,7 @@ namespace MovieLibrary.Business
             set { _runLength = value; }
         }
         private int _runLength;*/
-
+        [Range(0, Int32.MaxValue, ErrorMessage = "Run length must be >= 0")]
         public int RunLength { get; set; }
 
         /// <summary> Gets or sets the description.</summary>
@@ -55,6 +59,7 @@ namespace MovieLibrary.Business
         }
         private int _releaseYear;*/
 
+            [RangeAttribute(1900, Int32.MaxValue, ErrorMessage = "Release year must be >= 1900")]
         public int ReleaseYear { get; set; } = 1900;
 
         /// <summary> Determines if this is a classic.</summary>
@@ -94,28 +99,30 @@ namespace MovieLibrary.Business
         {
             //Title is required
             //if (txtTitle.Text?.Trim() == "")
-            if (String.IsNullOrEmpty(Title))
-            {
-                yield return new ValidationResult("Title is required", new[] { nameof(Title)});
-                //error = "Title is required";
-            };
+            //if (String.IsNullOrEmpty(Title))
+            //{
+            //    yield return new ValidationResult("Title is required", new[] { nameof(Title)});
+            //    //error = "Title is required";
+            //};
 
-            // Run Length has to be >=0
-            if (RunLength < 0)
-            {
-                yield return new ValidationResult("Run Length has to be >= to zero", new[] { nameof(RunLength) });
-                //error = "Run Length has to be >= to zero";
-            };
+            //// Run Length has to be >=0
+            //if (RunLength < 0)
+            //{
+            //    yield return new ValidationResult("Run Length has to be >= to zero", new[] { nameof(RunLength) });
+            //    //error = "Run Length has to be >= to zero";
+            //};
 
-            //Release Year >= 1900
-            if (ReleaseYear < 1900)
-            {
-                yield return new ValidationResult("Release year has to be >= 1900", new[] { nameof(ReleaseYear) });
-                //error = "Release year has to be >= 1900";
-            };
+            ////Release Year >= 1900
+            //if (ReleaseYear < 1900)
+            //{
+            //    yield return new ValidationResult("Release year has to be >= 1900", new[] { nameof(ReleaseYear) });
+            //    //error = "Release year has to be >= 1900";
+            //};
 
             //error = null;
             //return true;
+
+            return Enumerable.Empty<ValidationResult>();
         }
     }
 }
