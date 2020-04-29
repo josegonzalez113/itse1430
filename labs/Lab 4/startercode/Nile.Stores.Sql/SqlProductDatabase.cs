@@ -12,6 +12,14 @@ namespace Nile.Stores.Sql
         {
             _connectionString = connectionString;
         }
+        private SqlConnection OpenConnection ()
+        {
+            var conn = new SqlConnection(_connectionString);
+            conn.Open();
+
+            return conn;
+        }
+
         private readonly string _connectionString;
 
         protected override Product AddCore ( Product product )
@@ -116,14 +124,6 @@ namespace Nile.Stores.Sql
             }
 
 
-        }
-
-        private SqlConnection OpenConnection ()
-        {
-            var conn = new SqlConnection(_connectionString);
-            conn.Open();
-
-            return conn;
         }
 
         protected override Product ProductName ( string name )
