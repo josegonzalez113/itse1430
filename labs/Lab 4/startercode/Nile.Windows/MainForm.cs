@@ -140,6 +140,14 @@ namespace Nile.Windows
             _bsProducts.DataSource = _database.GetAll();
         }
 
+        // About Box
+        private void OnHelpAbout ( object sender, EventArgs e )
+        {
+            var about = new AboutForm();
+
+            about.ShowDialog(this);
+        }
+
         private readonly IProductDatabase _database = new Nile.Stores.MemoryProductDatabase();
         #endregion
     }

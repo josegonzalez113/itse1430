@@ -99,6 +99,8 @@ namespace Nile.Stores
         protected abstract Product AddCore( Product product );
 
         protected abstract Product FindProduct (int id);
+
+        protected abstract Product ProductName ( string name );
         #endregion
     }
 }
